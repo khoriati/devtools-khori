@@ -17,7 +17,9 @@ i18n
     },
     fallbackLng: 'pt-BR',
     supportedLngs: SUPPORTED_LANGUAGES as unknown as string[],
-    nonExplicitSupportedLngs: true,
+    // Initialise synchronously so the very first render already has resources.
+    initImmediate: false,
+    react: { useSuspense: false },
     interpolation: { escapeValue: false },
     detection: {
       order: ['localStorage', 'navigator'],

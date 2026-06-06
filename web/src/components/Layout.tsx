@@ -6,6 +6,7 @@ import {
   IconButton,
   Link as MuiLink,
   List,
+  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
@@ -51,12 +52,19 @@ export default function Layout() {
   const nav = (
     <nav aria-label={t('nav.label')}>
       <List>
-        <ListItemButton component={Link} to="/" selected={location.pathname === '/'} onClick={() => setMobileOpen(false)}>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary={t('nav.home')} />
-        </ListItemButton>
+        <ListItem disablePadding>
+          <ListItemButton
+            component={Link}
+            to="/"
+            selected={location.pathname === '/'}
+            onClick={() => setMobileOpen(false)}
+          >
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary={t('nav.home')} />
+          </ListItemButton>
+        </ListItem>
       </List>
       {TOOL_GROUPS.map((group) => (
         <List
@@ -72,19 +80,20 @@ export default function Layout() {
             const Icon = tool.icon;
             const to = `/tool/${tool.id}`;
             return (
-              <ListItemButton
-                key={tool.id}
-                component={Link}
-                to={to}
-                selected={location.pathname === to}
-                onClick={() => setMobileOpen(false)}
-                aria-current={location.pathname === to ? 'page' : undefined}
-              >
-                <ListItemIcon>
-                  <Icon />
-                </ListItemIcon>
-                <ListItemText primary={t(`tools.${tool.id}.name`)} />
-              </ListItemButton>
+              <ListItem key={tool.id} disablePadding>
+                <ListItemButton
+                  component={Link}
+                  to={to}
+                  selected={location.pathname === to}
+                  onClick={() => setMobileOpen(false)}
+                  aria-current={location.pathname === to ? 'page' : undefined}
+                >
+                  <ListItemIcon>
+                    <Icon />
+                  </ListItemIcon>
+                  <ListItemText primary={t(`tools.${tool.id}.name`)} />
+                </ListItemButton>
+              </ListItem>
             );
           })}
         </List>

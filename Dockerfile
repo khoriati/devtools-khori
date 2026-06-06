@@ -12,7 +12,7 @@ ENV NODE_ENV=production
 # Network diagnostic tools used by the backend API.
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-     whois traceroute iputils-ping dnsutils curl ca-certificates libcap2-bin \
+     whois traceroute iputils-ping dnsutils curl ca-certificates libcap2-bin netbase \
   && rm -rf /var/lib/apt/lists/* \
   # Grant raw-socket capability so ping/traceroute work as a non-root user.
   && setcap cap_net_raw+ep "$(readlink -f "$(command -v ping)")" \

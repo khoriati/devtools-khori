@@ -67,8 +67,8 @@ test.describe('Keyboard & structure', () => {
     await page.goto('/', { waitUntil: 'networkidle' });
     const settings = page.getByRole('button', { name: /settings|configurações/i });
     await settings.click();
-    const en = page.getByRole('menuitem', { name: /English/i });
-    await en.click();
+    await page.getByRole('menu').waitFor();
+    await page.getByRole('menuitem').filter({ hasText: 'English' }).first().click();
     await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
   });
 });
