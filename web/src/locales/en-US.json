@@ -1,0 +1,119 @@
+{
+  "app": {
+    "title": "DevTools Khori",
+    "tagline": "Everyday tools, accessible to everyone",
+    "skipToContent": "Skip to main content",
+    "skipToNav": "Skip to navigation",
+    "footer": "DevTools Khori — a WCAG 2.1 AAA compliant portal example. Open source.",
+    "githubLabel": "GitHub repository (opens in a new tab)"
+  },
+  "nav": {
+    "label": "Tools navigation",
+    "home": "Home",
+    "groups": { "converters": "Converters & data", "network": "Network", "accessibility": "Accessibility" }
+  },
+  "settings": {
+    "theme": "Theme",
+    "themeMode": { "light": "Light", "dark": "Dark", "high-contrast": "High contrast" },
+    "language": "Language",
+    "openSettings": "Open appearance and language settings",
+    "languageNames": { "pt-BR": "Português (Brasil)", "en-US": "English (US)" }
+  },
+  "common": {
+    "input": "Input",
+    "output": "Output",
+    "result": "Result",
+    "run": "Run",
+    "copy": "Copy",
+    "copied": "Copied to clipboard",
+    "clear": "Clear",
+    "loading": "Working, please wait",
+    "error": "Error",
+    "empty": "No result yet",
+    "host": "Host or IP address",
+    "url": "URL",
+    "invalidHost": "Invalid host. Use a valid domain name or IP.",
+    "networkNote": "This lookup runs securely on the server.",
+    "charCount": "{{count}} character",
+    "charCount_other": "{{count}} characters"
+  },
+  "home": {
+    "heading": "Choose a tool",
+    "intro": "A collection of utilities for developers and administrators, built as an accessibility reference for visually impaired users.",
+    "a11yHeading": "Built for accessibility",
+    "a11yText": "Full keyboard navigation, screen-reader friendly, a minimum 7:1 contrast ratio and three themes. Use the skip link to jump straight to the content."
+  },
+  "tools": {
+    "base-converter": {
+      "name": "Programmer calculator",
+      "desc": "Convert between hexadecimal, decimal, octal and binary and view bit operations.",
+      "decimal": "Decimal", "hex": "Hexadecimal", "octal": "Octal", "binary": "Binary",
+      "bits": "Bit width", "invalid": "Invalid number for the selected base"
+    },
+    "jwt": {
+      "name": "JWT decoder",
+      "desc": "Decode the header and payload of a JSON Web Token (signature not verified).",
+      "header": "Header", "payload": "Payload", "signature": "Signature (not verified)",
+      "invalid": "Invalid JWT token", "expWarn": "Warning: this token is expired.",
+      "placeholder": "Paste the JWT token here"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Encode and decode text to and from Base64.",
+      "encode": "Encode", "decode": "Decode", "invalid": "Invalid Base64"
+    },
+    "url": {
+      "name": "URL encoder",
+      "desc": "Encode and decode URL components with percent-encoding.",
+      "encode": "Encode", "decode": "Decode", "invalid": "Invalid URL sequence"
+    },
+    "hash": {
+      "name": "Hash generator",
+      "desc": "Generate SHA-1, SHA-256, SHA-384 and SHA-512 hashes of your text.",
+      "algorithm": "Algorithm"
+    },
+    "uuid": {
+      "name": "UUID generator",
+      "desc": "Generate unique UUID v4 identifiers.",
+      "generate": "Generate UUID", "quantity": "Quantity"
+    },
+    "timestamp": {
+      "name": "Timestamp converter",
+      "desc": "Convert between Unix timestamp and human-readable date/time.",
+      "unix": "Unix timestamp (seconds)", "human": "Date and time", "now": "Now", "utc": "UTC", "local": "Local"
+    },
+    "json": {
+      "name": "JSON formatter",
+      "desc": "Validate and pretty-print (or minify) JSON documents.",
+      "format": "Format", "minify": "Minify", "valid": "Valid JSON", "invalid": "Invalid JSON"
+    },
+    "contrast": {
+      "name": "Contrast checker",
+      "desc": "Compute the contrast ratio between two colors and check WCAG compliance.",
+      "foreground": "Text color", "background": "Background color", "ratio": "Contrast ratio",
+      "normalText": "Normal text", "largeText": "Large text", "pass": "Pass", "fail": "Fail"
+    },
+    "whois": {
+      "name": "WHOIS",
+      "desc": "Look up registration information for a domain or IP."
+    },
+    "ping": {
+      "name": "Ping",
+      "desc": "Check the availability and latency of a host."
+    },
+    "traceroute": {
+      "name": "Traceroute",
+      "desc": "Trace the network route to a host."
+    },
+    "dns": {
+      "name": "DNS lookup",
+      "desc": "Resolve DNS records (A, AAAA, MX, TXT, NS and others).",
+      "recordType": "Record type"
+    },
+    "http": {
+      "name": "HTTP inspector",
+      "desc": "Make an HTTP request and inspect status, headers and body (curl-style).",
+      "method": "Method", "status": "Status", "headers": "Headers", "body": "Body", "time": "Time"
+    }
+  }
+}

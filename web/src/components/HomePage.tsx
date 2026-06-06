@@ -1,0 +1,64 @@
+import { useEffect } from 'react';
+import { Box, Card, CardActionArea, CardContent, Grid, Stack, Typography } from '@mui/material';
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { TOOLS } from '../tools/registry';
+
+export default function HomePage() {
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = `${t('app.title')} — ${t('app.tagline')}`;
+  }, [t]);
+
+  return (
+    <Box>
+      <Typography component="h1" variant="h1" gutterBottom>
+        {t('home.heading')}
+      </Typography>
+      <Typography variant="body1" sx={{ maxWidth: 720, mb: 3 }}>
+        {t('home.intro')}
+      </Typography>
+
+      <Card variant="outlined" sx={{ mb: 4, bgcolor: 'background.paper' }}>
+        <CardContent>
+          <Stack direction="row" spacing={2} alignItems="flex-start">
+            <AccessibilityNewIcon color="primary" fontSize="large" aria-hidden="true" />
+            <Box>
+              <Typography component="h2" variant="h2" gutterBottom>
+                {t('home.a11yHeading')}
+              </Typography>
+              <Typography variant="body1">{t('home.a11yText')}</Typography>
+            </Box>
+          </Stack>
+        </CardContent>
+      </Card>
+
+      <Grid container spacing={2} component="ul" sx={{ listStyle: 'none', p: 0, m: 0 }}>
+        {TOOLS.map((tool) => {
+          const Icon = tool.icon;
+          return (
+            <Grid item xs={12} sm={6} md={4} key={tool.id} component="li">
+              <Card variant="outlined" sx={{ height: '100%' }}>
+                <CardActionArea component={Link} to={`/tool/${tool.id}`} sx={{ height: '100%', p: 1 }}>
+                  <CardContent>
+                    <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 1 }}>
+                      <Icon color="primary" aria-hidden="true" />
+                      <Typography component="h3" variant="h3">
+                        {t(`tools.${tool.id}.name`)}
+                      </Typography>
+                    </Stack>
+                    <Typography variant="body2" color="text.secondary">
+                      {t(`tools.${tool.id}.desc`)}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </Box>
+  );
+}

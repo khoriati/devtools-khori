@@ -1,0 +1,119 @@
+{
+  "app": {
+    "title": "DevTools Khori",
+    "tagline": "Ferramentas do dia a dia, acessíveis a todos",
+    "skipToContent": "Pular para o conteúdo principal",
+    "skipToNav": "Pular para a navegação",
+    "footer": "DevTools Khori — exemplo de portal com conformidade WCAG 2.1 AAA. Código aberto.",
+    "githubLabel": "Repositório no GitHub (abre em nova aba)"
+  },
+  "nav": {
+    "label": "Navegação de ferramentas",
+    "home": "Início",
+    "groups": { "converters": "Conversores e dados", "network": "Rede", "accessibility": "Acessibilidade" }
+  },
+  "settings": {
+    "theme": "Tema",
+    "themeMode": { "light": "Claro", "dark": "Escuro", "high-contrast": "Alto contraste" },
+    "language": "Idioma",
+    "openSettings": "Abrir configurações de aparência e idioma",
+    "languageNames": { "pt-BR": "Português (Brasil)", "en-US": "English (US)" }
+  },
+  "common": {
+    "input": "Entrada",
+    "output": "Resultado",
+    "result": "Resultado",
+    "run": "Executar",
+    "copy": "Copiar",
+    "copied": "Copiado para a área de transferência",
+    "clear": "Limpar",
+    "loading": "Processando, aguarde",
+    "error": "Erro",
+    "empty": "Nenhum resultado ainda",
+    "host": "Host ou endereço IP",
+    "url": "URL",
+    "invalidHost": "Host inválido. Use um nome de domínio ou IP válido.",
+    "networkNote": "Esta consulta é executada com segurança no servidor.",
+    "charCount": "{{count}} caractere",
+    "charCount_other": "{{count}} caracteres"
+  },
+  "home": {
+    "heading": "Escolha uma ferramenta",
+    "intro": "Uma coleção de utilitários para desenvolvedores e administradores, construída como referência de acessibilidade para deficientes visuais.",
+    "a11yHeading": "Construído para acessibilidade",
+    "a11yText": "Navegação completa por teclado, compatível com leitores de tela, contraste mínimo de 7:1 e três temas. Pressione a tecla de atalho de pular para ir direto ao conteúdo."
+  },
+  "tools": {
+    "base-converter": {
+      "name": "Calculadora de programador",
+      "desc": "Converta entre hexadecimal, decimal, octal e binário e veja operações de bits.",
+      "decimal": "Decimal", "hex": "Hexadecimal", "octal": "Octal", "binary": "Binário",
+      "bits": "Largura de bits", "invalid": "Número inválido para a base informada"
+    },
+    "jwt": {
+      "name": "Decodificador JWT",
+      "desc": "Decodifique o cabeçalho e o payload de um JSON Web Token (sem validar a assinatura).",
+      "header": "Cabeçalho", "payload": "Payload", "signature": "Assinatura (não verificada)",
+      "invalid": "Token JWT inválido", "expWarn": "Atenção: este token está expirado.",
+      "placeholder": "Cole o token JWT aqui"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Codifique e decodifique texto em Base64.",
+      "encode": "Codificar", "decode": "Decodificar", "invalid": "Base64 inválido"
+    },
+    "url": {
+      "name": "Codificador de URL",
+      "desc": "Codifique e decodifique componentes de URL com percent-encoding.",
+      "encode": "Codificar", "decode": "Decodificar", "invalid": "Sequência de URL inválida"
+    },
+    "hash": {
+      "name": "Gerador de hash",
+      "desc": "Gere hashes SHA-1, SHA-256, SHA-384 e SHA-512 do texto informado.",
+      "algorithm": "Algoritmo"
+    },
+    "uuid": {
+      "name": "Gerador de UUID",
+      "desc": "Gere identificadores únicos UUID v4.",
+      "generate": "Gerar UUID", "quantity": "Quantidade"
+    },
+    "timestamp": {
+      "name": "Conversor de timestamp",
+      "desc": "Converta entre timestamp Unix e data/hora legível.",
+      "unix": "Timestamp Unix (segundos)", "human": "Data e hora", "now": "Agora", "utc": "UTC", "local": "Local"
+    },
+    "json": {
+      "name": "Formatador JSON",
+      "desc": "Valide e formate (ou minifique) documentos JSON.",
+      "format": "Formatar", "minify": "Minificar", "valid": "JSON válido", "invalid": "JSON inválido"
+    },
+    "contrast": {
+      "name": "Verificador de contraste",
+      "desc": "Calcule a razão de contraste entre duas cores e verifique a conformidade WCAG.",
+      "foreground": "Cor do texto", "background": "Cor de fundo", "ratio": "Razão de contraste",
+      "normalText": "Texto normal", "largeText": "Texto grande", "pass": "Passa", "fail": "Reprova"
+    },
+    "whois": {
+      "name": "WHOIS",
+      "desc": "Consulte informações de registro de um domínio ou IP."
+    },
+    "ping": {
+      "name": "Ping",
+      "desc": "Verifique a disponibilidade e a latência de um host."
+    },
+    "traceroute": {
+      "name": "Traceroute",
+      "desc": "Trace a rota de rede até um host."
+    },
+    "dns": {
+      "name": "Consulta DNS",
+      "desc": "Resolva registros DNS (A, AAAA, MX, TXT, NS e outros).",
+      "recordType": "Tipo de registro"
+    },
+    "http": {
+      "name": "Inspetor HTTP",
+      "desc": "Faça uma requisição HTTP e inspecione status, cabeçalhos e corpo (estilo curl).",
+      "method": "Método", "status": "Status", "headers": "Cabeçalhos", "body": "Corpo", "time": "Tempo"
+    }
+  }
+}

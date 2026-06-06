@@ -1,0 +1,8 @@
+**/node_modules
+**/dist
+.git
+tests/node_modules
+tests/test-results
+tests/playwright-report
+*.log
+.DS_Store

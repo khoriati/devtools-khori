@@ -1,0 +1,21 @@
+/* Base resets. Typography and colors come from the MUI theme. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+/* Allow users to zoom/scale text without breaking layout (WCAG 1.4.4 / 1.4.10). */
+* {
+  box-sizing: border-box;
+}
+
+/* Honour forced-colors / Windows High Contrast mode. */
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 3px solid CanvasText;
+  }
+}
