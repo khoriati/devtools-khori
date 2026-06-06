@@ -1,6 +1,8 @@
 import type { ComponentType, ReactNode } from 'react';
 import type { SvgIconProps } from '@mui/material';
 import CalculateIcon from '@mui/icons-material/Calculate';
+import LanIcon from '@mui/icons-material/Lan';
+import LockIcon from '@mui/icons-material/Lock';
 import KeyIcon from '@mui/icons-material/Key';
 import TransformIcon from '@mui/icons-material/Transform';
 import LinkIcon from '@mui/icons-material/Link';
@@ -16,6 +18,8 @@ import DnsIcon from '@mui/icons-material/Dns';
 import HttpIcon from '@mui/icons-material/Http';
 
 import BaseConverter from './BaseConverter';
+import IpCalculator from './IpCalculator';
+import ChmodCalculator from './ChmodCalculator';
 import JwtDecoder from './JwtDecoder';
 import EncoderTool, { base64Encode, base64Decode } from './EncoderTool';
 import HashTool from './HashTool';
@@ -37,6 +41,8 @@ export type ToolDef = {
 
 export const TOOLS: ToolDef[] = [
   { id: 'base-converter', group: 'converters', icon: CalculateIcon, render: () => <BaseConverter /> },
+  { id: 'ip-calculator', group: 'converters', icon: LanIcon, render: () => <IpCalculator /> },
+  { id: 'chmod', group: 'converters', icon: LockIcon, render: () => <ChmodCalculator /> },
   { id: 'jwt', group: 'converters', icon: KeyIcon, render: () => <JwtDecoder /> },
   {
     id: 'base64',

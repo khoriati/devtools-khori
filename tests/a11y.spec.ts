@@ -3,8 +3,8 @@ import AxeBuilder from '@axe-core/playwright';
 
 // Tool ids mirror web/src/tools/registry.tsx
 const TOOL_IDS = [
-  'base-converter', 'jwt', 'base64', 'url', 'hash', 'uuid', 'timestamp', 'json',
-  'contrast', 'whois', 'ping', 'traceroute', 'dns', 'http',
+  'base-converter', 'ip-calculator', 'chmod', 'jwt', 'base64', 'url', 'hash', 'uuid',
+  'timestamp', 'json', 'contrast', 'whois', 'ping', 'traceroute', 'dns', 'http',
 ];
 
 const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag2aaa', 'wcag21a', 'wcag21aa', 'wcag21aaa'];

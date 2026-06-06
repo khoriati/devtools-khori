@@ -50,6 +50,26 @@
       "decimal": "Decimal", "hex": "Hexadecimal", "octal": "Octal", "binary": "Binário",
       "bits": "Largura de bits", "invalid": "Número inválido para a base informada"
     },
+    "ip-calculator": {
+      "name": "Calculadora de sub-rede IP",
+      "desc": "Calcule rede, broadcast, faixa de hosts e converta entre prefixo CIDR e máscara (ida e volta).",
+      "address": "Endereço IPv4", "prefix": "Prefixo (CIDR)", "netmask": "Máscara",
+      "cidr": "CIDR", "network": "Rede", "broadcast": "Broadcast", "mask": "Máscara",
+      "wildcard": "Wildcard", "hostRange": "Faixa de hosts", "totalHosts": "Total de endereços",
+      "usableHosts": "Hosts utilizáveis", "ipClass": "Classe", "scope": "Escopo",
+      "private": "Privado", "public": "Público",
+      "invalidIp": "Endereço IPv4 inválido", "invalidMask": "Máscara de rede inválida",
+      "note": "Edite o prefixo ou a máscara — os dois ficam sincronizados nas duas direções."
+    },
+    "chmod": {
+      "name": "Calculadora de chmod",
+      "desc": "Converta permissões entre octal (ex.: 755) e simbólico (rwxr-xr-x), nas duas direções.",
+      "octal": "Octal", "symbolic": "Simbólico", "permissions": "Permissões",
+      "class": "Classe", "read": "Ler", "write": "Gravar", "execute": "Executar",
+      "owner": "Dono", "group": "Grupo", "other": "Outros",
+      "setuid": "setuid (4000)", "setgid": "setgid (2000)", "sticky": "sticky (1000)",
+      "example": "Exemplo: 777 = rwxrwxrwx (acesso total). Marque as caixas ou digite o valor octal."
+    },
     "jwt": {
       "name": "Decodificador JWT",
       "desc": "Decodifique o cabeçalho e o payload de um JSON Web Token (sem validar a assinatura).",

@@ -50,6 +50,26 @@
       "decimal": "Decimal", "hex": "Hexadecimal", "octal": "Octal", "binary": "Binary",
       "bits": "Bit width", "invalid": "Invalid number for the selected base"
     },
+    "ip-calculator": {
+      "name": "IP subnet calculator",
+      "desc": "Compute network, broadcast, host range and convert between CIDR prefix and netmask (round trip).",
+      "address": "IPv4 address", "prefix": "Prefix (CIDR)", "netmask": "Netmask",
+      "cidr": "CIDR", "network": "Network", "broadcast": "Broadcast", "mask": "Netmask",
+      "wildcard": "Wildcard", "hostRange": "Host range", "totalHosts": "Total addresses",
+      "usableHosts": "Usable hosts", "ipClass": "Class", "scope": "Scope",
+      "private": "Private", "public": "Public",
+      "invalidIp": "Invalid IPv4 address", "invalidMask": "Invalid netmask",
+      "note": "Edit the prefix or the netmask — both stay in sync in both directions."
+    },
+    "chmod": {
+      "name": "chmod calculator",
+      "desc": "Convert permissions between octal (e.g. 755) and symbolic (rwxr-xr-x), both directions.",
+      "octal": "Octal", "symbolic": "Symbolic", "permissions": "Permissions",
+      "class": "Class", "read": "Read", "write": "Write", "execute": "Execute",
+      "owner": "Owner", "group": "Group", "other": "Other",
+      "setuid": "setuid (4000)", "setgid": "setgid (2000)", "sticky": "sticky (1000)",
+      "example": "Example: 777 = rwxrwxrwx (full access). Toggle the boxes or type the octal value."
+    },
     "jwt": {
       "name": "JWT decoder",
       "desc": "Decode the header and payload of a JSON Web Token (signature not verified).",
