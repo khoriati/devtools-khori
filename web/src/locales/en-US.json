@@ -10,14 +10,23 @@
   "nav": {
     "label": "Tools navigation",
     "home": "Home",
-    "groups": { "converters": "Converters & data", "network": "Network", "accessibility": "Accessibility" }
+    "groups": { "converters": "Converters & data", "network": "Network", "reference": "Quick reference", "accessibility": "Accessibility" },
+    "search": "Search tools",
+    "searchResults": "{{count}} tool found",
+    "searchResults_other": "{{count}} tools found",
+    "noResults": "No tools found for \"{{query}}\""
+  },
+  "cheats": {
+    "filter": "Filter commands",
+    "results": "{{count}} command",
+    "results_other": "{{count}} commands"
   },
   "settings": {
     "theme": "Theme",
     "themeMode": { "light": "Light", "dark": "Dark", "high-contrast": "High contrast" },
     "language": "Language",
     "openSettings": "Open appearance and language settings",
-    "languageNames": { "pt-BR": "Português (Brasil)", "en-US": "English (US)" }
+    "languageNames": { "pt-BR": "Português (Brasil)", "en-US": "English (US)", "es": "Español", "de": "Deutsch", "fr": "Français" }
   },
   "common": {
     "input": "Input",
@@ -134,6 +143,18 @@
       "name": "HTTP inspector",
       "desc": "Make an HTTP request and inspect status, headers and body (curl-style).",
       "method": "Method", "status": "Status", "headers": "Headers", "body": "Body", "time": "Time"
+    },
+    "linux": {
+      "name": "Linux commands",
+      "desc": "Quick reference for essential Linux shell commands: files, search, permissions and processes."
+    },
+    "docker": {
+      "name": "Docker commands",
+      "desc": "Docker quick reference: containers, images, lifecycle and cleanup."
+    },
+    "kubernetes": {
+      "name": "Kubernetes commands",
+      "desc": "kubectl quick reference: resource inspection, deploy and cluster operations."
     }
   }
 }

@@ -11,6 +11,8 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
+  InputAdornment,
+  TextField,
   Toolbar,
   Typography,
   useMediaQuery,
@@ -19,11 +21,13 @@ import { useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import SearchIcon from '@mui/icons-material/Search';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Logo from './Logo';
 import SettingsMenu from './SettingsMenu';
-import { TOOLS, TOOL_GROUPS } from '../tools/registry';
+import { TOOLS, TOOL_GROUPS, toolSearchText } from '../tools/registry';
+import { useSettings } from '../context/SettingsContext';
 
 const DRAWER_WIDTH = 280;
 const GITHUB_URL = 'https://github.com/khoriati/devtools-khori';
@@ -43,11 +47,39 @@ const skipLinkSx = {
 } as const;
 
 export default function Layout() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { query, setQuery } = useSettings();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+
+  const q = query.trim().toLowerCase();
+  const matches = (toolId: string) => {
+    const tool = TOOLS.find((x) => x.id === toolId)!;
+    return !q || toolSearchText(tool, i18n.language, t).includes(q);
+  };
+
+  const search = (
+    <Box role="search" sx={{ px: 2, pt: 2, pb: 1 }}>
+      <TextField
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        label={t('nav.search')}
+        type="search"
+        size="small"
+        fullWidth
+        autoComplete="off"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon aria-hidden="true" />
+            </InputAdornment>
+          ),
+        }}
+      />
+    </Box>
+  );
 
   const nav = (
     <nav aria-label={t('nav.label')}>
@@ -66,7 +98,10 @@ export default function Layout() {
           </ListItemButton>
         </ListItem>
       </List>
-      {TOOL_GROUPS.map((group) => (
+      {TOOL_GROUPS.map((group) => {
+        const groupTools = TOOLS.filter((tool) => tool.group === group && matches(tool.id));
+        if (groupTools.length === 0) return null;
+        return (
         <List
           key={group}
           subheader={
@@ -76,7 +111,7 @@ export default function Layout() {
           }
           aria-labelledby={`group-${group}`}
         >
-          {TOOLS.filter((tool) => tool.group === group).map((tool) => {
+          {groupTools.map((tool) => {
             const Icon = tool.icon;
             const to = `/tool/${tool.id}`;
             return (
@@ -97,7 +132,8 @@ export default function Layout() {
             );
           })}
         </List>
-      ))}
+        );
+      })}
     </nav>
   );
 
@@ -150,7 +186,10 @@ export default function Layout() {
           }}
         >
           <Toolbar />
-          <Box sx={{ overflow: 'auto' }}>{nav}</Box>
+          <Box sx={{ overflow: 'auto' }}>
+            {search}
+            {nav}
+          </Box>
         </Drawer>
       </Box>
 

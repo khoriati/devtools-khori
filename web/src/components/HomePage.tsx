@@ -1,16 +1,21 @@
 import { useEffect } from 'react';
-import { Box, Card, CardActionArea, CardContent, Grid, Stack, Typography } from '@mui/material';
+import { Alert, Box, Card, CardActionArea, CardContent, Grid, Stack, Typography } from '@mui/material';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { TOOLS } from '../tools/registry';
+import { TOOLS, toolSearchText } from '../tools/registry';
+import { useSettings } from '../context/SettingsContext';
 
 export default function HomePage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { query } = useSettings();
 
   useEffect(() => {
     document.title = `${t('app.title')} — ${t('app.tagline')}`;
   }, [t]);
+
+  const q = query.trim().toLowerCase();
+  const tools = TOOLS.filter((tool) => !q || toolSearchText(tool, i18n.language, t).includes(q));
 
   return (
     <Box>
@@ -35,8 +40,20 @@ export default function HomePage() {
         </CardContent>
       </Card>
 
+      {q && (
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }} role="status" aria-live="polite">
+          {t('nav.searchResults', { count: tools.length })}
+        </Typography>
+      )}
+
+      {q && tools.length === 0 && (
+        <Alert severity="info" role="status">
+          {t('nav.noResults', { query })}
+        </Alert>
+      )}
+
       <Grid container spacing={2} component="ul" sx={{ listStyle: 'none', p: 0, m: 0 }}>
-        {TOOLS.map((tool) => {
+        {tools.map((tool) => {
           const Icon = tool.icon;
           return (
             <Grid item xs={12} sm={6} md={4} key={tool.id} component="li">

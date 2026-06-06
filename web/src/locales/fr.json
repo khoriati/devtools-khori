@@ -1,0 +1,160 @@
+{
+  "app": {
+    "title": "DevTools Khori",
+    "tagline": "Des outils du quotidien, accessibles à tous",
+    "skipToContent": "Aller au contenu principal",
+    "skipToNav": "Aller à la navigation",
+    "footer": "DevTools Khori — un exemple de portail conforme WCAG 2.1 AAA. Open source.",
+    "githubLabel": "Dépôt GitHub (ouvre dans un nouvel onglet)"
+  },
+  "nav": {
+    "label": "Navigation des outils",
+    "home": "Accueil",
+    "groups": { "converters": "Convertisseurs et données", "network": "Réseau", "reference": "Référence rapide", "accessibility": "Accessibilité" },
+    "search": "Rechercher des outils",
+    "searchResults": "{{count}} outil trouvé",
+    "searchResults_other": "{{count}} outils trouvés",
+    "noResults": "Aucun outil trouvé pour « {{query}} »"
+  },
+  "cheats": {
+    "filter": "Filtrer les commandes",
+    "results": "{{count}} commande",
+    "results_other": "{{count}} commandes"
+  },
+  "settings": {
+    "theme": "Thème",
+    "themeMode": { "light": "Clair", "dark": "Sombre", "high-contrast": "Contraste élevé" },
+    "language": "Langue",
+    "openSettings": "Ouvrir les paramètres d'apparence et de langue",
+    "languageNames": { "pt-BR": "Português (Brasil)", "en-US": "English (US)", "es": "Español", "de": "Deutsch", "fr": "Français" }
+  },
+  "common": {
+    "input": "Entrée",
+    "output": "Sortie",
+    "result": "Résultat",
+    "run": "Exécuter",
+    "copy": "Copier",
+    "copied": "Copié dans le presse-papiers",
+    "clear": "Effacer",
+    "loading": "Traitement en cours, veuillez patienter",
+    "error": "Erreur",
+    "empty": "Aucun résultat pour l'instant",
+    "host": "Hôte ou adresse IP",
+    "url": "URL",
+    "invalidHost": "Hôte invalide. Utilisez un nom de domaine ou une IP valide.",
+    "networkNote": "Cette requête s'exécute de façon sécurisée sur le serveur.",
+    "charCount": "{{count}} caractère",
+    "charCount_other": "{{count}} caractères"
+  },
+  "home": {
+    "heading": "Choisissez un outil",
+    "intro": "Une collection d'utilitaires pour développeurs et administrateurs, conçue comme référence d'accessibilité pour les personnes malvoyantes.",
+    "a11yHeading": "Conçu pour l'accessibilité",
+    "a11yText": "Navigation complète au clavier, compatible lecteurs d'écran, contraste minimal de 7:1 et trois thèmes. Utilisez le lien d'évitement pour aller directement au contenu."
+  },
+  "tools": {
+    "base-converter": {
+      "name": "Calculatrice de programmeur",
+      "desc": "Convertissez entre hexadécimal, décimal, octal et binaire et visualisez les opérations sur les bits.",
+      "decimal": "Décimal", "hex": "Hexadécimal", "octal": "Octal", "binary": "Binaire",
+      "bits": "Largeur de bits", "invalid": "Nombre invalide pour la base choisie"
+    },
+    "ip-calculator": {
+      "name": "Calculatrice de sous-réseau IP",
+      "desc": "Calculez le réseau, le broadcast, la plage d'hôtes et convertissez entre préfixe CIDR et masque (aller-retour).",
+      "address": "Adresse IPv4", "prefix": "Préfixe (CIDR)", "netmask": "Masque",
+      "cidr": "CIDR", "network": "Réseau", "broadcast": "Broadcast", "mask": "Masque",
+      "wildcard": "Wildcard", "hostRange": "Plage d'hôtes", "totalHosts": "Adresses totales",
+      "usableHosts": "Hôtes utilisables", "ipClass": "Classe", "scope": "Portée",
+      "private": "Privé", "public": "Public",
+      "invalidIp": "Adresse IPv4 invalide", "invalidMask": "Masque de réseau invalide",
+      "note": "Modifiez le préfixe ou le masque — les deux restent synchronisés dans les deux sens."
+    },
+    "chmod": {
+      "name": "Calculatrice chmod",
+      "desc": "Convertissez les permissions entre octal (ex. : 755) et symbolique (rwxr-xr-x), dans les deux sens.",
+      "octal": "Octal", "symbolic": "Symbolique", "permissions": "Permissions",
+      "class": "Classe", "read": "Lire", "write": "Écrire", "execute": "Exécuter",
+      "owner": "Propriétaire", "group": "Groupe", "other": "Autres",
+      "setuid": "setuid (4000)", "setgid": "setgid (2000)", "sticky": "sticky (1000)",
+      "example": "Exemple : 777 = rwxrwxrwx (accès total). Cochez les cases ou saisissez la valeur octale."
+    },
+    "jwt": {
+      "name": "Décodeur JWT",
+      "desc": "Décodez l'en-tête et le payload d'un JSON Web Token (signature non vérifiée).",
+      "header": "En-tête", "payload": "Payload", "signature": "Signature (non vérifiée)",
+      "invalid": "Jeton JWT invalide", "expWarn": "Attention : ce jeton est expiré.",
+      "placeholder": "Collez le jeton JWT ici"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Encodez et décodez du texte en Base64.",
+      "encode": "Encoder", "decode": "Décoder", "invalid": "Base64 invalide"
+    },
+    "url": {
+      "name": "Encodeur d'URL",
+      "desc": "Encodez et décodez des composants d'URL avec le percent-encoding.",
+      "encode": "Encoder", "decode": "Décoder", "invalid": "Séquence d'URL invalide"
+    },
+    "hash": {
+      "name": "Générateur de hachage",
+      "desc": "Générez des hachages SHA-1, SHA-256, SHA-384 et SHA-512 du texte saisi.",
+      "algorithm": "Algorithme"
+    },
+    "uuid": {
+      "name": "Générateur d'UUID",
+      "desc": "Générez des identifiants uniques UUID v4.",
+      "generate": "Générer un UUID", "quantity": "Quantité"
+    },
+    "timestamp": {
+      "name": "Convertisseur de timestamp",
+      "desc": "Convertissez entre timestamp Unix et date/heure lisible.",
+      "unix": "Timestamp Unix (secondes)", "human": "Date et heure", "now": "Maintenant", "utc": "UTC", "local": "Local"
+    },
+    "json": {
+      "name": "Formateur JSON",
+      "desc": "Validez et formatez (ou minifiez) des documents JSON.",
+      "format": "Formater", "minify": "Minifier", "valid": "JSON valide", "invalid": "JSON invalide"
+    },
+    "contrast": {
+      "name": "Vérificateur de contraste",
+      "desc": "Calculez le rapport de contraste entre deux couleurs et vérifiez la conformité WCAG.",
+      "foreground": "Couleur du texte", "background": "Couleur de fond", "ratio": "Rapport de contraste",
+      "normalText": "Texte normal", "largeText": "Grand texte", "pass": "Réussi", "fail": "Échoué"
+    },
+    "whois": {
+      "name": "WHOIS",
+      "desc": "Consultez les informations d'enregistrement d'un domaine ou d'une IP."
+    },
+    "ping": {
+      "name": "Ping",
+      "desc": "Vérifiez la disponibilité et la latence d'un hôte."
+    },
+    "traceroute": {
+      "name": "Traceroute",
+      "desc": "Tracez la route réseau jusqu'à un hôte."
+    },
+    "dns": {
+      "name": "Requête DNS",
+      "desc": "Résolvez les enregistrements DNS (A, AAAA, MX, TXT, NS et autres).",
+      "recordType": "Type d'enregistrement"
+    },
+    "http": {
+      "name": "Inspecteur HTTP",
+      "desc": "Effectuez une requête HTTP et inspectez le statut, les en-têtes et le corps (style curl).",
+      "method": "Méthode", "status": "Statut", "headers": "En-têtes", "body": "Corps", "time": "Temps"
+    },
+    "linux": {
+      "name": "Commandes Linux",
+      "desc": "Référence rapide des commandes essentielles du shell Linux : fichiers, recherche, permissions et processus."
+    },
+    "docker": {
+      "name": "Commandes Docker",
+      "desc": "Référence rapide Docker : conteneurs, images, cycle de vie et nettoyage."
+    },
+    "kubernetes": {
+      "name": "Commandes Kubernetes",
+      "desc": "Référence rapide kubectl : inspection des ressources, déploiement et exploitation du cluster."
+    }
+  }
+}

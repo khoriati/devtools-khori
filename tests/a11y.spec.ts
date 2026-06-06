@@ -5,6 +5,15 @@ import AxeBuilder from '@axe-core/playwright';
 const TOOL_IDS = [
   'base-converter', 'ip-calculator', 'chmod', 'jwt', 'base64', 'url', 'hash', 'uuid',
   'timestamp', 'json', 'contrast', 'whois', 'ping', 'traceroute', 'dns', 'http',
+  'linux', 'docker', 'kubernetes',
+];
+
+const LANGUAGES: [name: string, code: string][] = [
+  ['Português (Brasil)', 'pt-BR'],
+  ['English (US)', 'en-US'],
+  ['Español', 'es'],
+  ['Deutsch', 'de'],
+  ['Français', 'fr'],
 ];
 
 const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag2aaa', 'wcag21a', 'wcag21aa', 'wcag21aaa'];
@@ -71,4 +80,43 @@ test.describe('Keyboard & structure', () => {
     await page.getByRole('menuitem').filter({ hasText: 'English' }).first().click();
     await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
   });
+
+  test('activating the skip link moves focus to main', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'networkidle' });
+    await page.keyboard.press('Tab'); // skip link
+    await page.keyboard.press('Enter');
+    const id = await page.evaluate(() => document.activeElement?.id);
+    expect(id).toBe('main-content');
+  });
+
+  test('Tab order reaches the search field and a tool link', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'networkidle' });
+    const seen: string[] = [];
+    for (let i = 0; i < 25; i++) {
+      await page.keyboard.press('Tab');
+      seen.push(
+        await page.evaluate(() => {
+          const el = document.activeElement as HTMLElement | null;
+          if (!el) return '';
+          return `${el.tagName.toLowerCase()}|${el.getAttribute('type') ?? ''}|${el.getAttribute('href') ?? ''}`;
+        }),
+      );
+    }
+    expect(seen.some((s) => s.includes('search'))).toBeTruthy();
+    expect(seen.some((s) => s.includes('/tool/'))).toBeTruthy();
+  });
+});
+
+test.describe('Semantics follow the selected language', () => {
+  for (const [name, code] of LANGUAGES) {
+    test(`switching to ${code} sets <html lang> and translates the heading`, async ({ page }) => {
+      await page.goto('/', { waitUntil: 'networkidle' });
+      await page.getByRole('button', { name: /settings|configurações|ajustes|einstellungen|paramètres/i }).click();
+      await page.getByRole('menu').waitFor();
+      await page.getByRole('menuitem').filter({ hasText: name }).first().click();
+      await expect(page.locator('html')).toHaveAttribute('lang', code);
+      // Heading must not be a raw i18n key (translation actually resolved).
+      await expect(page.locator('h1')).not.toHaveText(/home\.heading/);
+    });
+  }
 });

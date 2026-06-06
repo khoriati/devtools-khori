@@ -10,13 +10,17 @@ com foco no usuário com deficiência visual.
 
 | Categoria | Ferramentas |
 | --- | --- |
-| Conversores e dados | Calculadora de programador (hex/dec/oct/bin + bits), Decodificador JWT, Base64, Codificador de URL, Gerador de hash (SHA-1/256/384/512), Gerador de UUID, Conversor de timestamp, Formatador JSON |
+| Conversores e dados | Calculadora de programador (hex/dec/oct/bin + bits), Calculadora de sub-rede IP (CIDR ↔ máscara), Calculadora de chmod (octal ↔ rwx), Decodificador JWT, Base64, Codificador de URL, Gerador de hash (SHA-1/256/384/512), Gerador de UUID, Conversor de timestamp, Formatador JSON |
 | Rede | WHOIS, Ping, Traceroute, Consulta DNS, Inspetor HTTP (estilo curl) |
+| Referência rápida | Comandos Linux, Comandos Docker, Comandos Kubernetes (cheat sheets) |
 | Acessibilidade | Verificador de contraste WCAG |
 
 As ferramentas de dados rodam 100% no navegador. As ferramentas de rede são
 executadas no backend de forma segura (sem shell, com allow-list de argumentos,
 validação estrita de host, timeouts, rate-limiting e proteção contra SSRF).
+
+Há uma **busca global** de ferramentas que filtra tanto pelo título quanto pelo
+conteúdo do corpo (ex.: buscar `rollout` encontra os comandos Kubernetes).
 
 ## Acessibilidade
 
@@ -25,7 +29,7 @@ validação estrita de host, timeouts, rate-limiting e proteção contra SSRF).
 - Navegação completa por teclado, _skip links_, marcos semânticos (`header`,
   `nav`, `main`, `aside`, `footer`) e um único `h1` por página.
 - Anúncios para leitores de tela via _live regions_ (`aria-live`).
-- Multilíngue: **pt-BR** e **en-US** (com `<html lang>` sincronizado).
+- Multilíngue: **pt-BR, en-US, es, de, fr** (com `<html lang>` e semântica sincronizados ao idioma).
 - Respeita `prefers-reduced-motion` e `prefers-color-scheme`.
 - Fonte com boa legibilidade (Atkinson Hyperlegible quando disponível).
 

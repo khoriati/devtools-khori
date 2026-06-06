@@ -8,6 +8,9 @@ type SettingsValue = {
   setMode: (m: ThemeMode) => void;
   language: string;
   setLanguage: (l: string) => void;
+  /** Global tool-search query, shared between the nav and the home grid. */
+  query: string;
+  setQuery: (q: string) => void;
   /** Announce a message to screen readers via a polite live region. */
   announce: (message: string) => void;
 };
@@ -25,6 +28,7 @@ function initialMode(): ThemeMode {
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const { i18n } = useTranslation();
   const [mode, setModeState] = useState<ThemeMode>(initialMode);
+  const [query, setQuery] = useState('');
   const [message, setMessage] = useState('');
   const liveRef = useRef<HTMLDivElement>(null);
 
@@ -48,8 +52,8 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   }, [message]);
 
   const value = useMemo<SettingsValue>(
-    () => ({ mode, setMode, language: i18n.language, setLanguage, announce }),
-    [mode, i18n.language],
+    () => ({ mode, setMode, language: i18n.language, setLanguage, query, setQuery, announce }),
+    [mode, i18n.language, query],
   );
 
   return (
