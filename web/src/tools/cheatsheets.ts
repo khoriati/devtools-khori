@@ -42,6 +42,21 @@ export const CHEAT_SHEETS: Record<string, CheatSheet> = {
           { cmd: 'tail -f arquivo.log', d: T('Acompanha um log em tempo real', 'Follow a log in real time', 'Sigue un log en tiempo real', 'Log in Echtzeit verfolgen', 'Suivre un journal en temps réel') },
         ],
       },
+      {
+        title: T('Rede e roteamento', 'Network & routing', 'Red y enrutamiento', 'Netzwerk & Routing', 'Réseau et routage'),
+        items: [
+          { cmd: 'ip a', d: T('Mostra interfaces e endereços IP', 'Show interfaces and IP addresses', 'Muestra interfaces y direcciones IP', 'Schnittstellen und IP-Adressen anzeigen', 'Afficher les interfaces et adresses IP') },
+          { cmd: 'ip route', d: T('Mostra a tabela de roteamento', 'Show the routing table', 'Muestra la tabla de enrutamiento', 'Routing-Tabelle anzeigen', 'Afficher la table de routage') },
+          { cmd: 'ip route | grep default', d: T('Mostra o gateway padrão', 'Show the default gateway', 'Muestra la puerta de enlace predeterminada', 'Standard-Gateway anzeigen', 'Afficher la passerelle par défaut') },
+          { cmd: 'ip route add 10.0.0.0/24 via 192.168.1.1', d: T('Adiciona uma rota estática', 'Add a static route', 'Añade una ruta estática', 'Statische Route hinzufügen', 'Ajouter une route statique') },
+          { cmd: 'ip route get 1.1.1.1', d: T('Mostra a rota/interface usada para um destino', 'Show the route/interface used for a destination', 'Muestra la ruta/interfaz usada para un destino', 'Route/Schnittstelle für ein Ziel anzeigen', 'Afficher la route/interface utilisée pour une destination') },
+          { cmd: 'ss -tulpn', d: T('Lista portas em escuta (TCP/UDP) e processos', 'List listening ports (TCP/UDP) and processes', 'Lista puertos en escucha (TCP/UDP) y procesos', 'Offene Ports (TCP/UDP) und Prozesse anzeigen', 'Lister les ports en écoute (TCP/UDP) et les processus') },
+          { cmd: 'ping -c 4 1.1.1.1', d: T('Testa conectividade (4 pacotes)', 'Test connectivity (4 packets)', 'Prueba conectividad (4 paquetes)', 'Konnektivität testen (4 Pakete)', 'Tester la connectivité (4 paquets)') },
+          { cmd: 'traceroute exemplo.com', d: T('Traça os saltos até o host', 'Trace the hops to the host', 'Traza los saltos hasta el host', 'Hops zum Host verfolgen', 'Tracer les sauts jusqu’à l’hôte') },
+          { cmd: 'dig +short exemplo.com', d: T('Resolve um nome via DNS', 'Resolve a name via DNS', 'Resuelve un nombre por DNS', 'Einen Namen per DNS auflösen', 'Résoudre un nom via DNS') },
+          { cmd: 'curl -I https://exemplo.com', d: T('Mostra apenas os cabeçalhos HTTP', 'Show only the HTTP headers', 'Muestra solo las cabeceras HTTP', 'Nur die HTTP-Header anzeigen', 'Afficher uniquement les en-têtes HTTP') },
+        ],
+      },
     ],
   },
   docker: {
@@ -94,6 +109,66 @@ export const CHEAT_SHEETS: Record<string, CheatSheet> = {
           { cmd: 'kubectl scale deploy/nome --replicas=3', d: T('Ajusta o número de réplicas', 'Scale the replica count', 'Ajusta el número de réplicas', 'Replikaanzahl skalieren', 'Ajuster le nombre de réplicas') },
           { cmd: 'kubectl port-forward svc/nome 8080:80', d: T('Encaminha uma porta local', 'Forward a local port', 'Reenvía un puerto local', 'Lokalen Port weiterleiten', 'Rediriger un port local') },
           { cmd: 'kubectl config use-context nome', d: T('Troca o contexto/cluster', 'Switch context/cluster', 'Cambia de contexto/clúster', 'Kontext/Cluster wechseln', 'Changer de contexte/cluster') },
+        ],
+      },
+      {
+        title: T('Namespaces e uso de recursos', 'Namespaces & resource usage', 'Namespaces y uso de recursos', 'Namespaces & Ressourcennutzung', 'Namespaces et utilisation des ressources'),
+        items: [
+          { cmd: 'kubectl get ns', d: T('Lista os namespaces', 'List namespaces', 'Lista los namespaces', 'Namespaces auflisten', 'Lister les namespaces') },
+          { cmd: 'kubectl create namespace nome', d: T('Cria um namespace', 'Create a namespace', 'Crea un namespace', 'Namespace erstellen', 'Créer un namespace') },
+          { cmd: 'kubectl get all -n nome', d: T('Lista todos os recursos do namespace', 'List all resources in the namespace', 'Lista todos los recursos del namespace', 'Alle Ressourcen des Namespace auflisten', 'Lister toutes les ressources du namespace') },
+          { cmd: 'kubectl config set-context --current --namespace=nome', d: T('Define o namespace padrão do contexto', 'Set the default namespace for the context', 'Define el namespace por defecto del contexto', 'Standard-Namespace des Kontexts festlegen', 'Définir le namespace par défaut du contexte') },
+          { cmd: 'kubectl delete namespace nome', d: T('Remove um namespace e tudo nele', 'Delete a namespace and everything in it', 'Elimina un namespace y todo su contenido', 'Namespace und alles darin löschen', 'Supprimer un namespace et tout son contenu') },
+          { cmd: 'kubectl top pods -n nome', d: T('Uso de CPU e memória por pod', 'CPU and memory usage per pod', 'Uso de CPU y memoria por pod', 'CPU- und Speicherauslastung pro Pod', 'Utilisation CPU et mémoire par pod') },
+          { cmd: 'kubectl top nodes', d: T('Uso de CPU e memória por nó', 'CPU and memory usage per node', 'Uso de CPU y memoria por nodo', 'CPU- und Speicherauslastung pro Knoten', 'Utilisation CPU et mémoire par nœud') },
+        ],
+      },
+    ],
+  },
+  ffmpeg: {
+    id: 'ffmpeg',
+    sections: [
+      {
+        title: T('Conversão de vídeo', 'Video conversion', 'Conversión de vídeo', 'Videokonvertierung', 'Conversion vidéo'),
+        items: [
+          { cmd: 'ffmpeg -i entrada.mov saida.mp4', d: T('Converte o formato/contêiner do vídeo', 'Convert video format/container', 'Convierte el formato/contenedor del vídeo', 'Videoformat/-container konvertieren', 'Convertir le format/conteneur de la vidéo') },
+          { cmd: 'ffmpeg -i in.mp4 -c:v libx264 -crf 23 out.mp4', d: T('Recodifica em H.264 (CRF menor = melhor qualidade)', 'Re-encode to H.264 (lower CRF = better quality)', 'Recodifica a H.264 (CRF menor = mejor calidad)', 'In H.264 umkodieren (niedrigerer CRF = bessere Qualität)', 'Réencoder en H.264 (CRF plus bas = meilleure qualité)') },
+          { cmd: 'ffmpeg -i in.mp4 -vf scale=1280:-2 out.mp4', d: T('Redimensiona para 1280px de largura mantendo a proporção', 'Resize to 1280px width keeping aspect ratio', 'Redimensiona a 1280px de ancho manteniendo la proporción', 'Auf 1280px Breite skalieren, Seitenverhältnis beibehalten', 'Redimensionner à 1280px de large en gardant le ratio') },
+          { cmd: 'ffmpeg -i in.mp4 -ss 00:00:10 -t 15 corte.mp4', d: T('Recorta 15s a partir de 0:10', 'Cut 15s starting at 0:10', 'Recorta 15s a partir de 0:10', '15s ab 0:10 ausschneiden', 'Découper 15s à partir de 0:10') },
+          { cmd: 'ffmpeg -i in.mp4 -vf fps=12,scale=480:-1 out.gif', d: T('Converte vídeo em GIF', 'Convert video to GIF', 'Convierte vídeo a GIF', 'Video in GIF umwandeln', 'Convertir une vidéo en GIF') },
+        ],
+      },
+      {
+        title: T('Áudio e imagens', 'Audio & images', 'Audio e imágenes', 'Audio & Bilder', 'Audio et images'),
+        items: [
+          { cmd: 'ffmpeg -i in.mp4 -vn -c:a libmp3lame -b:a 192k audio.mp3', d: T('Extrai o áudio para MP3 (192 kbps)', 'Extract audio to MP3 (192 kbps)', 'Extrae el audio a MP3 (192 kbps)', 'Audio als MP3 extrahieren (192 kbps)', 'Extraire l’audio en MP3 (192 kbps)') },
+          { cmd: 'ffmpeg -i in.wav out.flac', d: T('Converte WAV em FLAC', 'Convert WAV to FLAC', 'Convierte WAV a FLAC', 'WAV in FLAC konvertieren', 'Convertir WAV en FLAC') },
+          { cmd: 'ffmpeg -i in.mp4 -an -c:v copy mudo.mp4', d: T('Remove o áudio sem recodificar o vídeo', 'Remove audio without re-encoding video', 'Quita el audio sin recodificar el vídeo', 'Audio entfernen ohne Video neu zu kodieren', 'Supprimer l’audio sans réencoder la vidéo') },
+          { cmd: 'ffmpeg -i in.mp4 -r 1 frame_%04d.png', d: T('Extrai 1 quadro por segundo como PNG', 'Extract 1 frame per second as PNG', 'Extrae 1 fotograma por segundo como PNG', '1 Bild pro Sekunde als PNG extrahieren', 'Extraire 1 image par seconde en PNG') },
+        ],
+      },
+    ],
+  },
+  magick: {
+    id: 'magick',
+    sections: [
+      {
+        title: T('Conversão e redimensionamento', 'Convert & resize', 'Conversión y redimensionado', 'Konvertieren & skalieren', 'Conversion et redimensionnement'),
+        items: [
+          { cmd: 'magick entrada.png saida.jpg', d: T('Converte o formato da imagem', 'Convert image format', 'Convierte el formato de la imagen', 'Bildformat konvertieren', 'Convertir le format de l’image') },
+          { cmd: 'magick in.jpg -resize 50% out.jpg', d: T('Redimensiona para 50% do tamanho', 'Resize to 50% of the size', 'Redimensiona al 50% del tamaño', 'Auf 50% der Größe skalieren', 'Redimensionner à 50% de la taille') },
+          { cmd: 'magick in.jpg -resize 800x600 out.jpg', d: T('Redimensiona para caber em 800x600', 'Resize to fit within 800x600', 'Redimensiona para caber en 800x600', 'Auf 800x600 anpassen', 'Redimensionner pour tenir dans 800x600') },
+          { cmd: 'magick in.jpg -strip -quality 80 out.jpg', d: T('Remove metadados e ajusta a qualidade (web)', 'Strip metadata and set quality (web)', 'Elimina metadatos y ajusta la calidad (web)', 'Metadaten entfernen und Qualität setzen (Web)', 'Supprimer les métadonnées et régler la qualité (web)') },
+          { cmd: 'magick *.png saida.pdf', d: T('Combina várias imagens em um PDF', 'Combine several images into a PDF', 'Combina varias imágenes en un PDF', 'Mehrere Bilder zu einem PDF zusammenführen', 'Combiner plusieurs images en un PDF') },
+        ],
+      },
+      {
+        title: T('Edição', 'Editing', 'Edición', 'Bearbeitung', 'Édition'),
+        items: [
+          { cmd: 'magick in.jpg -rotate 90 out.jpg', d: T('Rotaciona a imagem em 90°', 'Rotate the image by 90°', 'Rota la imagen 90°', 'Bild um 90° drehen', 'Pivoter l’image de 90°') },
+          { cmd: 'magick in.jpg -crop 100x100+10+10 out.jpg', d: T('Recorta 100x100 a partir de (10,10)', 'Crop 100x100 starting at (10,10)', 'Recorta 100x100 desde (10,10)', '100x100 ab (10,10) zuschneiden', 'Rogner 100x100 à partir de (10,10)') },
+          { cmd: 'magick in.png -background white -flatten out.jpg', d: T('Achata a transparência sobre fundo branco', 'Flatten transparency onto a white background', 'Aplana la transparencia sobre fondo blanco', 'Transparenz auf weißem Hintergrund zusammenführen', 'Aplatir la transparence sur fond blanc') },
+          { cmd: 'magick identify in.jpg', d: T('Mostra formato, dimensões e detalhes', 'Show format, dimensions and details', 'Muestra formato, dimensiones y detalles', 'Format, Abmessungen und Details anzeigen', 'Afficher format, dimensions et détails') },
         ],
       },
     ],

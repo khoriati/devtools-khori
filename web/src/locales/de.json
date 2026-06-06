@@ -154,7 +154,15 @@
     },
     "kubernetes": {
       "name": "Kubernetes-Befehle",
-      "desc": "kubectl-Schnellreferenz: Ressourcen prüfen, Deploy und Cluster-Betrieb."
+      "desc": "kubectl-Schnellreferenz: Ressourcen prüfen, Namespaces, Auslastung (top), Deploy und Cluster-Betrieb."
+    },
+    "ffmpeg": {
+      "name": "ffmpeg-Befehle",
+      "desc": "ffmpeg-Beispiele zum Konvertieren von Video und Audio, Skalieren, Schneiden und GIF-Erstellung."
+    },
+    "magick": {
+      "name": "magick-Befehle",
+      "desc": "ImageMagick-Beispiele zum Konvertieren, Skalieren, Zuschneiden und Optimieren von Bildern."
     }
   }
 }

@@ -5,7 +5,7 @@ import AxeBuilder from '@axe-core/playwright';
 const TOOL_IDS = [
   'base-converter', 'ip-calculator', 'chmod', 'jwt', 'base64', 'url', 'hash', 'uuid',
   'timestamp', 'json', 'contrast', 'whois', 'ping', 'traceroute', 'dns', 'http',
-  'linux', 'docker', 'kubernetes',
+  'linux', 'docker', 'kubernetes', 'ffmpeg', 'magick',
 ];
 
 const LANGUAGES: [name: string, code: string][] = [

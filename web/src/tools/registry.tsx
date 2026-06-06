@@ -19,6 +19,8 @@ import HttpIcon from '@mui/icons-material/Http';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import HubIcon from '@mui/icons-material/Hub';
+import MovieIcon from '@mui/icons-material/Movie';
+import ImageIcon from '@mui/icons-material/Image';
 
 import BaseConverter from './BaseConverter';
 import IpCalculator from './IpCalculator';
@@ -77,7 +79,9 @@ export const TOOLS: ToolDef[] = [
   { id: 'http', group: 'network', icon: HttpIcon, keywords: 'curl request headers status fetch rest', render: () => <HttpInspector /> },
   { id: 'linux', group: 'reference', icon: TerminalIcon, keywords: 'shell bash ls grep chmod tar ps', cheatId: 'linux', render: () => <CheatSheet id="linux" /> },
   { id: 'docker', group: 'reference', icon: ViewInArIcon, keywords: 'container image compose build run exec', cheatId: 'docker', render: () => <CheatSheet id="docker" /> },
-  { id: 'kubernetes', group: 'reference', icon: HubIcon, keywords: 'k8s kubectl pod deployment service rollout', cheatId: 'kubernetes', render: () => <CheatSheet id="kubernetes" /> },
+  { id: 'kubernetes', group: 'reference', icon: HubIcon, keywords: 'k8s kubectl pod deployment service rollout namespace top', cheatId: 'kubernetes', render: () => <CheatSheet id="kubernetes" /> },
+  { id: 'ffmpeg', group: 'reference', icon: MovieIcon, keywords: 'video audio convert mp4 mp3 gif transcode encode scale', cheatId: 'ffmpeg', render: () => <CheatSheet id="ffmpeg" /> },
+  { id: 'magick', group: 'reference', icon: ImageIcon, keywords: 'imagemagick image convert resize crop jpg png pdf', cheatId: 'magick', render: () => <CheatSheet id="magick" /> },
 ];
 
 export const TOOL_GROUPS: ToolGroup[] = ['converters', 'network', 'reference', 'accessibility'];

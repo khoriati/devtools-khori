@@ -154,7 +154,15 @@
     },
     "kubernetes": {
       "name": "Comandos Kubernetes",
-      "desc": "Referência rápida do kubectl: inspeção de recursos, deploy e operação do cluster."
+      "desc": "Referência rápida do kubectl: inspeção de recursos, namespaces, uso (top), deploy e operação do cluster."
+    },
+    "ffmpeg": {
+      "name": "Comandos ffmpeg",
+      "desc": "Exemplos de ffmpeg para converter vídeo e áudio, redimensionar, cortar e gerar GIFs."
+    },
+    "magick": {
+      "name": "Comandos magick",
+      "desc": "Exemplos de ImageMagick para converter, redimensionar, cortar e otimizar imagens."
     }
   }
 }

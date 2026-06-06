@@ -154,7 +154,15 @@
     },
     "kubernetes": {
       "name": "Kubernetes commands",
-      "desc": "kubectl quick reference: resource inspection, deploy and cluster operations."
+      "desc": "kubectl quick reference: resource inspection, namespaces, usage (top), deploy and cluster operations."
+    },
+    "ffmpeg": {
+      "name": "ffmpeg commands",
+      "desc": "ffmpeg examples to convert video and audio, resize, trim and create GIFs."
+    },
+    "magick": {
+      "name": "magick commands",
+      "desc": "ImageMagick examples to convert, resize, crop and optimize images."
     }
   }
 }
