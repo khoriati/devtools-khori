@@ -26,15 +26,15 @@ app.use(
         // its plugin from vlibras.gov.br and its 3D avatar runs on WebAssembly
         // ('wasm-unsafe-eval' enables wasm compilation WITHOUT allowing eval()).
         // See docs/VLIBRAS.md for why each origin/keyword is required.
-        // The VLibras plugin is self-hosted ('self'); its 3D avatar runs on
+        // VLibras (Libras): the gov.br loader serves the plugin from jsDelivr and
+        // the icons/avatar/dictionary from *.vlibras.gov.br; the 3D avatar runs on
         // WebAssembly ('wasm-unsafe-eval' enables wasm WITHOUT allowing eval()).
-        // The Unity loader + dictionary + translation come from *.vlibras.gov.br
-        // (www/dicionario2/traducao2). No third-party CDN is used. See docs/VLIBRAS.md.
-        scriptSrc: ["'self'", "'wasm-unsafe-eval'", 'blob:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br'],
-        imgSrc: ["'self'", 'data:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br'],
-        connectSrc: ["'self'", 'https://vlibras.gov.br', 'https://*.vlibras.gov.br'],
-        mediaSrc: ["'self'", 'https://vlibras.gov.br', 'https://*.vlibras.gov.br'],
-        fontSrc: ["'self'", 'data:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br'],
+        // sign.mt is embedded via frame-src below. See docs/VLIBRAS.md.
+        scriptSrc: ["'self'", "'wasm-unsafe-eval'", 'blob:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
+        imgSrc: ["'self'", 'data:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
+        connectSrc: ["'self'", 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
+        mediaSrc: ["'self'", 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
+        fontSrc: ["'self'", 'data:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
         workerSrc: ["'self'", 'blob:'],
         // sign.mt is embedded in an accessible dialog as the sign-language
         // translator for non-Portuguese languages (keyless, open-source).

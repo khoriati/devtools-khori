@@ -19,25 +19,28 @@ Spanish, German or French, so for those languages the feature is simply **omitte
 | --- | --- | --- |
 | Markup | [`web/index.html`](../web/index.html) | The official `<div vw>` container, kept **outside** the React root |
 | Controller | [`web/src/components/VLibrasWidget.tsx`](../web/src/components/VLibrasWidget.tsx) | Loads the plugin once and shows/hides it by language |
-| Plugin (vendored) | `web/public/vlibras/vlibras-plugin.js` | The ~17 KB plugin, **self-hosted** (see "Why self-hosted" below) |
-| CSP | [`server/index.js`](../server/index.js) | Allows the `*.vlibras.gov.br` origins + `wasm-unsafe-eval` |
+| CSP | [`server/index.js`](../server/index.js) | Allows `*.vlibras.gov.br` + `cdn.jsdelivr.net` + `wasm-unsafe-eval` |
 
-## Why self-hosted (Tracking Prevention)
+## Why load it from the official gov.br URL (not self-hosted)
 
-The official `https://vlibras.gov.br/app/vlibras-plugin.js` is a *loader* that
-pulls the real plugin from **cdn.jsdelivr.net**. Browsers with Tracking
-Prevention (Edge, Safari) classify that CDN as third-party and **block its
-storage access**, which breaks the widget (`Tracking Prevention blocked access
-to storage for https://cdn.jsdelivr.net/...`).
+The plugin derives its asset/chunk base (webpack `publicPath`) from **its own
+script URL** (`document.currentScript.src`). So it must be loaded from
+`https://vlibras.gov.br/app/vlibras-plugin.js` for the icon/avatar assets to
+resolve (e.g. `…/app/assets/access_icon.svg`). Self-hosting only the entry script
+breaks this — the plugin then looks for `…/assets/…` and chunks under our origin
+and renders an **empty (invisible) button**.
 
-Fix: vendor the small plugin and serve it **first-party** from
-`/vlibras/vlibras-plugin.js`. The heavy avatar/dictionary/translation assets are
-still fetched at runtime from `*.vlibras.gov.br` (`www`, `dicionario2`,
-`traducao2`) — a government domain that is **not** tracking-prevented.
+The gov.br loader pulls the plugin from `cdn.jsdelivr.net` and the
+icons/avatar/dictionary from `*.vlibras.gov.br`, so the CSP allows both. Some
+browsers log `Tracking Prevention blocked access to storage for cdn.jsdelivr.net`
+— this is **non-fatal**: it only denies third-party *storage*, the button and
+avatar still render. Fully vendoring is impractical (the avatar is a large Unity
+app).
 
 The widget DOM lives in `index.html` because the plugin **mutates that DOM
 directly** — React must not own it (it would fight the plugin over the subtree).
-The React component only toggles visibility and lazy-loads the script.
+The React component only toggles visibility, lazy-loads the script and pins the
+button to the right edge.
 
 ### The required markup and its attributes
 
@@ -53,7 +56,8 @@ The React component only toggles visibility and lazy-loads the script.
 ### Initialisation
 
 ```js
-// Load once (self-hosted, first-party):  /vlibras/vlibras-plugin.js
+// Load once from the official URL (publicPath is derived from this script's src):
+//   https://vlibras.gov.br/app/vlibras-plugin.js
 new window.VLibras.Widget('https://vlibras.gov.br/app');
 ```
 
@@ -61,15 +65,14 @@ new window.VLibras.Widget('https://vlibras.gov.br/app');
 
 The 3D avatar runs on WebAssembly, so the CSP must allow:
 
-- `script-src`: `'self'` (the vendored plugin), `https://vlibras.gov.br`,
-  `https://*.vlibras.gov.br` (Unity loader from `www.vlibras.gov.br`),
+- `script-src`: `https://vlibras.gov.br`, `https://*.vlibras.gov.br`,
+  `https://cdn.jsdelivr.net` (the plugin is served from jsDelivr),
   `'wasm-unsafe-eval'` (enables wasm compilation **without** allowing `eval()`)
   and `blob:`;
-- `connect-src` / `img-src` / `media-src` / `font-src`: `https://vlibras.gov.br`
-  and `https://*.vlibras.gov.br` (translation service, dictionary and assets);
+- `connect-src` / `img-src` / `media-src` / `font-src`: `https://vlibras.gov.br`,
+  `https://*.vlibras.gov.br` and `https://cdn.jsdelivr.net` (translation service,
+  dictionary, icons and assets).
 - `worker-src`: `'self' blob:`.
-
-No third-party CDN (jsDelivr) is referenced.
 
 These origins are harmless for the other languages (they are simply never used).
 

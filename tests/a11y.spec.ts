@@ -198,6 +198,9 @@ test.describe('Sign language — VLibras (pt-BR) & sign.mt (others)', () => {
     expect(box, 'access button should have a box').not.toBeNull();
     expect(box!.y).toBeLessThan(viewport!.height);
     expect(box!.y).toBeGreaterThanOrEqual(0);
+    // Regression: the button must actually render its icon (it was an empty,
+    // invisible box when the plugin's assets failed to load).
+    await expect(page.locator('[vw-access-button] img').first()).toBeVisible({ timeout: 20000 });
   });
 
   test('VLibras is not shown for other languages', async ({ page }) => {

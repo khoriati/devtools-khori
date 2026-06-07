@@ -27,13 +27,14 @@ import { useSettings } from '../context/SettingsContext';
 // Languages that have an integrated, free, no-signup sign-language solution.
 const SIGN_LANGUAGE_LANGS = new Set<string>(['pt-BR']);
 
-// The plugin (~17 KB) is SELF-HOSTED (vendored in web/public/vlibras/) instead
-// of loaded from cdn.jsdelivr.net. The gov.br loader redirects to jsDelivr, and
-// browsers with Tracking Prevention (Edge/Safari) block storage for that
-// third-party CDN, breaking the widget. Served first-party, it is not blocked.
-// The heavy avatar/dictionary assets are still fetched at runtime from
-// *.vlibras.gov.br (a gov domain that is not tracking-prevented). See docs/VLIBRAS.md.
-const PLUGIN_SRC = '/vlibras/vlibras-plugin.js';
+// Load the OFFICIAL gov.br loader. The plugin derives its asset/chunk base
+// (webpack publicPath) from its own script URL, so it MUST be loaded from
+// vlibras.gov.br for the icon/avatar assets to resolve — self-hosting only the
+// entry breaks them. The loader pulls the plugin from cdn.jsdelivr.net and the
+// icons/avatar from *.vlibras.gov.br (hence the CSP allowances in server/index.js).
+// Note: the "Tracking Prevention blocked storage for jsdelivr" notice some
+// browsers log is non-fatal — the button and avatar still render. See docs/VLIBRAS.md.
+const PLUGIN_SRC = 'https://vlibras.gov.br/app/vlibras-plugin.js';
 const PLUGIN_APP = 'https://vlibras.gov.br/app';
 
 // The plugin attaches a global `VLibras` with a `Widget` constructor.
@@ -56,64 +57,45 @@ export default function VLibrasWidget() {
     // Show/hide the whole widget — including its floating access button —
     // without destroying the plugin's DOM (so it survives language switches).
     container.style.display = enabled ? 'block' : 'none';
-    if (!enabled) return;
+    if (!enabled || initialized.current) return;
 
-    // The plugin sets its own position/margins (and repositions dynamically),
-    // leaving a gap from the right edge. We pin it to the right side at top:150px
-    // with INLINE !important styles (which beat any stylesheet) and re-apply them
-    // whenever the plugin mutates the widget — so the button stays flush at right:0.
-    let observer: MutationObserver | null = null;
-    const pin = () => {
-      observer?.disconnect(); // avoid reacting to our own style writes
-      const set = (el: HTMLElement, prop: string, val: string) => el.style.setProperty(prop, val, 'important');
-      set(container, 'position', 'fixed');
-      set(container, 'top', '150px');
-      set(container, 'right', '0');
-      set(container, 'left', 'auto');
-      set(container, 'bottom', 'auto');
-      set(container, 'margin', '0');
-      const btn = container.querySelector<HTMLElement>('[vw-access-button]');
-      if (btn) {
-        set(btn, 'right', '0');
-        set(btn, 'left', 'auto');
-      }
-      if (observer) observer.observe(container, { attributes: true, attributeFilter: ['style'], childList: true, subtree: true });
-    };
-    observer = new MutationObserver(pin);
-    pin();
-
-    const cleanup = () => observer?.disconnect();
-
+    // IMPORTANT: do not mutate the widget's DOM/styles while the plugin builds
+    // it — doing so (e.g. via a MutationObserver) makes the plugin render an
+    // empty button. Positioning is handled purely in CSS (index.css `div[vw]`).
     const init = () => {
       if (window.VLibras && !initialized.current) {
-        // Mount the avatar/access button inside the `<div vw>` container.
         // eslint-disable-next-line no-new
         new window.VLibras.Widget(PLUGIN_APP);
         initialized.current = true;
-        pin(); // re-pin once the avatar/button is mounted
+        // The plugin renders on the window 'load' event — which ALREADY fired in
+        // this SPA (the script is injected later). Re-dispatch it so the access
+        // button/avatar actually render. Without this the button is an empty box.
+        window.dispatchEvent(new Event('load'));
+        // Once rendered, pin the widget flush to the right edge (the plugin adds
+        // margin:10px). One-shot inline override — no persistent observer, which
+        // would interfere with the plugin building the button.
+        window.setTimeout(() => {
+          document.querySelector<HTMLElement>('[vw]')?.style.setProperty('margin', '0', 'important');
+        }, 1200);
       }
     };
 
-    if (!initialized.current) {
-      if (window.VLibras) {
-        init();
-      } else {
-        // Load the official plugin only on demand (first time pt-BR is active).
-        const existing = document.getElementById('vlibras-plugin') as HTMLScriptElement | null;
-        if (existing) {
-          existing.addEventListener('load', init);
-        } else {
-          const script = document.createElement('script');
-          script.id = 'vlibras-plugin';
-          script.src = PLUGIN_SRC;
-          script.async = true;
-          script.onload = init;
-          document.body.appendChild(script);
-        }
-      }
+    if (window.VLibras) {
+      init();
+      return;
     }
-
-    return cleanup;
+    // Load the official plugin only on demand (first time pt-BR is active).
+    const existing = document.getElementById('vlibras-plugin') as HTMLScriptElement | null;
+    if (existing) {
+      existing.addEventListener('load', init);
+      return;
+    }
+    const script = document.createElement('script');
+    script.id = 'vlibras-plugin';
+    script.src = PLUGIN_SRC;
+    script.async = true;
+    script.onload = init;
+    document.body.appendChild(script);
   }, [language]);
 
   // This component renders nothing itself; it drives the index.html `<div vw>`.
