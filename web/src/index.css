@@ -19,3 +19,18 @@ body {
     outline: 3px solid CanvasText;
   }
 }
+
+/*
+ * VLibras access button placement. The plugin positions its container with a
+ * computed top/bottom that, in this layout, pushed the button far below the
+ * viewport (so it was invisible). Pin the widget to the bottom-right corner,
+ * clear of our fixed AppBar. See docs/VLIBRAS.md.
+ */
+div[vw] {
+  position: fixed !important;
+  top: auto !important;
+  bottom: 1rem !important;
+  right: 1rem !important;
+  left: auto !important;
+  z-index: 1400 !important; /* above MUI AppBar (drawer+1 ≈ 1201) */
+}

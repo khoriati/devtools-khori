@@ -97,8 +97,10 @@ coûte cher. Ce portail démontre qu'on peut livrer une UX moderne et soignée,
 - **Libras (langue des signes brésilienne) :** lorsque la langue est **pt-BR**, le
   widget open-source [VLibras](https://www.gov.br/governodigital/pt-br/vlibras)
   (gov.br, sans inscription/clé API) affiche un avatar 3D qui traduit le contenu
-  en Libras. Les autres langues n'ont pas d'équivalent libre/sans clé, l'option
-  est donc omise. Guide d'intégration : [VLIBRAS.md](VLIBRAS.md).
+  en Libras. Pour les autres langues (en/es/de/fr), un bouton ouvre
+  [sign.mt](https://sign.mt) — un traducteur de langue des signes open-source,
+  sans inscription/clé — dans une boîte de dialogue accessible, avec la paire de
+  langues présélectionnée. Guide d'intégration : [VLIBRAS.md](VLIBRAS.md).
 - Respecte `prefers-reduced-motion` et `prefers-color-scheme` ; prend en charge
   `forced-colors` (mode Contraste élevé de Windows).
 - Typographie lisible (Atkinson Hyperlegible lorsque disponible).

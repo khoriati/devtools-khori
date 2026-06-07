@@ -179,24 +179,51 @@ test.describe('Semantics follow the selected language', () => {
   }
 });
 
-test.describe('VLibras (Libras sign language) — pt-BR only', () => {
-  test('loads and shows the access button in pt-BR', async ({ page }) => {
+test.describe('Sign language — VLibras (pt-BR) & sign.mt (others)', () => {
+  test('VLibras loads and its access button is visible WITHIN the viewport in pt-BR', async ({ page }) => {
     await page.addInitScript(() => localStorage.setItem('devtools-lang', 'pt-BR'));
     // Not 'networkidle': VLibras keeps connections open, so the network never idles.
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('[vw]')).toBeVisible();
-    // The official plugin attaches a global and renders the floating button.
     await expect
       .poll(() => page.evaluate(() => Boolean((window as unknown as { VLibras?: unknown }).VLibras)), {
         timeout: 25000,
       })
       .toBe(true);
-    await expect(page.locator('[vw-access-button]')).toBeVisible();
+    const button = page.locator('[vw-access-button]');
+    await expect(button).toBeVisible();
+    // Regression: the button must be on-screen (it was previously pushed far below).
+    const box = await button.boundingBox();
+    const viewport = page.viewportSize();
+    expect(box, 'access button should have a box').not.toBeNull();
+    expect(box!.y).toBeLessThan(viewport!.height);
+    expect(box!.y).toBeGreaterThanOrEqual(0);
   });
 
-  test('is omitted for other languages', async ({ page }) => {
+  test('VLibras is not shown for other languages', async ({ page }) => {
     await page.addInitScript(() => localStorage.setItem('devtools-lang', 'en-US'));
     await page.goto('/', { waitUntil: 'networkidle' });
     await expect(page.locator('[vw]')).toBeHidden();
+  });
+
+  test('sign.mt button opens the translator dialog for non-pt-BR languages', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('devtools-lang', 'en-US'));
+    await page.goto('/', { waitUntil: 'networkidle' });
+    const button = page.getByRole('button', { name: /sign language/i });
+    await expect(button).toBeVisible();
+    await button.click();
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+    await expect(dialog.locator('iframe')).toHaveAttribute('src', /sign\.mt/);
+    // Dismissable via the keyboard-accessible Close button (reliable even when
+    // focus is inside the cross-origin iframe, where Esc would be captured).
+    await dialog.getByRole('button', { name: /close|fechar/i }).click();
+    await expect(dialog).toBeHidden();
+  });
+
+  test('sign.mt button is not shown in pt-BR (VLibras is used instead)', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('devtools-lang', 'pt-BR'));
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await expect(page.getByRole('button', { name: /sign language|língua de sinais/i })).toHaveCount(0);
   });
 });

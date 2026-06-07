@@ -36,6 +36,9 @@ app.use(
         mediaSrc: ["'self'", 'https://vlibras.gov.br', 'https://*.vlibras.gov.br'],
         fontSrc: ["'self'", 'data:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br'],
         workerSrc: ["'self'", 'blob:'],
+        // sign.mt is embedded in an accessible dialog as the sign-language
+        // translator for non-Portuguese languages (keyless, open-source).
+        frameSrc: ["'self'", 'https://sign.mt'],
         objectSrc: ["'none'"],
         baseUri: ["'self'"],
         frameAncestors: ["'none'"],

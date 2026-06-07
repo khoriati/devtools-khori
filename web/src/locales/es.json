@@ -38,6 +38,13 @@
     "builtin": "(ya incluido en el sistema)",
     "install": "Instalar:"
   },
+  "signLang": {
+    "button": "Lengua de señas",
+    "open": "Abrir el traductor de lengua de señas",
+    "title": "Traductor de lengua de señas",
+    "close": "Cerrar",
+    "poweredBy": "Proporcionado por sign.mt — traductor de lengua de señas open-source, sin registro ni clave de API."
+  },
   "settings": {
     "theme": "Tema",
     "themeMode": { "light": "Claro", "dark": "Oscuro", "high-contrast": "Alto contraste" },

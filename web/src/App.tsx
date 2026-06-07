@@ -7,6 +7,7 @@ import Layout from './components/Layout';
 import HomePage from './components/HomePage';
 import ToolView from './components/ToolView';
 import VLibrasWidget from './components/VLibrasWidget';
+import SignMtWidget from './components/SignMtWidget';
 
 export default function App() {
   const { mode } = useSettings();
@@ -15,8 +16,6 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {/* Libras (Brazilian Sign Language) widget — only shown when pt-BR. */}
-      <VLibrasWidget />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -26,6 +25,13 @@ export default function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      {/*
+        Sign-language access: VLibras (Libras) for pt-BR, sign.mt for the others.
+        Rendered AFTER the router so the floating button is LAST in the tab order
+        (the skip link must remain the first focusable element).
+      */}
+      <VLibrasWidget />
+      <SignMtWidget />
     </ThemeProvider>
   );
 }

@@ -99,31 +99,34 @@ export default function CheatSheet({ id }: { id: string }) {
             <Typography component="h3" variant="h3" gutterBottom>
               {s.title}
             </Typography>
-            <Table size="small" aria-label={s.title}>
+            {/* Fixed layout so columns are proportional regardless of content:
+                command (example) gets the most width, copy the least, description
+                takes the remainder. The table spans the full available width. */}
+            <Table size="small" aria-label={s.title} sx={{ width: '100%', tableLayout: 'fixed' }}>
               <TableBody>
                 {s.items.map((it) => (
                   <TableRow key={it.cmd}>
-                    <TableCell sx={{ width: '50%', verticalAlign: 'top', p: 1 }}>
-                      <Stack direction="row" spacing={1} alignItems="flex-start">
-                        <Box
-                          component="code"
-                          sx={{
-                            fontFamily: 'ui-monospace, monospace',
-                            fontSize: '0.95rem',
-                            bgcolor: 'action.hover',
-                            px: 1,
-                            py: 0.5,
-                            borderRadius: 1,
-                            wordBreak: 'break-word',
-                          }}
-                        >
-                          {it.cmd}
-                        </Box>
-                      </Stack>
+                    <TableCell sx={{ width: '60%', verticalAlign: 'top', p: 1 }}>
+                      <Box
+                        component="code"
+                        sx={{
+                          display: 'inline-block',
+                          fontFamily: 'ui-monospace, monospace',
+                          fontSize: '0.95rem',
+                          bgcolor: 'action.hover',
+                          px: 1,
+                          py: 0.5,
+                          borderRadius: 1,
+                          wordBreak: 'break-word',
+                        }}
+                      >
+                        {it.cmd}
+                      </Box>
                     </TableCell>
                     <TableCell sx={{ verticalAlign: 'top' }}>{it.desc}</TableCell>
-                    <TableCell sx={{ verticalAlign: 'top', width: 1 }}>
-                      <CopyButton value={it.cmd} />
+                    {/* Smallest column: just the icon-only copy button. */}
+                    <TableCell sx={{ width: 52, verticalAlign: 'top', textAlign: 'right', p: 0.5 }}>
+                      <CopyButton value={it.cmd} iconOnly />
                     </TableCell>
                   </TableRow>
                 ))}

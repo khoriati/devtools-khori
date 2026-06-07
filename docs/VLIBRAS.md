@@ -73,8 +73,37 @@ No third-party CDN (jsDelivr) is referenced.
 
 These origins are harmless for the other languages (they are simply never used).
 
+## Other languages — sign.mt
+
+For English, Spanish, German and French we embed **[sign.mt](https://sign.mt)**
+(source: [github.com/sign/translate](https://github.com/sign/translate)), an
+open-source sign-language translator whose models run **on-device** — so there is
+**no API key and no paid SaaS**. It is shown as an accessible dialog opened by a
+floating "Sign language" button.
+
+| Piece | File | Role |
+| --- | --- | --- |
+| Widget | [`web/src/components/SignMtWidget.tsx`](../web/src/components/SignMtWidget.tsx) | Floating button + MUI dialog with the sign.mt `<iframe>` |
+| CSP | [`server/index.js`](../server/index.js) | `frame-src 'self' https://sign.mt` |
+
+The language pair is preselected via sign.mt's URL params — `spl` (spoken) and
+`sil` (signed, ISO 639-3 sign-language code):
+
+| UI language | `spl` | `sil` | Sign language |
+| --- | --- | --- | --- |
+| en-US | `en` | `ase` | American SL (ASL) |
+| es | `es` | `ssp` | Spanish SL |
+| de | `de` | `gsg` | German SL (DGS) |
+| fr | `fr` | `fsl` | French SL (LSF) |
+
+Why an iframe (not self-hosted)? sign.mt is a large Angular + TensorFlow.js PWA;
+embedding the hosted, open-source app keeps it keyless and current without
+vendoring tens of MB of models. The MUI `Dialog` provides a focus trap,
+`Esc`-to-close and `aria-modal`; the `<iframe>` has a `title`.
+
 ## Extending to other languages
 
-Add the language code to `SIGN_LANGUAGE_LANGS` in `VLibrasWidget.tsx` **only** if
-a free, keyless, embeddable sign-language solution exists for it, and wire its
-loader analogously. Avoid overlay widgets that require an account or API key.
+- **VLibras** (`VLibrasWidget.tsx` → `SIGN_LANGUAGE_LANGS`): only for Portuguese.
+- **sign.mt** (`SignMtWidget.tsx` → `SIGN_MT`): add a `{ spl, sil }` entry for a
+  new UI language. If a language has no free/keyless option, leave it out of both
+  and nothing is shown. Avoid overlay widgets that require an account or API key.

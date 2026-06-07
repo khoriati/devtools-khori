@@ -38,6 +38,13 @@
     "builtin": "(already included in the OS)",
     "install": "Install:"
   },
+  "signLang": {
+    "button": "Sign language",
+    "open": "Open the sign-language translator",
+    "title": "Sign-language translator",
+    "close": "Close",
+    "poweredBy": "Powered by sign.mt — an open-source sign-language translator, no signup or API key."
+  },
   "settings": {
     "theme": "Theme",
     "themeMode": { "light": "Light", "dark": "Dark", "high-contrast": "High contrast" },

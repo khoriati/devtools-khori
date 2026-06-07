@@ -89,9 +89,10 @@ custa caro. Este portal demonstra que dá para entregar uma UX moderna, bonita e
   sincronizados ao idioma escolhido.
 - **Libras (Língua Brasileira de Sinais):** quando o idioma é **pt-BR**, o widget
   open-source [VLibras](https://www.gov.br/governodigital/pt-br/vlibras) (gov.br,
-  sem cadastro/API-key) exibe um avatar 3D que traduz o conteúdo para Libras. Os
-  demais idiomas não têm equivalente livre/sem-chave, então a opção é omitida.
-  Guia de integração: [docs/VLIBRAS.md](docs/VLIBRAS.md).
+  sem cadastro/API-key) exibe um avatar 3D que traduz o conteúdo para Libras. Para
+  os demais idiomas (en/es/de/fr), um botão abre o [sign.mt](https://sign.mt) —
+  tradutor open-source de língua de sinais, sem cadastro/chave — em um diálogo
+  acessível, com o par de idiomas pré-selecionado. Guia: [docs/VLIBRAS.md](docs/VLIBRAS.md).
 - Respeita `prefers-reduced-motion` e `prefers-color-scheme`; suporta
   `forced-colors` (Modo de Alto Contraste do Windows).
 - Tipografia legível (Atkinson Hyperlegible quando disponível).

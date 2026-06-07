@@ -38,6 +38,13 @@
     "builtin": "(bereits im System enthalten)",
     "install": "Installieren:"
   },
+  "signLang": {
+    "button": "Gebärdensprache",
+    "open": "Gebärdensprache-Übersetzer öffnen",
+    "title": "Gebärdensprache-Übersetzer",
+    "close": "Schließen",
+    "poweredBy": "Bereitgestellt von sign.mt — ein Open-Source-Gebärdensprache-Übersetzer, ohne Anmeldung oder API-Key."
+  },
   "settings": {
     "theme": "Design",
     "themeMode": { "light": "Hell", "dark": "Dunkel", "high-contrast": "Hoher Kontrast" },
