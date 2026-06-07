@@ -287,6 +287,15 @@
     "cnpj": {
       "name": "CNPJ (generar y validar)",
       "desc": "Genera un CNPJ válido para pruebas y valida el dígito verificador de un CNPJ (identificación de empresa de Brasil)."
+    },
+    "cmd-compare": {
+      "name": "Linux/mac ↔ PowerShell",
+      "desc": "Comandos equivalentes entre Linux/macOS y PowerShell, con ejemplos: archivos, sistema, manipulación, tuberías y tee."
     }
+  },
+  "cmdcompare": {
+    "linux": "Linux / macOS",
+    "powershell": "PowerShell",
+    "description": "Descripción"
   }
 }

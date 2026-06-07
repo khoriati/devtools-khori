@@ -28,6 +28,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import CloudIcon from '@mui/icons-material/Cloud';
 import CloudQueueIcon from '@mui/icons-material/CloudQueue';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 
 import BaseConverter from './BaseConverter';
 import IpCalculator from './IpCalculator';
@@ -42,6 +43,7 @@ import ContrastChecker from './ContrastChecker';
 import NetworkTool from './NetworkTool';
 import HttpInspector from './HttpInspector';
 import CheatSheet from './CheatSheet';
+import CmdCompare from './CmdCompare';
 import BrDocTool from './BrDocTool';
 import { cheatSearchText } from './cheatsheets';
 
@@ -93,6 +95,7 @@ export const TOOLS: ToolDef[] = [
   { id: 'kubernetes', group: 'reference', icon: HubIcon, keywords: 'k8s kubectl pod deployment service rollout namespace top', cheatId: 'kubernetes', render: () => <CheatSheet id="kubernetes" /> },
   { id: 'ffmpeg', group: 'reference', icon: MovieIcon, keywords: 'video audio convert mp4 mp3 gif transcode encode scale install', cheatId: 'ffmpeg', render: () => <CheatSheet id="ffmpeg" /> },
   { id: 'magick', group: 'reference', icon: ImageIcon, keywords: 'imagemagick image convert resize crop jpg png pdf install', cheatId: 'magick', render: () => <CheatSheet id="magick" /> },
+  { id: 'cmd-compare', group: 'reference', icon: CompareArrowsIcon, keywords: 'linux mac powershell equivalente comparacao pipe tee redirect ls dir grep select-string traduzir', render: () => <CmdCompare /> },
   { id: 'pkg', group: 'reference', icon: Inventory2Icon, keywords: 'brew apt winget homebrew package manager install gerenciador pacotes', cheatId: 'pkg', render: () => <CheatSheet id="pkg" /> },
   { id: 'powershell', group: 'reference', icon: CodeIcon, keywords: 'powershell pwsh windows script cmdlet get-childitem invoke', cheatId: 'powershell', render: () => <CheatSheet id="powershell" /> },
   { id: 'azure-cli', group: 'reference', icon: CloudIcon, keywords: 'azure az cli cloud aks webapp microsoft', cheatId: 'azure-cli', render: () => <CheatSheet id="azure-cli" /> },

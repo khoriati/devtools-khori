@@ -287,6 +287,15 @@
     "cnpj": {
       "name": "CNPJ (gerar e validar)",
       "desc": "Gere um CNPJ válido para testes e valide o dígito verificador de um CNPJ."
+    },
+    "cmd-compare": {
+      "name": "Linux/mac ↔ PowerShell",
+      "desc": "Comandos equivalentes entre Linux/macOS e PowerShell, com exemplos: arquivos, sistema, manipulação, pipes e tee."
     }
+  },
+  "cmdcompare": {
+    "linux": "Linux / macOS",
+    "powershell": "PowerShell",
+    "description": "Descrição"
   }
 }

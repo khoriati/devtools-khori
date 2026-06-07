@@ -287,6 +287,15 @@
     "cnpj": {
       "name": "CNPJ (generate & validate)",
       "desc": "Generate a valid CNPJ for testing and validate the check digit of a CNPJ (Brazilian company ID)."
+    },
+    "cmd-compare": {
+      "name": "Linux/mac ↔ PowerShell",
+      "desc": "Equivalent commands between Linux/macOS and PowerShell, with examples: files, system, file manipulation, pipes and tee."
     }
+  },
+  "cmdcompare": {
+    "linux": "Linux / macOS",
+    "powershell": "PowerShell",
+    "description": "Description"
   }
 }
