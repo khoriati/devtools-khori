@@ -21,7 +21,7 @@ export default function Logo({ size = 36, withText = true }: { size?: number; wi
       </svg>
       {withText && (
         <span style={{ fontWeight: 800, fontSize: size * 0.5, letterSpacing: '-0.01em' }} aria-hidden="true">
-          DevTools&nbsp;Khori
+          KHORI&nbsp;DevTools
         </span>
       )}
     </span>

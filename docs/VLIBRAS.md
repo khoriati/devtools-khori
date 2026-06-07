@@ -86,8 +86,13 @@ floating "Sign language" button.
 | Widget | [`web/src/components/SignMtWidget.tsx`](../web/src/components/SignMtWidget.tsx) | Floating button + MUI dialog with the sign.mt `<iframe>` |
 | CSP | [`server/index.js`](../server/index.js) | `frame-src 'self' https://sign.mt` |
 
-The language pair is preselected via sign.mt's URL params — `spl` (spoken) and
-`sil` (signed, ISO 639-3 sign-language code):
+It opens **pre-filled with what is on screen**: the user's current text selection
+(captured on pointer-down, since the click can clear it) or, as a fallback, the
+main content text. The text stays **editable and re-translatable** inside the
+dialog, so a Deaf user can immediately translate the current page dynamically.
+
+The language pair + text are passed via sign.mt's URL params — `spl` (spoken),
+`sil` (signed, ISO 639-3 sign-language code) and `text`:
 
 | UI language | `spl` | `sil` | Sign language |
 | --- | --- | --- | --- |
@@ -96,10 +101,13 @@ The language pair is preselected via sign.mt's URL params — `spl` (spoken) and
 | de | `de` | `gsg` | German SL (DGS) |
 | fr | `fr` | `fsl` | French SL (LSF) |
 
-Why an iframe (not self-hosted)? sign.mt is a large Angular + TensorFlow.js PWA;
-embedding the hosted, open-source app keeps it keyless and current without
-vendoring tens of MB of models. The MUI `Dialog` provides a focus trap,
-`Esc`-to-close and `aria-modal`; the `<iframe>` has a `title`.
+Why an iframe (not self-hosted/vendored)? The sign.mt repo
+([github.com/sign/translate](https://github.com/sign/translate)) is a **~1.2 GB**
+Ionic/Angular + Capacitor app (native projects + on-device ML models, custom
+license) — impractical and license-uncertain to freeze in this repo. Embedding
+the hosted, open-source app keeps it keyless, current and lightweight; we depend
+only on the stable `spl`/`sil`/`text` URL contract. The MUI `Dialog` provides a
+focus trap, `Esc`-to-close and `aria-modal`; the `<iframe>` has a `title`.
 
 ## Extending to other languages
 

@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "DevTools Khori",
+    "title": "KHORI DevTools",
     "tagline": "Des outils du quotidien, accessibles à tous",
     "skipToContent": "Aller au contenu principal",
     "skipToNav": "Aller à la navigation",
@@ -10,7 +10,13 @@
   "nav": {
     "label": "Navigation des outils",
     "home": "Accueil",
-    "groups": { "converters": "Convertisseurs et données", "brazil": "Documents (Brésil)", "network": "Réseau", "reference": "Référence rapide", "accessibility": "Accessibilité" },
+    "groups": {
+      "converters": "Convertisseurs et données",
+      "brazil": "Documents (Brésil)",
+      "network": "Réseau",
+      "reference": "Référence rapide",
+      "accessibility": "Accessibilité"
+    },
     "search": "Rechercher des outils",
     "searchResults": "{{count}} outil trouvé",
     "searchResults_other": "{{count}} outils trouvés",
@@ -43,14 +49,27 @@
     "open": "Ouvrir le traducteur de langue des signes",
     "title": "Traducteur de langue des signes",
     "close": "Fermer",
-    "poweredBy": "Propulsé par sign.mt — un traducteur de langue des signes open-source, sans inscription ni clé API."
+    "poweredBy": "Propulsé par sign.mt — un traducteur de langue des signes open-source, sans inscription ni clé API.",
+    "textLabel": "Texte à traduire",
+    "translate": "Traduire",
+    "hint": "Sélectionnez du texte sur la page avant d'ouvrir pour le traduire automatiquement — ou modifiez le texte ci-dessous et traduisez."
   },
   "settings": {
     "theme": "Thème",
-    "themeMode": { "light": "Clair", "dark": "Sombre", "high-contrast": "Contraste élevé" },
+    "themeMode": {
+      "light": "Clair",
+      "dark": "Sombre",
+      "high-contrast": "Contraste élevé"
+    },
     "language": "Langue",
     "openSettings": "Ouvrir les paramètres d'apparence et de langue",
-    "languageNames": { "pt-BR": "Português (Brasil)", "en-US": "English (US)", "es": "Español", "de": "Deutsch", "fr": "Français" }
+    "languageNames": {
+      "pt-BR": "Português (Brasil)",
+      "en-US": "English (US)",
+      "es": "Español",
+      "de": "Deutsch",
+      "fr": "Français"
+    }
   },
   "common": {
     "input": "Entrée",
@@ -80,27 +99,51 @@
     "base-converter": {
       "name": "Calculatrice de programmeur",
       "desc": "Convertissez entre hexadécimal, décimal, octal et binaire et visualisez les opérations sur les bits.",
-      "decimal": "Décimal", "hex": "Hexadécimal", "octal": "Octal", "binary": "Binaire",
-      "bits": "Largeur de bits", "invalid": "Nombre invalide pour la base choisie"
+      "decimal": "Décimal",
+      "hex": "Hexadécimal",
+      "octal": "Octal",
+      "binary": "Binaire",
+      "bits": "Largeur de bits",
+      "invalid": "Nombre invalide pour la base choisie"
     },
     "ip-calculator": {
       "name": "Calculatrice de sous-réseau IP",
       "desc": "Calculez le réseau, le broadcast, la plage d'hôtes et convertissez entre préfixe CIDR et masque (aller-retour).",
-      "address": "Adresse IPv4", "prefix": "Préfixe (CIDR)", "netmask": "Masque",
-      "cidr": "CIDR", "network": "Réseau", "broadcast": "Broadcast", "mask": "Masque",
-      "wildcard": "Wildcard", "hostRange": "Plage d'hôtes", "totalHosts": "Adresses totales",
-      "usableHosts": "Hôtes utilisables", "ipClass": "Classe", "scope": "Portée",
-      "private": "Privé", "public": "Public",
-      "invalidIp": "Adresse IPv4 invalide", "invalidMask": "Masque de réseau invalide",
+      "address": "Adresse IPv4",
+      "prefix": "Préfixe (CIDR)",
+      "netmask": "Masque",
+      "cidr": "CIDR",
+      "network": "Réseau",
+      "broadcast": "Broadcast",
+      "mask": "Masque",
+      "wildcard": "Wildcard",
+      "hostRange": "Plage d'hôtes",
+      "totalHosts": "Adresses totales",
+      "usableHosts": "Hôtes utilisables",
+      "ipClass": "Classe",
+      "scope": "Portée",
+      "private": "Privé",
+      "public": "Public",
+      "invalidIp": "Adresse IPv4 invalide",
+      "invalidMask": "Masque de réseau invalide",
       "note": "Modifiez le préfixe ou le masque — les deux restent synchronisés dans les deux sens."
     },
     "chmod": {
       "name": "Calculatrice chmod",
       "desc": "Convertissez les permissions entre octal (ex. : 755) et symbolique (rwxr-xr-x), dans les deux sens.",
-      "octal": "Octal", "symbolic": "Symbolique", "permissions": "Permissions",
-      "class": "Classe", "read": "Lire", "write": "Écrire", "execute": "Exécuter",
-      "owner": "Propriétaire", "group": "Groupe", "other": "Autres",
-      "setuid": "setuid (4000)", "setgid": "setgid (2000)", "sticky": "sticky (1000)",
+      "octal": "Octal",
+      "symbolic": "Symbolique",
+      "permissions": "Permissions",
+      "class": "Classe",
+      "read": "Lire",
+      "write": "Écrire",
+      "execute": "Exécuter",
+      "owner": "Propriétaire",
+      "group": "Groupe",
+      "other": "Autres",
+      "setuid": "setuid (4000)",
+      "setgid": "setgid (2000)",
+      "sticky": "sticky (1000)",
       "example": "Exemple : 777 = rwxrwxrwx (accès total). Cochez les cases ou saisissez la valeur octale.",
       "about": "Comment ça marche",
       "aboutBasic": "Chaque classe — propriétaire, groupe et autres — a 3 bits : lire (4), écrire (2) et exécuter (1). Leur somme forme le chiffre octal (p. ex. 7 = rwx, 5 = r-x, 6 = rw-).",
@@ -111,19 +154,26 @@
     "jwt": {
       "name": "Décodeur JWT",
       "desc": "Décodez l'en-tête et le payload d'un JSON Web Token (signature non vérifiée).",
-      "header": "En-tête", "payload": "Payload", "signature": "Signature (non vérifiée)",
-      "invalid": "Jeton JWT invalide", "expWarn": "Attention : ce jeton est expiré.",
+      "header": "En-tête",
+      "payload": "Payload",
+      "signature": "Signature (non vérifiée)",
+      "invalid": "Jeton JWT invalide",
+      "expWarn": "Attention : ce jeton est expiré.",
       "placeholder": "Collez le jeton JWT ici"
     },
     "base64": {
       "name": "Base64",
       "desc": "Encodez et décodez du texte en Base64.",
-      "encode": "Encoder", "decode": "Décoder", "invalid": "Base64 invalide"
+      "encode": "Encoder",
+      "decode": "Décoder",
+      "invalid": "Base64 invalide"
     },
     "url": {
       "name": "Encodeur d'URL",
       "desc": "Encodez et décodez des composants d'URL avec le percent-encoding.",
-      "encode": "Encoder", "decode": "Décoder", "invalid": "Séquence d'URL invalide"
+      "encode": "Encoder",
+      "decode": "Décoder",
+      "invalid": "Séquence d'URL invalide"
     },
     "hash": {
       "name": "Générateur de hachage",
@@ -133,23 +183,36 @@
     "uuid": {
       "name": "Générateur d'UUID",
       "desc": "Générez des identifiants uniques UUID v4.",
-      "generate": "Générer un UUID", "quantity": "Quantité"
+      "generate": "Générer un UUID",
+      "quantity": "Quantité"
     },
     "timestamp": {
       "name": "Convertisseur de timestamp",
       "desc": "Convertissez entre timestamp Unix et date/heure lisible.",
-      "unix": "Timestamp Unix (secondes)", "human": "Date et heure", "now": "Maintenant", "utc": "UTC", "local": "Local"
+      "unix": "Timestamp Unix (secondes)",
+      "human": "Date et heure",
+      "now": "Maintenant",
+      "utc": "UTC",
+      "local": "Local"
     },
     "json": {
       "name": "Formateur JSON",
       "desc": "Validez et formatez (ou minifiez) des documents JSON.",
-      "format": "Formater", "minify": "Minifier", "valid": "JSON valide", "invalid": "JSON invalide"
+      "format": "Formater",
+      "minify": "Minifier",
+      "valid": "JSON valide",
+      "invalid": "JSON invalide"
     },
     "contrast": {
       "name": "Vérificateur de contraste",
       "desc": "Calculez le rapport de contraste entre deux couleurs et vérifiez la conformité WCAG.",
-      "foreground": "Couleur du texte", "background": "Couleur de fond", "ratio": "Rapport de contraste",
-      "normalText": "Texte normal", "largeText": "Grand texte", "pass": "Réussi", "fail": "Échoué"
+      "foreground": "Couleur du texte",
+      "background": "Couleur de fond",
+      "ratio": "Rapport de contraste",
+      "normalText": "Texte normal",
+      "largeText": "Grand texte",
+      "pass": "Réussi",
+      "fail": "Échoué"
     },
     "a11y-cli": {
       "name": "Validateurs WCAG (CLI)",
@@ -175,7 +238,11 @@
     "http": {
       "name": "Inspecteur HTTP",
       "desc": "Effectuez une requête HTTP et inspectez le statut, les en-têtes et le corps (style curl).",
-      "method": "Méthode", "status": "Statut", "headers": "En-têtes", "body": "Corps", "time": "Temps"
+      "method": "Méthode",
+      "status": "Statut",
+      "headers": "En-têtes",
+      "body": "Corps",
+      "time": "Temps"
     },
     "linux": {
       "name": "Commandes Linux",

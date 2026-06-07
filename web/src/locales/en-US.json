@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "DevTools Khori",
+    "title": "KHORI DevTools",
     "tagline": "Everyday tools, accessible to everyone",
     "skipToContent": "Skip to main content",
     "skipToNav": "Skip to navigation",
@@ -10,7 +10,13 @@
   "nav": {
     "label": "Tools navigation",
     "home": "Home",
-    "groups": { "converters": "Converters & data", "brazil": "Documents (Brazil)", "network": "Network", "reference": "Quick reference", "accessibility": "Accessibility" },
+    "groups": {
+      "converters": "Converters & data",
+      "brazil": "Documents (Brazil)",
+      "network": "Network",
+      "reference": "Quick reference",
+      "accessibility": "Accessibility"
+    },
     "search": "Search tools",
     "searchResults": "{{count}} tool found",
     "searchResults_other": "{{count}} tools found",
@@ -43,14 +49,27 @@
     "open": "Open the sign-language translator",
     "title": "Sign-language translator",
     "close": "Close",
-    "poweredBy": "Powered by sign.mt — an open-source sign-language translator, no signup or API key."
+    "poweredBy": "Powered by sign.mt — an open-source sign-language translator, no signup or API key.",
+    "textLabel": "Text to translate",
+    "translate": "Translate",
+    "hint": "Select text on the page before opening to translate it automatically — or edit the text below and translate."
   },
   "settings": {
     "theme": "Theme",
-    "themeMode": { "light": "Light", "dark": "Dark", "high-contrast": "High contrast" },
+    "themeMode": {
+      "light": "Light",
+      "dark": "Dark",
+      "high-contrast": "High contrast"
+    },
     "language": "Language",
     "openSettings": "Open appearance and language settings",
-    "languageNames": { "pt-BR": "Português (Brasil)", "en-US": "English (US)", "es": "Español", "de": "Deutsch", "fr": "Français" }
+    "languageNames": {
+      "pt-BR": "Português (Brasil)",
+      "en-US": "English (US)",
+      "es": "Español",
+      "de": "Deutsch",
+      "fr": "Français"
+    }
   },
   "common": {
     "input": "Input",
@@ -80,27 +99,51 @@
     "base-converter": {
       "name": "Programmer calculator",
       "desc": "Convert between hexadecimal, decimal, octal and binary and view bit operations.",
-      "decimal": "Decimal", "hex": "Hexadecimal", "octal": "Octal", "binary": "Binary",
-      "bits": "Bit width", "invalid": "Invalid number for the selected base"
+      "decimal": "Decimal",
+      "hex": "Hexadecimal",
+      "octal": "Octal",
+      "binary": "Binary",
+      "bits": "Bit width",
+      "invalid": "Invalid number for the selected base"
     },
     "ip-calculator": {
       "name": "IP subnet calculator",
       "desc": "Compute network, broadcast, host range and convert between CIDR prefix and netmask (round trip).",
-      "address": "IPv4 address", "prefix": "Prefix (CIDR)", "netmask": "Netmask",
-      "cidr": "CIDR", "network": "Network", "broadcast": "Broadcast", "mask": "Netmask",
-      "wildcard": "Wildcard", "hostRange": "Host range", "totalHosts": "Total addresses",
-      "usableHosts": "Usable hosts", "ipClass": "Class", "scope": "Scope",
-      "private": "Private", "public": "Public",
-      "invalidIp": "Invalid IPv4 address", "invalidMask": "Invalid netmask",
+      "address": "IPv4 address",
+      "prefix": "Prefix (CIDR)",
+      "netmask": "Netmask",
+      "cidr": "CIDR",
+      "network": "Network",
+      "broadcast": "Broadcast",
+      "mask": "Netmask",
+      "wildcard": "Wildcard",
+      "hostRange": "Host range",
+      "totalHosts": "Total addresses",
+      "usableHosts": "Usable hosts",
+      "ipClass": "Class",
+      "scope": "Scope",
+      "private": "Private",
+      "public": "Public",
+      "invalidIp": "Invalid IPv4 address",
+      "invalidMask": "Invalid netmask",
       "note": "Edit the prefix or the netmask — both stay in sync in both directions."
     },
     "chmod": {
       "name": "chmod calculator",
       "desc": "Convert permissions between octal (e.g. 755) and symbolic (rwxr-xr-x), both directions.",
-      "octal": "Octal", "symbolic": "Symbolic", "permissions": "Permissions",
-      "class": "Class", "read": "Read", "write": "Write", "execute": "Execute",
-      "owner": "Owner", "group": "Group", "other": "Other",
-      "setuid": "setuid (4000)", "setgid": "setgid (2000)", "sticky": "sticky (1000)",
+      "octal": "Octal",
+      "symbolic": "Symbolic",
+      "permissions": "Permissions",
+      "class": "Class",
+      "read": "Read",
+      "write": "Write",
+      "execute": "Execute",
+      "owner": "Owner",
+      "group": "Group",
+      "other": "Other",
+      "setuid": "setuid (4000)",
+      "setgid": "setgid (2000)",
+      "sticky": "sticky (1000)",
       "example": "Example: 777 = rwxrwxrwx (full access). Toggle the boxes or type the octal value.",
       "about": "How it works",
       "aboutBasic": "Each class — owner, group and others — has 3 bits: read (4), write (2) and execute (1). Their sum forms the octal digit (e.g. 7 = rwx, 5 = r-x, 6 = rw-).",
@@ -111,19 +154,26 @@
     "jwt": {
       "name": "JWT decoder",
       "desc": "Decode the header and payload of a JSON Web Token (signature not verified).",
-      "header": "Header", "payload": "Payload", "signature": "Signature (not verified)",
-      "invalid": "Invalid JWT token", "expWarn": "Warning: this token is expired.",
+      "header": "Header",
+      "payload": "Payload",
+      "signature": "Signature (not verified)",
+      "invalid": "Invalid JWT token",
+      "expWarn": "Warning: this token is expired.",
       "placeholder": "Paste the JWT token here"
     },
     "base64": {
       "name": "Base64",
       "desc": "Encode and decode text to and from Base64.",
-      "encode": "Encode", "decode": "Decode", "invalid": "Invalid Base64"
+      "encode": "Encode",
+      "decode": "Decode",
+      "invalid": "Invalid Base64"
     },
     "url": {
       "name": "URL encoder",
       "desc": "Encode and decode URL components with percent-encoding.",
-      "encode": "Encode", "decode": "Decode", "invalid": "Invalid URL sequence"
+      "encode": "Encode",
+      "decode": "Decode",
+      "invalid": "Invalid URL sequence"
     },
     "hash": {
       "name": "Hash generator",
@@ -133,23 +183,36 @@
     "uuid": {
       "name": "UUID generator",
       "desc": "Generate unique UUID v4 identifiers.",
-      "generate": "Generate UUID", "quantity": "Quantity"
+      "generate": "Generate UUID",
+      "quantity": "Quantity"
     },
     "timestamp": {
       "name": "Timestamp converter",
       "desc": "Convert between Unix timestamp and human-readable date/time.",
-      "unix": "Unix timestamp (seconds)", "human": "Date and time", "now": "Now", "utc": "UTC", "local": "Local"
+      "unix": "Unix timestamp (seconds)",
+      "human": "Date and time",
+      "now": "Now",
+      "utc": "UTC",
+      "local": "Local"
     },
     "json": {
       "name": "JSON formatter",
       "desc": "Validate and pretty-print (or minify) JSON documents.",
-      "format": "Format", "minify": "Minify", "valid": "Valid JSON", "invalid": "Invalid JSON"
+      "format": "Format",
+      "minify": "Minify",
+      "valid": "Valid JSON",
+      "invalid": "Invalid JSON"
     },
     "contrast": {
       "name": "Contrast checker",
       "desc": "Compute the contrast ratio between two colors and check WCAG compliance.",
-      "foreground": "Text color", "background": "Background color", "ratio": "Contrast ratio",
-      "normalText": "Normal text", "largeText": "Large text", "pass": "Pass", "fail": "Fail"
+      "foreground": "Text color",
+      "background": "Background color",
+      "ratio": "Contrast ratio",
+      "normalText": "Normal text",
+      "largeText": "Large text",
+      "pass": "Pass",
+      "fail": "Fail"
     },
     "a11y-cli": {
       "name": "WCAG validators (CLI)",
@@ -175,7 +238,11 @@
     "http": {
       "name": "HTTP inspector",
       "desc": "Make an HTTP request and inspect status, headers and body (curl-style).",
-      "method": "Method", "status": "Status", "headers": "Headers", "body": "Body", "time": "Time"
+      "method": "Method",
+      "status": "Status",
+      "headers": "Headers",
+      "body": "Body",
+      "time": "Time"
     },
     "linux": {
       "name": "Linux commands",
