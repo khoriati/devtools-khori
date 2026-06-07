@@ -20,7 +20,8 @@
     "filter": "Filter commands",
     "results": "{{count}} command",
     "results_other": "{{count}} commands",
-    "docs": "Documentation"
+    "docs": "Documentation",
+    "a11yDisclaimer": "Note: these tools perform only a superficial, automated check based on technical rules. They do not replace QA testing by qualified professionals able to assess the subjectivity of navigation, context and real-world usage — an essential step for genuine accessibility."
   },
   "brdoc": {
     "generate": "Generate {{doc}}",
@@ -93,7 +94,12 @@
       "class": "Class", "read": "Read", "write": "Write", "execute": "Execute",
       "owner": "Owner", "group": "Group", "other": "Other",
       "setuid": "setuid (4000)", "setgid": "setgid (2000)", "sticky": "sticky (1000)",
-      "example": "Example: 777 = rwxrwxrwx (full access). Toggle the boxes or type the octal value."
+      "example": "Example: 777 = rwxrwxrwx (full access). Toggle the boxes or type the octal value.",
+      "about": "How it works",
+      "aboutBasic": "Each class — owner, group and others — has 3 bits: read (4), write (2) and execute (1). Their sum forms the octal digit (e.g. 7 = rwx, 5 = r-x, 6 = rw-).",
+      "aboutSetuid": "when the file runs, the process uses the file owner's permissions, not those of the user who ran it.",
+      "aboutSetgid": "runs with the file's group; on directories, new files inherit the directory's group.",
+      "aboutSticky": "on shared directories (e.g. /tmp), only each file's owner can rename or delete it."
     },
     "jwt": {
       "name": "JWT decoder",

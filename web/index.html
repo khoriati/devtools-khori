@@ -13,6 +13,30 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!--
+      VLibras — tradutor de Português para Libras (Língua Brasileira de Sinais),
+      mantido pelo Governo Federal (gov.br). É open-source e NÃO exige cadastro
+      nem API-key. Este bloco é o markup oficial exigido pelo plugin; ele fica
+      FORA do #root (React não deve "possuir" este DOM, pois o plugin o manipula).
+      É exibido somente quando o idioma pt-BR está selecionado (ver
+      src/components/VLibrasWidget.tsx). Comentários e integração documentados em:
+      https://github.com/khoriati/devtools-khori/blob/main/docs/VLIBRAS.md
+
+      Atributos (data-attributes próprios do VLibras):
+      • vw                  → marca o contêiner raiz do widget; "enabled" o ativa.
+      • vw-access-button    → o botão flutuante de acessibilidade (abre o avatar).
+      • vw-plugin-wrapper    → contêiner onde o plugin injeta o player/avatar 3D.
+      • vw-plugin-top-wrapper→ âncora interna usada pelo plugin para montar a UI.
+      Começa com display:none e lang="pt-BR" (o conteúdo do widget é em português).
+    -->
+    <div vw class="enabled" lang="pt-BR" style="display: none">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

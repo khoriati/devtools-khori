@@ -20,7 +20,8 @@
     "filter": "Befehle filtern",
     "results": "{{count}} Befehl",
     "results_other": "{{count}} Befehle",
-    "docs": "Dokumentation"
+    "docs": "Dokumentation",
+    "a11yDisclaimer": "Hinweis: Diese Werkzeuge führen nur eine oberflächliche, automatisierte Prüfung anhand technischer Regeln durch. Sie ersetzen keine QA-Tests durch qualifizierte Fachleute, die die Subjektivität von Navigation, Kontext und realer Nutzung beurteilen können — ein wesentlicher Schritt für echte Barrierefreiheit."
   },
   "brdoc": {
     "generate": "{{doc}} generieren",
@@ -93,7 +94,12 @@
       "class": "Klasse", "read": "Lesen", "write": "Schreiben", "execute": "Ausführen",
       "owner": "Eigentümer", "group": "Gruppe", "other": "Andere",
       "setuid": "setuid (4000)", "setgid": "setgid (2000)", "sticky": "sticky (1000)",
-      "example": "Beispiel: 777 = rwxrwxrwx (Vollzugriff). Kästchen anhaken oder Oktalwert eingeben."
+      "example": "Beispiel: 777 = rwxrwxrwx (Vollzugriff). Kästchen anhaken oder Oktalwert eingeben.",
+      "about": "Wie es funktioniert",
+      "aboutBasic": "Jede Klasse – Eigentümer, Gruppe und Andere – hat 3 Bits: Lesen (4), Schreiben (2) und Ausführen (1). Ihre Summe ergibt die Oktalziffer (z. B. 7 = rwx, 5 = r-x, 6 = rw-).",
+      "aboutSetuid": "beim Ausführen läuft der Prozess mit den Rechten des Datei-Eigentümers, nicht des ausführenden Benutzers.",
+      "aboutSetgid": "läuft mit der Gruppe der Datei; bei Verzeichnissen erben neue Dateien die Gruppe des Verzeichnisses.",
+      "aboutSticky": "in gemeinsam genutzten Verzeichnissen (z. B. /tmp) kann nur der Eigentümer einer Datei sie umbenennen oder löschen."
     },
     "jwt": {
       "name": "JWT-Decoder",

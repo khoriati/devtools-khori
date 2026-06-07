@@ -20,7 +20,8 @@
     "filter": "Filtrar comandos",
     "results": "{{count}} comando",
     "results_other": "{{count}} comandos",
-    "docs": "Documentación"
+    "docs": "Documentación",
+    "a11yDisclaimer": "Atención: estas herramientas hacen solo una verificación superficial y automatizada, basada en reglas técnicas. No sustituyen las pruebas de QA realizadas por profesionales capacitados, capaces de evaluar la subjetividad de la navegación, el contexto y la experiencia real de uso — paso fundamental para una accesibilidad de verdad."
   },
   "brdoc": {
     "generate": "Generar {{doc}}",
@@ -93,7 +94,12 @@
       "class": "Clase", "read": "Leer", "write": "Escribir", "execute": "Ejecutar",
       "owner": "Propietario", "group": "Grupo", "other": "Otros",
       "setuid": "setuid (4000)", "setgid": "setgid (2000)", "sticky": "sticky (1000)",
-      "example": "Ejemplo: 777 = rwxrwxrwx (acceso total). Marque las casillas o escriba el valor octal."
+      "example": "Ejemplo: 777 = rwxrwxrwx (acceso total). Marque las casillas o escriba el valor octal.",
+      "about": "Cómo funciona",
+      "aboutBasic": "Cada clase —propietario, grupo y otros— tiene 3 bits: leer (4), escribir (2) y ejecutar (1). Su suma forma el dígito octal (p. ej. 7 = rwx, 5 = r-x, 6 = rw-).",
+      "aboutSetuid": "al ejecutar el archivo, el proceso usa los permisos del propietario del archivo, no los de quien lo ejecutó.",
+      "aboutSetgid": "se ejecuta con el grupo del archivo; en directorios, los archivos nuevos heredan el grupo del directorio.",
+      "aboutSticky": "en directorios compartidos (p. ej. /tmp), solo el propietario de cada archivo puede renombrarlo o eliminarlo."
     },
     "jwt": {
       "name": "Decodificador JWT",

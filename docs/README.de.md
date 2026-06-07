@@ -75,7 +75,10 @@ Mindestkontrast von 7:1.
 - Die Gruppe **Barrierefreiheit** enthält einen Block mit **Open-Source-WCAG-
   Validatoren für die Kommandozeile** (Pa11y, axe-core CLI, Lighthouse, IBM Equal
   Access) — gedacht für **Entwickler, Architekten und UX-Designer** — mit
-  einsatzbereiten Beispielen und Installationsanleitungen je Betriebssystem.
+  einsatzbereiten Beispielen und Installationsanleitungen je Betriebssystem. Diese
+  Validatoren führen nur eine oberflächliche technische Prüfung durch und
+  **ersetzen keine QA-Tests durch qualifizierte Fachleute**, die die Subjektivität
+  von Navigation und Kontext beurteilen.
 - **Globale Suche**, die sowohl nach Titel als auch nach **Inhalt** filtert
   (z. B. findet die Suche `rollout` die Kubernetes-Befehle; `crf` das ffmpeg).
 
@@ -88,6 +91,11 @@ Mindestkontrast von 7:1.
 - Screenreader-Ansagen über _Live-Regionen_ (`aria-live`).
 - **Mehrsprachig:** pt-BR, en-US, es, de, fr — mit `<html lang>` und Semantik
   synchron zur gewählten Sprache.
+- **Libras (brasilianische Gebärdensprache):** Ist die Sprache **pt-BR**, zeigt
+  das Open-Source-Widget [VLibras](https://www.gov.br/governodigital/pt-br/vlibras)
+  (gov.br, ohne Anmeldung/API-Key) einen 3D-Avatar, der den Inhalt in Libras
+  gebärdet. Für die übrigen Sprachen gibt es kein freies/schlüsselloses Äquivalent,
+  daher wird die Option ausgelassen. Integrationsleitfaden: [VLIBRAS.md](VLIBRAS.md).
 - Berücksichtigt `prefers-reduced-motion` und `prefers-color-scheme`; unterstützt
   `forced-colors` (Windows-Modus „Hoher Kontrast").
 - Lesbare Typografie (Atkinson Hyperlegible, falls verfügbar).

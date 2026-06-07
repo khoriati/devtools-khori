@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import {
+  Alert,
   Box,
   InputAdornment,
   Link as MuiLink,
@@ -39,6 +40,11 @@ export default function CheatSheet({ id }: { id: string }) {
 
   return (
     <Box>
+      {sheet.disclaimerKey && (
+        <Alert severity="warning" sx={{ mb: 2 }}>
+          {t(sheet.disclaimerKey)}
+        </Alert>
+      )}
       {sheet.links && sheet.links.length > 0 && (
         <Stack
           component="nav"

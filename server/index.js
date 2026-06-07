@@ -22,10 +22,19 @@ app.use(
         defaultSrc: ["'self'"],
         // MUI/Emotion injects styles at runtime; allow inline styles only.
         styleSrc: ["'self'", "'unsafe-inline'"],
-        scriptSrc: ["'self'"],
-        imgSrc: ["'self'", 'data:'],
-        connectSrc: ["'self'"],
-        fontSrc: ["'self'", 'data:'],
+        // 'self' for our bundle; the VLibras (Libras sign-language) widget loads
+        // its plugin from vlibras.gov.br and its 3D avatar runs on WebAssembly
+        // ('wasm-unsafe-eval' enables wasm compilation WITHOUT allowing eval()).
+        // See docs/VLIBRAS.md for why each origin/keyword is required.
+        // The gov.br loader pulls the actual plugin (and its Unity/WASM assets)
+        // from jsDelivr (cdn.jsdelivr.net), so that CDN must be allowed too.
+        scriptSrc: ["'self'", "'wasm-unsafe-eval'", 'blob:', 'https://vlibras.gov.br', 'https://cdn.jsdelivr.net'],
+        imgSrc: ["'self'", 'data:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
+        // The widget fetches the translation/dictionary from vlibras subdomains.
+        connectSrc: ["'self'", 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
+        mediaSrc: ["'self'", 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
+        fontSrc: ["'self'", 'data:', 'https://vlibras.gov.br', 'https://cdn.jsdelivr.net'],
+        workerSrc: ["'self'", 'blob:'],
         objectSrc: ["'none'"],
         baseUri: ["'self'"],
         frameAncestors: ["'none'"],

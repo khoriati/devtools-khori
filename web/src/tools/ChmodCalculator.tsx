@@ -22,10 +22,28 @@ const X = 1;
 const CLASSES = ['owner', 'group', 'other'] as const;
 type Cls = (typeof CLASSES)[number];
 
+// Render a mode as octal digits, e.g. 0o755 -> "755", 0o4755 -> "4755".
+const formatOctal = (m: number) => {
+  const special = (m >> 9) & 7;
+  const body = `${(m >> 6) & 7}${(m >> 3) & 7}${m & 7}`;
+  return special ? `${special}${body}` : body;
+};
+
 export default function ChmodCalculator() {
   const { t } = useTranslation();
   // mode is a 12-bit value: special(3) + owner(3) + group(3) + other(3)
   const [mode, setMode] = useState(0o755);
+  // Free-text mirror of the octal field. Kept separate from `mode` so the user
+  // can clear the field and type naturally — we never reformat mid-typing
+  // (which previously made the field keep only the last digit).
+  const [octalText, setOctalText] = useState(() => formatOctal(0o755));
+
+  // Apply a mode coming from the checkboxes and keep the octal text in sync.
+  const applyMode = (m: number) => {
+    const v = m & 0o7777;
+    setMode(v);
+    setOctalText(formatOctal(v));
+  };
 
   const digit = (cls: Cls) => {
     const shift = cls === 'owner' ? 6 : cls === 'group' ? 3 : 0;
@@ -34,24 +52,22 @@ export default function ChmodCalculator() {
   const setBit = (cls: Cls, bit: number, on: boolean) => {
     const shift = cls === 'owner' ? 6 : cls === 'group' ? 3 : 0;
     const mask = bit << shift;
-    setMode((m) => (on ? m | mask : m & ~mask));
+    applyMode(on ? mode | mask : mode & ~mask);
   };
   const special = (mode >> 9) & 7;
   const setSpecial = (bit: number, on: boolean) => {
     const mask = bit << 9;
-    setMode((m) => (on ? m | mask : m & ~mask));
+    applyMode(on ? mode | mask : mode & ~mask);
   };
 
-  const octal = (special ? special.toString(8) : '0') + (((mode >> 6) & 7).toString(8)) +
-    (((mode >> 3) & 7).toString(8)) + ((mode & 7).toString(8));
+  // Canonical 4-digit octal (e.g. "0755") used for the copy action.
+  const octal = formatOctal(mode).padStart(4, '0');
 
   const onOctal = (value: string) => {
-    const clean = value.replace(/[^0-7]/g, '').slice(-4);
-    if (clean === '') {
-      setMode(0);
-      return;
-    }
-    setMode(parseInt(clean, 8) & 0o7777);
+    // Keep only octal digits (0-7), max 4, and show exactly what was typed.
+    const clean = value.replace(/[^0-7]/g, '').slice(0, 4);
+    setOctalText(clean);
+    setMode(clean === '' ? 0 : parseInt(clean, 8) & 0o7777);
   };
 
   // Build the symbolic rwx string, applying setuid/setgid/sticky letters.
@@ -71,7 +87,7 @@ export default function ChmodCalculator() {
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems={{ sm: 'center' }}>
         <TextField
           label={t('tools.chmod.octal')}
-          value={octal}
+          value={octalText}
           onChange={(e) => onOctal(e.target.value)}
           inputProps={{ inputMode: 'numeric', maxLength: 4, style: { fontFamily: 'ui-monospace, monospace', fontSize: '1.4rem', letterSpacing: '0.3em' } }}
           sx={{ maxWidth: 180 }}
@@ -144,6 +160,32 @@ export default function ChmodCalculator() {
       <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
         {t('tools.chmod.example')}
       </Typography>
+
+      <Box component="section" aria-labelledby="chmod-about" sx={{ mt: 3 }}>
+        <Typography id="chmod-about" component="h3" variant="h3" gutterBottom>
+          {t('tools.chmod.about')}
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 1 }}>
+          {t('tools.chmod.aboutBasic')}
+        </Typography>
+        <Box component="ul" sx={{ m: 0, pl: 3 }}>
+          <li>
+            <Typography variant="body2">
+              <strong>setuid</strong> — {t('tools.chmod.aboutSetuid')}
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="body2">
+              <strong>setgid</strong> — {t('tools.chmod.aboutSetgid')}
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="body2">
+              <strong>sticky</strong> — {t('tools.chmod.aboutSticky')}
+            </Typography>
+          </li>
+        </Box>
+      </Box>
     </Box>
   );
 }

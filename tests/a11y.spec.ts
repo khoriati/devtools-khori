@@ -21,7 +21,8 @@ const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag2aaa', 'wcag21a', 'wcag21aa', 'wcag
 
 async function scan(page: Page, path: string) {
   await page.goto(path, { waitUntil: 'networkidle' });
-  const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
+  // Exclude the third-party VLibras widget DOM ([vw]) — we don't control its markup.
+  const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).exclude('[vw]').analyze();
   return results;
 }
 
@@ -176,4 +177,26 @@ test.describe('Semantics follow the selected language', () => {
       await expect(page.locator('h1')).not.toHaveText(/home\.heading/);
     });
   }
+});
+
+test.describe('VLibras (Libras sign language) — pt-BR only', () => {
+  test('loads and shows the access button in pt-BR', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('devtools-lang', 'pt-BR'));
+    // Not 'networkidle': VLibras keeps connections open, so the network never idles.
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('[vw]')).toBeVisible();
+    // The official plugin attaches a global and renders the floating button.
+    await expect
+      .poll(() => page.evaluate(() => Boolean((window as unknown as { VLibras?: unknown }).VLibras)), {
+        timeout: 25000,
+      })
+      .toBe(true);
+    await expect(page.locator('[vw-access-button]')).toBeVisible();
+  });
+
+  test('is omitted for other languages', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('devtools-lang', 'en-US'));
+    await page.goto('/', { waitUntil: 'networkidle' });
+    await expect(page.locator('[vw]')).toBeHidden();
+  });
 });

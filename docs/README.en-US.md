@@ -70,7 +70,9 @@ expensive. This portal shows that you can deliver a modern, beautiful UX that is
 - The **Accessibility** group includes a block of **open-source command-line WCAG
   validators** (Pa11y, axe-core CLI, Lighthouse, IBM Equal Access) — aimed at
   **developers, architects and UX designers** — with ready-to-use examples and
-  per-OS installation instructions.
+  per-OS installation instructions. These validators only perform a superficial
+  technical check and **do not replace QA testing by qualified professionals**
+  able to assess the subjectivity of navigation and context.
 - **Global search** that filters by both the title and the **body content**
   (e.g. searching `rollout` finds the Kubernetes commands; `crf`, ffmpeg).
 
@@ -83,6 +85,11 @@ expensive. This portal shows that you can deliver a modern, beautiful UX that is
 - Screen-reader announcements via _live regions_ (`aria-live`).
 - **Multilingual:** pt-BR, en-US, es, de, fr — with `<html lang>` and the
   semantics synced to the chosen language.
+- **Libras (Brazilian Sign Language):** when the language is **pt-BR**, the
+  open-source [VLibras](https://www.gov.br/governodigital/pt-br/vlibras) widget
+  (gov.br, no signup/API key) shows a 3D avatar that signs the content in Libras.
+  The other languages have no free/keyless equivalent, so the option is omitted.
+  Integration guide: [VLIBRAS.md](VLIBRAS.md).
 - Respects `prefers-reduced-motion` and `prefers-color-scheme`; supports
   `forced-colors` (Windows High Contrast Mode).
 - Readable typography (Atkinson Hyperlegible when available).

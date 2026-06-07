@@ -5,7 +5,13 @@ export type Lang = 'pt-BR' | 'en-US' | 'es' | 'de' | 'fr';
 export type CheatItem = { cmd: string; d: Record<Lang, string> };
 export type CheatSection = { title: Record<Lang, string>; items: CheatItem[] };
 export type CheatLink = { label: string; href: string };
-export type CheatSheet = { id: string; sections: CheatSection[]; links?: CheatLink[] };
+export type CheatSheet = {
+  id: string;
+  sections: CheatSection[];
+  links?: CheatLink[];
+  /** i18n key of a disclaimer shown prominently at the top of the sheet. */
+  disclaimerKey?: string;
+};
 
 const T = (pt: string, en: string, es: string, de: string, fr: string): Record<Lang, string> => ({
   'pt-BR': pt,
@@ -319,6 +325,7 @@ export const CHEAT_SHEETS: Record<string, CheatSheet> = {
   },
   'a11y-cli': {
     id: 'a11y-cli',
+    disclaimerKey: 'cheats.a11yDisclaimer',
     links: [
       { label: 'Pa11y', href: 'https://pa11y.org' },
       { label: 'axe-core', href: 'https://github.com/dequelabs/axe-core' },

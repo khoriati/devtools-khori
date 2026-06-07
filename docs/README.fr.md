@@ -77,6 +77,9 @@ coûte cher. Ce portail démontre qu'on peut livrer une UX moderne et soignée,
   ligne de commande** (Pa11y, axe-core CLI, Lighthouse, IBM Equal Access) —
   destiné aux **développeurs, architectes et UX designers** — avec des exemples
   prêts à l'emploi et des instructions d'installation par système d'exploitation.
+  Ces validateurs n'effectuent qu'une vérification technique superficielle et **ne
+  remplacent pas les tests QA menés par des professionnels qualifiés** capables
+  d'évaluer la subjectivité de la navigation et du contexte.
 - **Recherche globale** qui filtre à la fois sur le titre et sur le **contenu du
   corps** (p. ex. rechercher `rollout` trouve les commandes Kubernetes ; `crf`,
   ffmpeg).
@@ -91,6 +94,11 @@ coûte cher. Ce portail démontre qu'on peut livrer une UX moderne et soignée,
 - Annonces pour lecteurs d'écran via des _live regions_ (`aria-live`).
 - **Multilingue :** pt-BR, en-US, es, de, fr — avec `<html lang>` et la
   sémantique synchronisés avec la langue choisie.
+- **Libras (langue des signes brésilienne) :** lorsque la langue est **pt-BR**, le
+  widget open-source [VLibras](https://www.gov.br/governodigital/pt-br/vlibras)
+  (gov.br, sans inscription/clé API) affiche un avatar 3D qui traduit le contenu
+  en Libras. Les autres langues n'ont pas d'équivalent libre/sans clé, l'option
+  est donc omise. Guide d'intégration : [VLIBRAS.md](VLIBRAS.md).
 - Respecte `prefers-reduced-motion` et `prefers-color-scheme` ; prend en charge
   `forced-colors` (mode Contraste élevé de Windows).
 - Typographie lisible (Atkinson Hyperlegible lorsque disponible).

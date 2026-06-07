@@ -20,7 +20,8 @@
     "filter": "Filtrar comandos",
     "results": "{{count}} comando",
     "results_other": "{{count}} comandos",
-    "docs": "Documentação"
+    "docs": "Documentação",
+    "a11yDisclaimer": "Atenção: estas ferramentas fazem apenas uma checagem superficial e automatizada, baseada em regras técnicas. Elas não substituem testes de QA conduzidos por profissionais capacitados, capazes de avaliar a subjetividade da navegação, o contexto e a experiência real de uso — etapa fundamental para uma acessibilidade de verdade."
   },
   "brdoc": {
     "generate": "Gerar {{doc}}",
@@ -93,7 +94,12 @@
       "class": "Classe", "read": "Ler", "write": "Gravar", "execute": "Executar",
       "owner": "Dono", "group": "Grupo", "other": "Outros",
       "setuid": "setuid (4000)", "setgid": "setgid (2000)", "sticky": "sticky (1000)",
-      "example": "Exemplo: 777 = rwxrwxrwx (acesso total). Marque as caixas ou digite o valor octal."
+      "example": "Exemplo: 777 = rwxrwxrwx (acesso total). Marque as caixas ou digite o valor octal.",
+      "about": "Como funciona",
+      "aboutBasic": "Cada classe — dono, grupo e outros — tem 3 bits: ler (4), gravar (2) e executar (1). A soma forma o dígito octal (ex.: 7 = rwx, 5 = r-x, 6 = rw-).",
+      "aboutSetuid": "ao executar o arquivo, o processo roda com as permissões do dono do arquivo, e não de quem o executou.",
+      "aboutSetgid": "executa com o grupo do arquivo; em diretórios, novos arquivos herdam o grupo do diretório.",
+      "aboutSticky": "em diretórios compartilhados (ex.: /tmp), só o dono de cada arquivo pode renomeá-lo ou removê-lo."
     },
     "jwt": {
       "name": "Decodificador JWT",

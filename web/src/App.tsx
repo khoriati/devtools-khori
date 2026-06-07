@@ -6,6 +6,7 @@ import { buildTheme } from './theme';
 import Layout from './components/Layout';
 import HomePage from './components/HomePage';
 import ToolView from './components/ToolView';
+import VLibrasWidget from './components/VLibrasWidget';
 
 export default function App() {
   const { mode } = useSettings();
@@ -14,6 +15,8 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      {/* Libras (Brazilian Sign Language) widget — only shown when pt-BR. */}
+      <VLibrasWidget />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>

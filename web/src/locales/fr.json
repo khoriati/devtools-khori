@@ -20,7 +20,8 @@
     "filter": "Filtrer les commandes",
     "results": "{{count}} commande",
     "results_other": "{{count}} commandes",
-    "docs": "Documentation"
+    "docs": "Documentation",
+    "a11yDisclaimer": "Remarque : ces outils n'effectuent qu'une vérification superficielle et automatisée, basée sur des règles techniques. Ils ne remplacent pas les tests QA menés par des professionnels qualifiés, capables d'évaluer la subjectivité de la navigation, du contexte et de l'usage réel — étape essentielle pour une accessibilité véritable."
   },
   "brdoc": {
     "generate": "Générer un {{doc}}",
@@ -93,7 +94,12 @@
       "class": "Classe", "read": "Lire", "write": "Écrire", "execute": "Exécuter",
       "owner": "Propriétaire", "group": "Groupe", "other": "Autres",
       "setuid": "setuid (4000)", "setgid": "setgid (2000)", "sticky": "sticky (1000)",
-      "example": "Exemple : 777 = rwxrwxrwx (accès total). Cochez les cases ou saisissez la valeur octale."
+      "example": "Exemple : 777 = rwxrwxrwx (accès total). Cochez les cases ou saisissez la valeur octale.",
+      "about": "Comment ça marche",
+      "aboutBasic": "Chaque classe — propriétaire, groupe et autres — a 3 bits : lire (4), écrire (2) et exécuter (1). Leur somme forme le chiffre octal (p. ex. 7 = rwx, 5 = r-x, 6 = rw-).",
+      "aboutSetuid": "à l'exécution, le processus utilise les droits du propriétaire du fichier, pas ceux de l'utilisateur qui l'a lancé.",
+      "aboutSetgid": "s'exécute avec le groupe du fichier ; sur les répertoires, les nouveaux fichiers héritent du groupe du répertoire.",
+      "aboutSticky": "dans les répertoires partagés (p. ex. /tmp), seul le propriétaire de chaque fichier peut le renommer ou le supprimer."
     },
     "jwt": {
       "name": "Décodeur JWT",
