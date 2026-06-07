@@ -82,45 +82,20 @@ The 3D avatar runs on WebAssembly, so the CSP must allow:
 
 These origins are harmless for the other languages (they are simply never used).
 
-## Other languages — sign.mt
+## Other languages — no sign-language layer (for now)
 
-For English, Spanish, German and French we embed **[sign.mt](https://sign.mt)**
-(source: [github.com/sign/translate](https://github.com/sign/translate)), an
-open-source sign-language translator whose models run **on-device** — so there is
-**no API key and no paid SaaS**. It is shown as an accessible dialog opened by a
-floating "Sign language" button.
+VLibras translates **Portuguese** only. For English, Spanish, German and French
+there is currently **no free, keyless and self-hostable** sign-language avatar
+that meets this project's bar, so the feature is simply **omitted** for those
+languages (no button is shown).
 
-| Piece | File | Role |
-| --- | --- | --- |
-| Widget | [`web/src/components/SignMtWidget.tsx`](../web/src/components/SignMtWidget.tsx) | Floating button + MUI dialog with the sign.mt `<iframe>` |
-| CSP | [`server/index.js`](../server/index.js) | `frame-src 'self' https://sign.mt` |
-
-It opens **pre-filled with what is on screen**: the user's current text selection
-(captured on pointer-down, since the click can clear it) or, as a fallback, the
-main content text. The text stays **editable and re-translatable** inside the
-dialog, so a Deaf user can immediately translate the current page dynamically.
-
-The language pair + text are passed via sign.mt's URL params — `spl` (spoken),
-`sil` (signed, ISO 639-3 sign-language code) and `text`:
-
-| UI language | `spl` | `sil` | Sign language |
-| --- | --- | --- | --- |
-| en-US | `en` | `ase` | American SL (ASL) |
-| es | `es` | `ssp` | Spanish SL |
-| de | `de` | `gsg` | German SL (DGS) |
-| fr | `fr` | `fsl` | French SL (LSF) |
-
-Why an iframe (not self-hosted/vendored)? The sign.mt repo
-([github.com/sign/translate](https://github.com/sign/translate)) is a **~1.2 GB**
-Ionic/Angular + Capacitor app (native projects + on-device ML models, custom
-license) — impractical and license-uncertain to freeze in this repo. Embedding
-the hosted, open-source app keeps it keyless, current and lightweight; we depend
-only on the stable `spl`/`sil`/`text` URL contract. The MUI `Dialog` provides a
-focus trap, `Esc`-to-close and `aria-modal`; the `<iframe>` has a `title`.
+> A previous embed of the hosted sign.mt translator was removed: it was not
+> practical as an inline widget, and a fully self-hosted pipeline is not viable
+> (its core text→pose step is an external proprietary service and the project is
+> not freely licensed for commercial use). See the feasibility study for details.
 
 ## Extending to other languages
 
-- **VLibras** (`VLibrasWidget.tsx` → `SIGN_LANGUAGE_LANGS`): only for Portuguese.
-- **sign.mt** (`SignMtWidget.tsx` → `SIGN_MT`): add a `{ spl, sil }` entry for a
-  new UI language. If a language has no free/keyless option, leave it out of both
-  and nothing is shown. Avoid overlay widgets that require an account or API key.
+Add a language code to `SIGN_LANGUAGE_LANGS` in `VLibrasWidget.tsx` **only** if a
+free, keyless, embeddable sign-language solution exists for it, and wire its
+loader analogously. Avoid overlay widgets that require an account or API key.

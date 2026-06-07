@@ -94,9 +94,8 @@ Mindestkontrast von 7:1.
 - **Libras (brasilianische Gebärdensprache):** Ist die Sprache **pt-BR**, zeigt
   das Open-Source-Widget [VLibras](https://www.gov.br/governodigital/pt-br/vlibras)
   (gov.br, ohne Anmeldung/API-Key) einen 3D-Avatar, der den Inhalt in Libras
-  gebärdet. Für die übrigen Sprachen (en/es/de/fr) öffnet ein Button
-  [sign.mt](https://sign.mt) — ein Open-Source-Gebärdensprache-Übersetzer ohne
-  Anmeldung/Key — in einem barrierefreien Dialog mit vorausgewähltem Sprachpaar.
+  gebärdet. Für die übrigen Sprachen gibt es derzeit kein freies, schlüsselloses
+  und self-hostbares Äquivalent, daher wird die Option nicht angezeigt.
   Integrationsleitfaden: [VLIBRAS.md](VLIBRAS.md).
 - Berücksichtigt `prefers-reduced-motion` und `prefers-color-scheme`; unterstützt
   `forced-colors` (Windows-Modus „Hoher Kontrast").

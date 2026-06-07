@@ -29,7 +29,6 @@ app.use(
         // VLibras (Libras): the gov.br loader serves the plugin from jsDelivr and
         // the icons/avatar/dictionary from *.vlibras.gov.br; the 3D avatar runs on
         // WebAssembly ('wasm-unsafe-eval' enables wasm WITHOUT allowing eval()).
-        // sign.mt is embedded via frame-src below. See docs/VLIBRAS.md.
         // NOTE: the VLibras 3D avatar is an older Unity (asm.js/.unityweb) build
         // that uses eval(), so it requires 'unsafe-eval' (not just wasm). This is
         // a deliberate trade-off to enable the Libras sign-language avatar; inline
@@ -41,9 +40,6 @@ app.use(
         mediaSrc: ["'self'", 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
         fontSrc: ["'self'", 'data:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
         workerSrc: ["'self'", 'blob:'],
-        // sign.mt is embedded in an accessible dialog as the sign-language
-        // translator for non-Portuguese languages (keyless, open-source).
-        frameSrc: ["'self'", 'https://sign.mt'],
         objectSrc: ["'none'"],
         baseUri: ["'self'"],
         frameAncestors: ["'none'"],

@@ -44,16 +44,6 @@
     "builtin": "(ya incluido en el sistema)",
     "install": "Instalar:"
   },
-  "signLang": {
-    "button": "Lengua de señas",
-    "open": "Abrir el traductor de lengua de señas",
-    "title": "Traductor de lengua de señas",
-    "close": "Cerrar",
-    "poweredBy": "Proporcionado por sign.mt — traductor de lengua de señas open-source, sin registro ni clave de API.",
-    "textLabel": "Texto a traducir",
-    "translate": "Traducir",
-    "hint": "Selecciona texto en la página antes de abrir para traducirlo automáticamente — o edita el texto abajo y traduce."
-  },
   "settings": {
     "theme": "Tema",
     "themeMode": {

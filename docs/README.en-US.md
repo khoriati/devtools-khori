@@ -88,9 +88,8 @@ expensive. This portal shows that you can deliver a modern, beautiful UX that is
 - **Libras (Brazilian Sign Language):** when the language is **pt-BR**, the
   open-source [VLibras](https://www.gov.br/governodigital/pt-br/vlibras) widget
   (gov.br, no signup/API key) shows a 3D avatar that signs the content in Libras.
-  For the other languages (en/es/de/fr), a button opens [sign.mt](https://sign.mt)
-  — an open-source sign-language translator, no signup/key — in an accessible
-  dialog with the language pair preselected. Integration guide: [VLIBRAS.md](VLIBRAS.md).
+  The other languages have no free, keyless, self-hostable equivalent today, so
+  the option is not shown. Integration guide: [VLIBRAS.md](VLIBRAS.md).
 - Respects `prefers-reduced-motion` and `prefers-color-scheme`; supports
   `forced-colors` (Windows High Contrast Mode).
 - Readable typography (Atkinson Hyperlegible when available).
