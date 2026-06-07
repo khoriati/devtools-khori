@@ -22,18 +22,6 @@ export default function ToolView() {
     }
   }, [tool, t, announce]);
 
-  // Shift-Tab from the heading returns focus to the activated sidebar item
-  // (the current page link) instead of walking back to the last menu item.
-  const handleHeadingKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Tab' && e.shiftKey) {
-      const current = document.querySelector<HTMLElement>('nav a[aria-current="page"]');
-      if (current) {
-        e.preventDefault();
-        current.focus();
-      }
-    }
-  };
-
   if (!tool) return <Navigate to="/" replace />;
 
   return (
@@ -45,14 +33,7 @@ export default function ToolView() {
         <Typography color="text.primary">{t(`tools.${tool.id}.name`)}</Typography>
       </Breadcrumbs>
 
-      <Typography
-        component="h1"
-        variant="h1"
-        tabIndex={-1}
-        ref={headingRef}
-        onKeyDown={handleHeadingKeyDown}
-        sx={{ outline: 'none' }}
-      >
+      <Typography component="h1" variant="h1" tabIndex={-1} ref={headingRef} sx={{ outline: 'none' }}>
         {t(`tools.${tool.id}.name`)}
       </Typography>
       <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 760, mb: 3 }}>

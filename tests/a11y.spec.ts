@@ -84,6 +84,45 @@ test.describe('Keyboard & structure', () => {
     expect(info.aria).toBe('page');
   });
 
+  test('Shift-Tab while exploring the body returns to the active menu item via the breadcrumb', async ({ page }) => {
+    // Reproduces: Tab to "chmod calculator" → Enter → Tab to the Copy button →
+    // Shift-Tab back; after the "Home" breadcrumb, focus must land on the active
+    // sidebar item (aria-current), not on the last menu item.
+    await page.goto('/', { waitUntil: 'networkidle' });
+    await page.getByRole('link', { name: /chmod/i }).first().focus();
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/\/tool\/chmod/);
+    await expect.poll(() => page.evaluate(() => document.activeElement?.tagName)).toBe('H1');
+
+    // Tab forward into the body until we reach a Copy button.
+    let reachedCopy = false;
+    for (let i = 0; i < 12 && !reachedCopy; i++) {
+      await page.keyboard.press('Tab');
+      reachedCopy = await page.evaluate(() => /copy|copiar/i.test(document.activeElement?.textContent || ''));
+    }
+    expect(reachedCopy).toBeTruthy();
+
+    // Shift-Tab back until we land on a sidebar tool link (href starts /tool/);
+    // it must be the active one, not the last menu item.
+    let landed: { href: string | null; aria: string | null } | null = null;
+    for (let i = 0; i < 12; i++) {
+      await page.keyboard.press('Shift+Tab');
+      const el = await page.evaluate(() => {
+        const a = document.activeElement as HTMLElement | null;
+        const href = a?.getAttribute('href') || '';
+        return a?.tagName === 'A' && href.startsWith('/tool/')
+          ? { href, aria: a.getAttribute('aria-current') }
+          : null;
+      });
+      if (el) {
+        landed = el;
+        break;
+      }
+    }
+    expect(landed?.href).toContain('/tool/chmod');
+    expect(landed?.aria).toBe('page');
+  });
+
   test('exactly one h1 and a main landmark per page', async ({ page }) => {
     await page.goto('/tool/jwt', { waitUntil: 'networkidle' });
     await expect(page.locator('main#main-content')).toHaveCount(1);

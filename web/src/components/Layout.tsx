@@ -60,6 +60,25 @@ export default function Layout() {
     return !q || toolSearchText(tool, i18n.language, t).includes(q);
   };
 
+  // When the user tabs backwards out of the top of the content (from the tool
+  // heading or the first tab stop, i.e. the breadcrumb), return focus to the
+  // activated sidebar item instead of walking to the last menu item.
+  const returnToActiveNavItem = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key !== 'Tab' || !e.shiftKey) return;
+    const main = e.currentTarget;
+    const active = document.activeElement;
+    const heading = main.querySelector('h1');
+    const firstTabbable = main.querySelector<HTMLElement>(
+      'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])',
+    );
+    if (active !== heading && active !== firstTabbable) return;
+    const current = document.querySelector<HTMLElement>('nav a[aria-current="page"]');
+    if (current && current.offsetParent !== null) {
+      e.preventDefault();
+      current.focus();
+    }
+  };
+
   const search = (
     <Box role="search" sx={{ px: 2, pt: 2, pb: 1 }}>
       <TextField
@@ -195,7 +214,13 @@ export default function Layout() {
 
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', width: { md: `calc(100% - ${DRAWER_WIDTH}px)` } }}>
         <Toolbar />
-        <Box component="main" id="main-content" tabIndex={-1} sx={{ p: { xs: 2, sm: 3 }, flexGrow: 1, outline: 'none' }}>
+        <Box
+          component="main"
+          id="main-content"
+          tabIndex={-1}
+          onKeyDown={returnToActiveNavItem}
+          sx={{ p: { xs: 2, sm: 3 }, flexGrow: 1, outline: 'none' }}
+        >
           <Outlet />
         </Box>
         <Box component="footer" sx={{ p: 2, textAlign: 'center', borderTop: 1, borderColor: 'divider' }}>
