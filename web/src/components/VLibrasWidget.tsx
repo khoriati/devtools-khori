@@ -56,7 +56,33 @@ export default function VLibrasWidget() {
     // Show/hide the whole widget — including its floating access button —
     // without destroying the plugin's DOM (so it survives language switches).
     container.style.display = enabled ? 'block' : 'none';
-    if (!enabled || initialized.current) return;
+    if (!enabled) return;
+
+    // The plugin sets its own position/margins (and repositions dynamically),
+    // leaving a gap from the right edge. We pin it to the right side at top:150px
+    // with INLINE !important styles (which beat any stylesheet) and re-apply them
+    // whenever the plugin mutates the widget — so the button stays flush at right:0.
+    let observer: MutationObserver | null = null;
+    const pin = () => {
+      observer?.disconnect(); // avoid reacting to our own style writes
+      const set = (el: HTMLElement, prop: string, val: string) => el.style.setProperty(prop, val, 'important');
+      set(container, 'position', 'fixed');
+      set(container, 'top', '150px');
+      set(container, 'right', '0');
+      set(container, 'left', 'auto');
+      set(container, 'bottom', 'auto');
+      set(container, 'margin', '0');
+      const btn = container.querySelector<HTMLElement>('[vw-access-button]');
+      if (btn) {
+        set(btn, 'right', '0');
+        set(btn, 'left', 'auto');
+      }
+      if (observer) observer.observe(container, { attributes: true, attributeFilter: ['style'], childList: true, subtree: true });
+    };
+    observer = new MutationObserver(pin);
+    pin();
+
+    const cleanup = () => observer?.disconnect();
 
     const init = () => {
       if (window.VLibras && !initialized.current) {
@@ -64,26 +90,30 @@ export default function VLibrasWidget() {
         // eslint-disable-next-line no-new
         new window.VLibras.Widget(PLUGIN_APP);
         initialized.current = true;
+        pin(); // re-pin once the avatar/button is mounted
       }
     };
 
-    if (window.VLibras) {
-      init();
-      return;
+    if (!initialized.current) {
+      if (window.VLibras) {
+        init();
+      } else {
+        // Load the official plugin only on demand (first time pt-BR is active).
+        const existing = document.getElementById('vlibras-plugin') as HTMLScriptElement | null;
+        if (existing) {
+          existing.addEventListener('load', init);
+        } else {
+          const script = document.createElement('script');
+          script.id = 'vlibras-plugin';
+          script.src = PLUGIN_SRC;
+          script.async = true;
+          script.onload = init;
+          document.body.appendChild(script);
+        }
+      }
     }
 
-    // Load the official plugin only on demand (first time pt-BR is active).
-    const existing = document.getElementById('vlibras-plugin') as HTMLScriptElement | null;
-    if (existing) {
-      existing.addEventListener('load', init);
-      return;
-    }
-    const script = document.createElement('script');
-    script.id = 'vlibras-plugin';
-    script.src = PLUGIN_SRC;
-    script.async = true;
-    script.onload = init;
-    document.body.appendChild(script);
+    return cleanup;
   }, [language]);
 
   // This component renders nothing itself; it drives the index.html `<div vw>`.

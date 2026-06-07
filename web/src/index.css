@@ -32,5 +32,11 @@ div[vw] {
   bottom: auto !important;
   right: 0 !important;
   left: auto !important;
+  margin-right: 0 !important; /* the plugin adds margin-right:10px; remove it for right:0 */
   z-index: 1400 !important; /* above MUI AppBar (drawer+1 ≈ 1201) */
+}
+/* Keep the access button flush against the right edge (right: 0). */
+div[vw] [vw-access-button] {
+  right: 0 !important;
+  left: auto !important;
 }
