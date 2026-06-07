@@ -27,7 +27,13 @@ import { useSettings } from '../context/SettingsContext';
 // Languages that have an integrated, free, no-signup sign-language solution.
 const SIGN_LANGUAGE_LANGS = new Set<string>(['pt-BR']);
 
-const PLUGIN_SRC = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+// The plugin (~17 KB) is SELF-HOSTED (vendored in web/public/vlibras/) instead
+// of loaded from cdn.jsdelivr.net. The gov.br loader redirects to jsDelivr, and
+// browsers with Tracking Prevention (Edge/Safari) block storage for that
+// third-party CDN, breaking the widget. Served first-party, it is not blocked.
+// The heavy avatar/dictionary assets are still fetched at runtime from
+// *.vlibras.gov.br (a gov domain that is not tracking-prevented). See docs/VLIBRAS.md.
+const PLUGIN_SRC = '/vlibras/vlibras-plugin.js';
 const PLUGIN_APP = 'https://vlibras.gov.br/app';
 
 // The plugin attaches a global `VLibras` with a `Widget` constructor.

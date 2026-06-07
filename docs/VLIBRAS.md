@@ -19,7 +19,21 @@ Spanish, German or French, so for those languages the feature is simply **omitte
 | --- | --- | --- |
 | Markup | [`web/index.html`](../web/index.html) | The official `<div vw>` container, kept **outside** the React root |
 | Controller | [`web/src/components/VLibrasWidget.tsx`](../web/src/components/VLibrasWidget.tsx) | Loads the plugin once and shows/hides it by language |
-| CSP | [`server/index.js`](../server/index.js) | Allows the `vlibras.gov.br` origins + `wasm-unsafe-eval` |
+| Plugin (vendored) | `web/public/vlibras/vlibras-plugin.js` | The ~17 KB plugin, **self-hosted** (see "Why self-hosted" below) |
+| CSP | [`server/index.js`](../server/index.js) | Allows the `*.vlibras.gov.br` origins + `wasm-unsafe-eval` |
+
+## Why self-hosted (Tracking Prevention)
+
+The official `https://vlibras.gov.br/app/vlibras-plugin.js` is a *loader* that
+pulls the real plugin from **cdn.jsdelivr.net**. Browsers with Tracking
+Prevention (Edge, Safari) classify that CDN as third-party and **block its
+storage access**, which breaks the widget (`Tracking Prevention blocked access
+to storage for https://cdn.jsdelivr.net/...`).
+
+Fix: vendor the small plugin and serve it **first-party** from
+`/vlibras/vlibras-plugin.js`. The heavy avatar/dictionary/translation assets are
+still fetched at runtime from `*.vlibras.gov.br` (`www`, `dicionario2`,
+`traducao2`) — a government domain that is **not** tracking-prevented.
 
 The widget DOM lives in `index.html` because the plugin **mutates that DOM
 directly** — React must not own it (it would fight the plugin over the subtree).
@@ -39,7 +53,7 @@ The React component only toggles visibility and lazy-loads the script.
 ### Initialisation
 
 ```js
-// Load once:  https://vlibras.gov.br/app/vlibras-plugin.js
+// Load once (self-hosted, first-party):  /vlibras/vlibras-plugin.js
 new window.VLibras.Widget('https://vlibras.gov.br/app');
 ```
 
@@ -47,14 +61,15 @@ new window.VLibras.Widget('https://vlibras.gov.br/app');
 
 The 3D avatar runs on WebAssembly, so the CSP must allow:
 
-- `script-src`: `https://vlibras.gov.br`, `https://cdn.jsdelivr.net` and
-  `'wasm-unsafe-eval'` (enables wasm compilation **without** allowing `eval()`),
-  plus `blob:`. The gov.br loader pulls the real plugin + Unity/WASM assets from
-  jsDelivr, so that CDN must be allowed as well;
-- `connect-src` / `img-src` / `media-src` / `font-src`: `https://vlibras.gov.br`,
-  `https://*.vlibras.gov.br` and `https://cdn.jsdelivr.net` (translation service,
-  dictionary and assets);
+- `script-src`: `'self'` (the vendored plugin), `https://vlibras.gov.br`,
+  `https://*.vlibras.gov.br` (Unity loader from `www.vlibras.gov.br`),
+  `'wasm-unsafe-eval'` (enables wasm compilation **without** allowing `eval()`)
+  and `blob:`;
+- `connect-src` / `img-src` / `media-src` / `font-src`: `https://vlibras.gov.br`
+  and `https://*.vlibras.gov.br` (translation service, dictionary and assets);
 - `worker-src`: `'self' blob:`.
+
+No third-party CDN (jsDelivr) is referenced.
 
 These origins are harmless for the other languages (they are simply never used).
 
