@@ -87,7 +87,7 @@ export default function ContrastChecker() {
       </Grid>
 
       {valid && r && (
-        <Box sx={{ mt: 3 }} aria-live="polite">
+        <Box role="region" aria-label={t('common.result')} tabIndex={0} sx={{ mt: 3, outline: 'none' }} aria-live="polite">
           <Box
             sx={{
               p: 3,

@@ -124,6 +124,17 @@ test.describe('Keyboard & structure', () => {
     expect(landed?.aria).toBe('page');
   });
 
+  test('interactive tool result regions are reachable by keyboard', async ({ page }) => {
+    // The result of calculators must be focusable so keyboard users can reach it
+    // (regression: the IP subnet calculator result was previously not reachable).
+    for (const id of ['ip-calculator', 'timestamp', 'contrast', 'base-converter']) {
+      await page.goto(`/tool/${id}`, { waitUntil: 'networkidle' });
+      const region = page.getByRole('region', { name: /result|resultado/i }).first();
+      await region.focus();
+      await expect(region, `result region of ${id} should be focusable`).toBeFocused();
+    }
+  });
+
   test('exactly one h1 and a main landmark per page', async ({ page }) => {
     await page.goto('/tool/jwt', { waitUntil: 'networkidle' });
     await expect(page.locator('main#main-content')).toHaveCount(1);

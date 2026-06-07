@@ -127,7 +127,7 @@ export default function BrDocTool({ kind }: { kind: Kind }) {
           sx={{ maxWidth: 360 }}
         />
         {result && (
-          <Box sx={{ mt: 2 }} aria-live="polite">
+          <Box role="region" aria-label={t('common.result')} tabIndex={0} sx={{ mt: 2, outline: 'none' }} aria-live="polite">
             <Chip
               icon={result.ok ? <CheckCircleIcon /> : <CancelIcon />}
               color={result.ok ? 'success' : 'error'}

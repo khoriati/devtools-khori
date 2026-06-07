@@ -36,7 +36,15 @@ export default function TimestampTool() {
       </Stack>
 
       {date && (
-        <Grid container spacing={2} sx={{ mt: 1 }} aria-live="polite">
+        <Grid
+          container
+          spacing={2}
+          role="region"
+          aria-label={t('common.result')}
+          tabIndex={0}
+          sx={{ mt: 1, outline: 'none' }}
+          aria-live="polite"
+        >
           <Grid item xs={12} sm={6}>
             <Typography component="h3" variant="h3">
               {t('tools.timestamp.local')}

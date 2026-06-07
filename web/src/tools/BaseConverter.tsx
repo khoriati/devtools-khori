@@ -97,7 +97,7 @@ export default function BaseConverter() {
       </Stack>
 
       {value !== null && (
-        <Box sx={{ mt: 2 }} aria-live="polite">
+        <Box role="region" aria-label={t('common.result')} tabIndex={0} sx={{ mt: 2, outline: 'none' }} aria-live="polite">
           <Typography component="h3" variant="h3" gutterBottom>
             {width}-bit
           </Typography>

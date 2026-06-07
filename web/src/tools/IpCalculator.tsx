@@ -153,7 +153,13 @@ export default function IpCalculator() {
       )}
 
       {info && (
-        <Box component="section" aria-label={t('common.result')} sx={{ mt: 2 }} aria-live="polite">
+        <Box
+          component="section"
+          aria-label={t('common.result')}
+          tabIndex={0}
+          sx={{ mt: 2, outline: 'none' }}
+          aria-live="polite"
+        >
           <Typography component="h3" variant="h3" gutterBottom>
             {t('common.result')}
           </Typography>
