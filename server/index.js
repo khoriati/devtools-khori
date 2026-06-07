@@ -30,7 +30,12 @@ app.use(
         // the icons/avatar/dictionary from *.vlibras.gov.br; the 3D avatar runs on
         // WebAssembly ('wasm-unsafe-eval' enables wasm WITHOUT allowing eval()).
         // sign.mt is embedded via frame-src below. See docs/VLIBRAS.md.
-        scriptSrc: ["'self'", "'wasm-unsafe-eval'", 'blob:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
+        // NOTE: the VLibras 3D avatar is an older Unity (asm.js/.unityweb) build
+        // that uses eval(), so it requires 'unsafe-eval' (not just wasm). This is
+        // a deliberate trade-off to enable the Libras sign-language avatar; inline
+        // scripts remain blocked (no 'unsafe-inline'), and the app WAF + strict
+        // input validation still apply. See docs/VLIBRAS.md.
+        scriptSrc: ["'self'", "'unsafe-eval'", "'wasm-unsafe-eval'", 'blob:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
         imgSrc: ["'self'", 'data:', 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
         connectSrc: ["'self'", 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],
         mediaSrc: ["'self'", 'https://vlibras.gov.br', 'https://*.vlibras.gov.br', 'https://cdn.jsdelivr.net'],

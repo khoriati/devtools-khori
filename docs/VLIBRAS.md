@@ -66,9 +66,15 @@ new window.VLibras.Widget('https://vlibras.gov.br/app');
 The 3D avatar runs on WebAssembly, so the CSP must allow:
 
 - `script-src`: `https://vlibras.gov.br`, `https://*.vlibras.gov.br`,
-  `https://cdn.jsdelivr.net` (the plugin is served from jsDelivr),
-  `'wasm-unsafe-eval'` (enables wasm compilation **without** allowing `eval()`)
-  and `blob:`;
+  `https://cdn.jsdelivr.net` (the plugin is served from jsDelivr), `blob:`,
+  `'wasm-unsafe-eval'` **and `'unsafe-eval'`** — the avatar is an older Unity
+  (asm.js/`.unityweb`) build that calls `eval()`, so `'unsafe-eval'` is required
+  for it to run. Inline scripts stay blocked (no `'unsafe-inline'`), and the app
+  WAF + input validation still apply, so this is a scoped trade-off to enable the
+  Libras avatar;
+- **Note:** the plugin renders on the `window` `load` event; since this is an SPA
+  (the script is injected after `load` fired), `VLibrasWidget` re-dispatches a
+  `load` event after `new VLibras.Widget()` so the avatar/button actually render.
 - `connect-src` / `img-src` / `media-src` / `font-src`: `https://vlibras.gov.br`,
   `https://*.vlibras.gov.br` and `https://cdn.jsdelivr.net` (translation service,
   dictionary, icons and assets).
