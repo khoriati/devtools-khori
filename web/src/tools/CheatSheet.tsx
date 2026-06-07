@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import {
   Box,
   InputAdornment,
+  Link as MuiLink,
   Stack,
   Table,
   TableBody,
@@ -11,6 +12,7 @@ import {
   Typography,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useTranslation } from 'react-i18next';
 import CopyButton from '../components/CopyButton';
 import { CHEAT_SHEETS, descFor, titleFor } from './cheatsheets';
@@ -37,6 +39,33 @@ export default function CheatSheet({ id }: { id: string }) {
 
   return (
     <Box>
+      {sheet.links && sheet.links.length > 0 && (
+        <Stack
+          component="nav"
+          aria-label={t('cheats.docs')}
+          direction="row"
+          spacing={2}
+          flexWrap="wrap"
+          useFlexGap
+          sx={{ mb: 2 }}
+        >
+          <Typography variant="body2" sx={{ fontWeight: 700 }}>
+            {t('cheats.docs')}:
+          </Typography>
+          {sheet.links.map((l) => (
+            <MuiLink
+              key={l.href}
+              href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5 }}
+            >
+              {l.label}
+              <OpenInNewIcon fontSize="inherit" aria-hidden="true" />
+            </MuiLink>
+          ))}
+        </Stack>
+      )}
       <TextField
         label={t('cheats.filter')}
         value={filter}

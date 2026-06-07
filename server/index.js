@@ -5,6 +5,7 @@ import rateLimit from 'express-rate-limit';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { whois, ping, traceroute, digLookup, httpInspect } from './tools.js';
+import { waf } from './waf.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 8080;
@@ -34,6 +35,8 @@ app.use(
   }),
 );
 app.use(compression());
+// WAF runs before any routing or body parsing.
+app.use(waf());
 app.use(express.json({ limit: '64kb' }));
 
 // Rate-limit the API: network probes are relatively expensive.

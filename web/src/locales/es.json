@@ -10,7 +10,7 @@
   "nav": {
     "label": "Navegación de herramientas",
     "home": "Inicio",
-    "groups": { "converters": "Conversores y datos", "network": "Red", "reference": "Referencia rápida", "accessibility": "Accesibilidad" },
+    "groups": { "converters": "Conversores y datos", "brazil": "Documentos (Brasil)", "network": "Red", "reference": "Referencia rápida", "accessibility": "Accesibilidad" },
     "search": "Buscar herramientas",
     "searchResults": "{{count}} herramienta encontrada",
     "searchResults_other": "{{count}} herramientas encontradas",
@@ -19,7 +19,23 @@
   "cheats": {
     "filter": "Filtrar comandos",
     "results": "{{count}} comando",
-    "results_other": "{{count}} comandos"
+    "results_other": "{{count}} comandos",
+    "docs": "Documentación"
+  },
+  "brdoc": {
+    "generate": "Generar {{doc}}",
+    "validate": "Validar {{doc}}",
+    "generated": "{{doc}} generado",
+    "placeholder": "Escriba o pegue el número",
+    "valid": "Número válido",
+    "invalid": "Número no válido (dígito verificador)",
+    "invalidLength": "Cantidad de dígitos incorrecta",
+    "note": "Generado solo para pruebas — no corresponde a una persona real."
+  },
+  "localrun": {
+    "title": "Cómo ejecutarlo en tu equipo",
+    "builtin": "(ya incluido en el sistema)",
+    "install": "Instalar:"
   },
   "settings": {
     "theme": "Tema",
@@ -163,6 +179,30 @@
     "magick": {
       "name": "Comandos magick",
       "desc": "Ejemplos de ImageMagick para convertir, redimensionar, recortar y optimizar imágenes."
+    },
+    "pkg": {
+      "name": "Gestores de paquetes",
+      "desc": "Uso básico de Homebrew, apt y winget para instalar y actualizar paquetes (con enlaces)."
+    },
+    "powershell": {
+      "name": "Comandos PowerShell",
+      "desc": "PowerShell de básico a avanzado: archivos, pipeline, web, remoting y manejo de errores."
+    },
+    "azure-cli": {
+      "name": "Azure CLI (az)",
+      "desc": "Ejemplos de az: inicio de sesión, recursos, VMs, AKS, web apps y storage."
+    },
+    "aws-cli": {
+      "name": "AWS CLI (aws)",
+      "desc": "AWS CLI de básico a avanzado: S3, EC2, logs, IAM, CloudFormation y EKS (con ejemplos)."
+    },
+    "cpf": {
+      "name": "CPF (generar y validar)",
+      "desc": "Genera un CPF válido para pruebas y valida el dígito verificador de un CPF (identificación fiscal de Brasil)."
+    },
+    "cnpj": {
+      "name": "CNPJ (generar y validar)",
+      "desc": "Genera un CNPJ válido para pruebas y valida el dígito verificador de un CNPJ (identificación de empresa de Brasil)."
     }
   }
 }

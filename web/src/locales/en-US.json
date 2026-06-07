@@ -10,7 +10,7 @@
   "nav": {
     "label": "Tools navigation",
     "home": "Home",
-    "groups": { "converters": "Converters & data", "network": "Network", "reference": "Quick reference", "accessibility": "Accessibility" },
+    "groups": { "converters": "Converters & data", "brazil": "Documents (Brazil)", "network": "Network", "reference": "Quick reference", "accessibility": "Accessibility" },
     "search": "Search tools",
     "searchResults": "{{count}} tool found",
     "searchResults_other": "{{count}} tools found",
@@ -19,7 +19,23 @@
   "cheats": {
     "filter": "Filter commands",
     "results": "{{count}} command",
-    "results_other": "{{count}} commands"
+    "results_other": "{{count}} commands",
+    "docs": "Documentation"
+  },
+  "brdoc": {
+    "generate": "Generate {{doc}}",
+    "validate": "Validate {{doc}}",
+    "generated": "{{doc}} generated",
+    "placeholder": "Type or paste the number",
+    "valid": "Valid number",
+    "invalid": "Invalid number (check digit)",
+    "invalidLength": "Incorrect number of digits",
+    "note": "Generated for testing only — does not correspond to a real person."
+  },
+  "localrun": {
+    "title": "How to run it on your computer",
+    "builtin": "(already included in the OS)",
+    "install": "Install:"
   },
   "settings": {
     "theme": "Theme",
@@ -163,6 +179,30 @@
     "magick": {
       "name": "magick commands",
       "desc": "ImageMagick examples to convert, resize, crop and optimize images."
+    },
+    "pkg": {
+      "name": "Package managers",
+      "desc": "Basic Homebrew, apt and winget usage to install and update packages (with links)."
+    },
+    "powershell": {
+      "name": "PowerShell commands",
+      "desc": "PowerShell from basic to advanced: files, pipeline, web, remoting and error handling."
+    },
+    "azure-cli": {
+      "name": "Azure CLI (az)",
+      "desc": "az examples: login, resources, VMs, AKS, web apps and storage."
+    },
+    "aws-cli": {
+      "name": "AWS CLI (aws)",
+      "desc": "AWS CLI from basic to advanced: S3, EC2, logs, IAM, CloudFormation and EKS (with examples)."
+    },
+    "cpf": {
+      "name": "CPF (generate & validate)",
+      "desc": "Generate a valid CPF for testing and validate the check digit of a CPF (Brazilian taxpayer ID)."
+    },
+    "cnpj": {
+      "name": "CNPJ (generate & validate)",
+      "desc": "Generate a valid CNPJ for testing and validate the check digit of a CNPJ (Brazilian company ID)."
     }
   }
 }

@@ -10,7 +10,7 @@
   "nav": {
     "label": "Navigation des outils",
     "home": "Accueil",
-    "groups": { "converters": "Convertisseurs et données", "network": "Réseau", "reference": "Référence rapide", "accessibility": "Accessibilité" },
+    "groups": { "converters": "Convertisseurs et données", "brazil": "Documents (Brésil)", "network": "Réseau", "reference": "Référence rapide", "accessibility": "Accessibilité" },
     "search": "Rechercher des outils",
     "searchResults": "{{count}} outil trouvé",
     "searchResults_other": "{{count}} outils trouvés",
@@ -19,7 +19,23 @@
   "cheats": {
     "filter": "Filtrer les commandes",
     "results": "{{count}} commande",
-    "results_other": "{{count}} commandes"
+    "results_other": "{{count}} commandes",
+    "docs": "Documentation"
+  },
+  "brdoc": {
+    "generate": "Générer un {{doc}}",
+    "validate": "Valider un {{doc}}",
+    "generated": "{{doc}} généré",
+    "placeholder": "Saisissez ou collez le numéro",
+    "valid": "Numéro valide",
+    "invalid": "Numéro invalide (chiffre de contrôle)",
+    "invalidLength": "Nombre de chiffres incorrect",
+    "note": "Généré à des fins de test uniquement — ne correspond à aucune personne réelle."
+  },
+  "localrun": {
+    "title": "Comment l'exécuter sur votre ordinateur",
+    "builtin": "(déjà inclus dans le système)",
+    "install": "Installer :"
   },
   "settings": {
     "theme": "Thème",
@@ -163,6 +179,30 @@
     "magick": {
       "name": "Commandes magick",
       "desc": "Exemples ImageMagick pour convertir, redimensionner, rogner et optimiser des images."
+    },
+    "pkg": {
+      "name": "Gestionnaires de paquets",
+      "desc": "Utilisation de base de Homebrew, apt et winget pour installer et mettre à jour des paquets (avec liens)."
+    },
+    "powershell": {
+      "name": "Commandes PowerShell",
+      "desc": "PowerShell du basique à l'avancé : fichiers, pipeline, web, remoting et gestion des erreurs."
+    },
+    "azure-cli": {
+      "name": "Azure CLI (az)",
+      "desc": "Exemples az : connexion, ressources, VM, AKS, web apps et stockage."
+    },
+    "aws-cli": {
+      "name": "AWS CLI (aws)",
+      "desc": "AWS CLI du basique à l'avancé : S3, EC2, logs, IAM, CloudFormation et EKS (avec exemples)."
+    },
+    "cpf": {
+      "name": "CPF (générer et valider)",
+      "desc": "Générer un CPF valide pour les tests et valider le chiffre de contrôle d'un CPF (identifiant fiscal brésilien)."
+    },
+    "cnpj": {
+      "name": "CNPJ (générer et valider)",
+      "desc": "Générer un CNPJ valide pour les tests et valider le chiffre de contrôle d'un CNPJ (identifiant d'entreprise brésilien)."
     }
   }
 }

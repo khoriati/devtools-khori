@@ -10,7 +10,7 @@
   "nav": {
     "label": "Werkzeug-Navigation",
     "home": "Start",
-    "groups": { "converters": "Konverter & Daten", "network": "Netzwerk", "reference": "Schnellreferenz", "accessibility": "Barrierefreiheit" },
+    "groups": { "converters": "Konverter & Daten", "brazil": "Dokumente (Brasilien)", "network": "Netzwerk", "reference": "Schnellreferenz", "accessibility": "Barrierefreiheit" },
     "search": "Werkzeuge suchen",
     "searchResults": "{{count}} Werkzeug gefunden",
     "searchResults_other": "{{count}} Werkzeuge gefunden",
@@ -19,7 +19,23 @@
   "cheats": {
     "filter": "Befehle filtern",
     "results": "{{count}} Befehl",
-    "results_other": "{{count}} Befehle"
+    "results_other": "{{count}} Befehle",
+    "docs": "Dokumentation"
+  },
+  "brdoc": {
+    "generate": "{{doc}} generieren",
+    "validate": "{{doc}} validieren",
+    "generated": "{{doc}} generiert",
+    "placeholder": "Nummer eingeben oder einfügen",
+    "valid": "Gültige Nummer",
+    "invalid": "Ungültige Nummer (Prüfziffer)",
+    "invalidLength": "Falsche Ziffernanzahl",
+    "note": "Nur zu Testzwecken generiert — entspricht keiner echten Person."
+  },
+  "localrun": {
+    "title": "So führen Sie es auf Ihrem Computer aus",
+    "builtin": "(bereits im System enthalten)",
+    "install": "Installieren:"
   },
   "settings": {
     "theme": "Design",
@@ -163,6 +179,30 @@
     "magick": {
       "name": "magick-Befehle",
       "desc": "ImageMagick-Beispiele zum Konvertieren, Skalieren, Zuschneiden und Optimieren von Bildern."
+    },
+    "pkg": {
+      "name": "Paketmanager",
+      "desc": "Grundlegende Nutzung von Homebrew, apt und winget zum Installieren und Aktualisieren von Paketen (mit Links)."
+    },
+    "powershell": {
+      "name": "PowerShell-Befehle",
+      "desc": "PowerShell von einfach bis fortgeschritten: Dateien, Pipeline, Web, Remoting und Fehlerbehandlung."
+    },
+    "azure-cli": {
+      "name": "Azure CLI (az)",
+      "desc": "az-Beispiele: Anmeldung, Ressourcen, VMs, AKS, Web-Apps und Storage."
+    },
+    "aws-cli": {
+      "name": "AWS CLI (aws)",
+      "desc": "AWS CLI von einfach bis fortgeschritten: S3, EC2, Logs, IAM, CloudFormation und EKS (mit Beispielen)."
+    },
+    "cpf": {
+      "name": "CPF (generieren & validieren)",
+      "desc": "Eine gültige CPF zum Testen generieren und die Prüfziffer einer CPF (brasilianische Steuer-ID) validieren."
+    },
+    "cnpj": {
+      "name": "CNPJ (generieren & validieren)",
+      "desc": "Eine gültige CNPJ zum Testen generieren und die Prüfziffer einer CNPJ (brasilianische Firmen-ID) validieren."
     }
   }
 }

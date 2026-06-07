@@ -11,13 +11,28 @@ com foco no usuário com deficiência visual.
 | Categoria | Ferramentas |
 | --- | --- |
 | Conversores e dados | Calculadora de programador (hex/dec/oct/bin + bits), Calculadora de sub-rede IP (CIDR ↔ máscara), Calculadora de chmod (octal ↔ rwx), Decodificador JWT, Base64, Codificador de URL, Gerador de hash (SHA-1/256/384/512), Gerador de UUID, Conversor de timestamp, Formatador JSON |
+| Documentos (Brasil) | Gerador + validador de CPF, Gerador + validador de CNPJ |
 | Rede | WHOIS, Ping, Traceroute, Consulta DNS, Inspetor HTTP (estilo curl) |
-| Referência rápida | Comandos Linux, Comandos Docker, Comandos Kubernetes (cheat sheets) |
+| Referência rápida | Linux, Docker, Kubernetes, ffmpeg, magick, Gerenciadores de pacotes (brew/apt/winget), PowerShell, Azure CLI, AWS CLI — cheat sheets com instruções de instalação e links |
 | Acessibilidade | Verificador de contraste WCAG |
+
+As telas de **whois/ping/traceroute** também mostram como rodar o comando localmente
+(Windows/macOS/Linux), incluindo como instalar a ferramenta quando não é padrão.
 
 As ferramentas de dados rodam 100% no navegador. As ferramentas de rede são
 executadas no backend de forma segura (sem shell, com allow-list de argumentos,
 validação estrita de host, timeouts, rate-limiting e proteção contra SSRF).
+
+### Segurança / WAF
+
+- **WAF de aplicação** (`server/waf.js`): bloqueia (403) os principais ataques —
+  path traversal/LFI, SQLi, XSS, command/template injection, arquivos sensíveis
+  (`.git`/`.env`), métodos HTTP não permitidos e payloads percent-encoded.
+- **WAF na borda**: Ingress com **ModSecurity + OWASP Core Rule Set** habilitados
+  por anotação, com escopo restrito a este site (o controller é compartilhado).
+- Defesa em profundidade: helmet (CSP/HSTS/nosniff/frame), rate-limiting na app e
+  no ingress, container não-root com filesystem somente leitura e `cap drop ALL`.
+- Cobertura por testes automatizados em `tests/security.spec.ts`.
 
 Há uma **busca global** de ferramentas que filtra tanto pelo título quanto pelo
 conteúdo do corpo (ex.: buscar `rollout` encontra os comandos Kubernetes).

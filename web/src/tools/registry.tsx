@@ -21,6 +21,12 @@ import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import HubIcon from '@mui/icons-material/Hub';
 import MovieIcon from '@mui/icons-material/Movie';
 import ImageIcon from '@mui/icons-material/Image';
+import BadgeIcon from '@mui/icons-material/Badge';
+import BusinessIcon from '@mui/icons-material/Business';
+import Inventory2Icon from '@mui/icons-material/Inventory2';
+import CodeIcon from '@mui/icons-material/Code';
+import CloudIcon from '@mui/icons-material/Cloud';
+import CloudQueueIcon from '@mui/icons-material/CloudQueue';
 
 import BaseConverter from './BaseConverter';
 import IpCalculator from './IpCalculator';
@@ -35,9 +41,10 @@ import ContrastChecker from './ContrastChecker';
 import NetworkTool from './NetworkTool';
 import HttpInspector from './HttpInspector';
 import CheatSheet from './CheatSheet';
+import BrDocTool from './BrDocTool';
 import { cheatSearchText } from './cheatsheets';
 
-export type ToolGroup = 'converters' | 'network' | 'reference' | 'accessibility';
+export type ToolGroup = 'converters' | 'brazil' | 'network' | 'reference' | 'accessibility';
 
 export type ToolDef = {
   id: string;
@@ -71,6 +78,8 @@ export const TOOLS: ToolDef[] = [
   { id: 'uuid', group: 'converters', icon: FingerprintIcon, render: () => <UuidTool /> },
   { id: 'timestamp', group: 'converters', icon: ScheduleIcon, render: () => <TimestampTool /> },
   { id: 'json', group: 'converters', icon: DataObjectIcon, render: () => <JsonTool /> },
+  { id: 'cpf', group: 'brazil', icon: BadgeIcon, keywords: 'cpf cadastro pessoa fisica documento brasil digito verificador gerar validar', render: () => <BrDocTool kind="cpf" /> },
+  { id: 'cnpj', group: 'brazil', icon: BusinessIcon, keywords: 'cnpj cadastro nacional pessoa juridica empresa documento brasil gerar validar', render: () => <BrDocTool kind="cnpj" /> },
   { id: 'contrast', group: 'accessibility', icon: ContrastIcon, keywords: 'wcag ratio luminance aa aaa color', render: () => <ContrastChecker /> },
   { id: 'whois', group: 'network', icon: TravelExploreIcon, keywords: 'domain registrar registration', render: () => <NetworkTool endpoint="whois" /> },
   { id: 'ping', group: 'network', icon: NetworkPingIcon, keywords: 'icmp latency rtt', render: () => <NetworkTool endpoint="ping" /> },
@@ -80,11 +89,15 @@ export const TOOLS: ToolDef[] = [
   { id: 'linux', group: 'reference', icon: TerminalIcon, keywords: 'shell bash ls grep chmod tar ps', cheatId: 'linux', render: () => <CheatSheet id="linux" /> },
   { id: 'docker', group: 'reference', icon: ViewInArIcon, keywords: 'container image compose build run exec', cheatId: 'docker', render: () => <CheatSheet id="docker" /> },
   { id: 'kubernetes', group: 'reference', icon: HubIcon, keywords: 'k8s kubectl pod deployment service rollout namespace top', cheatId: 'kubernetes', render: () => <CheatSheet id="kubernetes" /> },
-  { id: 'ffmpeg', group: 'reference', icon: MovieIcon, keywords: 'video audio convert mp4 mp3 gif transcode encode scale', cheatId: 'ffmpeg', render: () => <CheatSheet id="ffmpeg" /> },
-  { id: 'magick', group: 'reference', icon: ImageIcon, keywords: 'imagemagick image convert resize crop jpg png pdf', cheatId: 'magick', render: () => <CheatSheet id="magick" /> },
+  { id: 'ffmpeg', group: 'reference', icon: MovieIcon, keywords: 'video audio convert mp4 mp3 gif transcode encode scale install', cheatId: 'ffmpeg', render: () => <CheatSheet id="ffmpeg" /> },
+  { id: 'magick', group: 'reference', icon: ImageIcon, keywords: 'imagemagick image convert resize crop jpg png pdf install', cheatId: 'magick', render: () => <CheatSheet id="magick" /> },
+  { id: 'pkg', group: 'reference', icon: Inventory2Icon, keywords: 'brew apt winget homebrew package manager install gerenciador pacotes', cheatId: 'pkg', render: () => <CheatSheet id="pkg" /> },
+  { id: 'powershell', group: 'reference', icon: CodeIcon, keywords: 'powershell pwsh windows script cmdlet get-childitem invoke', cheatId: 'powershell', render: () => <CheatSheet id="powershell" /> },
+  { id: 'azure-cli', group: 'reference', icon: CloudIcon, keywords: 'azure az cli cloud aks webapp microsoft', cheatId: 'azure-cli', render: () => <CheatSheet id="azure-cli" /> },
+  { id: 'aws-cli', group: 'reference', icon: CloudQueueIcon, keywords: 'aws cli cloud s3 ec2 eks cloudformation amazon', cheatId: 'aws-cli', render: () => <CheatSheet id="aws-cli" /> },
 ];
 
-export const TOOL_GROUPS: ToolGroup[] = ['converters', 'network', 'reference', 'accessibility'];
+export const TOOL_GROUPS: ToolGroup[] = ['converters', 'brazil', 'network', 'reference', 'accessibility'];
 
 export const getTool = (id?: string) => TOOLS.find((t) => t.id === id);
 
