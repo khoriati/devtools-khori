@@ -27,6 +27,7 @@ import Inventory2Icon from '@mui/icons-material/Inventory2';
 import CodeIcon from '@mui/icons-material/Code';
 import CloudIcon from '@mui/icons-material/Cloud';
 import CloudQueueIcon from '@mui/icons-material/CloudQueue';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 
 import BaseConverter from './BaseConverter';
 import IpCalculator from './IpCalculator';
@@ -81,6 +82,7 @@ export const TOOLS: ToolDef[] = [
   { id: 'cpf', group: 'brazil', icon: BadgeIcon, keywords: 'cpf cadastro pessoa fisica documento brasil digito verificador gerar validar', render: () => <BrDocTool kind="cpf" /> },
   { id: 'cnpj', group: 'brazil', icon: BusinessIcon, keywords: 'cnpj cadastro nacional pessoa juridica empresa documento brasil gerar validar', render: () => <BrDocTool kind="cnpj" /> },
   { id: 'contrast', group: 'accessibility', icon: ContrastIcon, keywords: 'wcag ratio luminance aa aaa color', render: () => <ContrastChecker /> },
+  { id: 'a11y-cli', group: 'accessibility', icon: FactCheckIcon, keywords: 'pa11y axe lighthouse achecker wcag accessibility validate scan ci open source cli', cheatId: 'a11y-cli', render: () => <CheatSheet id="a11y-cli" /> },
   { id: 'whois', group: 'network', icon: TravelExploreIcon, keywords: 'domain registrar registration', render: () => <NetworkTool endpoint="whois" /> },
   { id: 'ping', group: 'network', icon: NetworkPingIcon, keywords: 'icmp latency rtt', render: () => <NetworkTool endpoint="ping" /> },
   { id: 'traceroute', group: 'network', icon: RouteIcon, keywords: 'hops route path', render: () => <NetworkTool endpoint="traceroute" /> },

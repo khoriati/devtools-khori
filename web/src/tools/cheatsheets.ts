@@ -317,6 +317,53 @@ export const CHEAT_SHEETS: Record<string, CheatSheet> = {
       },
     ],
   },
+  'a11y-cli': {
+    id: 'a11y-cli',
+    links: [
+      { label: 'Pa11y', href: 'https://pa11y.org' },
+      { label: 'axe-core', href: 'https://github.com/dequelabs/axe-core' },
+      { label: 'Lighthouse', href: 'https://developer.chrome.com/docs/lighthouse/' },
+      { label: 'IBM Equal Access', href: 'https://github.com/IBMa/equal-access' },
+    ],
+    sections: [
+      {
+        title: T('Pré-requisito: Node.js', 'Prerequisite: Node.js', 'Requisito: Node.js', 'Voraussetzung: Node.js', 'Prérequis : Node.js'),
+        items: [
+          { cmd: 'winget install -e --id OpenJS.NodeJS', d: N('Windows (winget / PowerShell ou cmd)') },
+          { cmd: 'brew install node', d: N('macOS (Homebrew)') },
+          { cmd: 'sudo apt-get install -y nodejs npm', d: N('Linux (apt)') },
+        ],
+      },
+      {
+        title: T('Instalar as ferramentas (npm)', 'Install the tools (npm)', 'Instalar las herramientas (npm)', 'Werkzeuge installieren (npm)', 'Installer les outils (npm)'),
+        items: [
+          { cmd: 'npm install -g pa11y pa11y-ci', d: N('Pa11y + Pa11y-CI') },
+          { cmd: 'npm install -g @axe-core/cli', d: N('axe-core CLI (Deque)') },
+          { cmd: 'npm install -g lighthouse', d: N('Lighthouse (Google)') },
+          { cmd: 'npm install -g accessibility-checker', d: N('IBM Equal Access (achecker)') },
+        ],
+      },
+      {
+        title: T('Verificar uma URL', 'Check a URL', 'Verificar una URL', 'Eine URL prüfen', 'Vérifier une URL'),
+        items: [
+          { cmd: 'pa11y https://exemplo.com', d: T('Testa uma URL (forma mais direta)', 'Test a URL (simplest way)', 'Prueba una URL (forma más directa)', 'Eine URL testen (einfachster Weg)', 'Tester une URL (le plus simple)') },
+          { cmd: 'pa11y --standard WCAG2AAA --runner axe https://exemplo.com', d: T('Define o padrão (WCAG2A/AA/AAA) e o motor', 'Set the standard (WCAG2A/AA/AAA) and engine', 'Define el estándar (WCAG2A/AA/AAA) y el motor', 'Standard (WCAG2A/AA/AAA) und Engine festlegen', 'Définir le standard (WCAG2A/AA/AAA) et le moteur') },
+          { cmd: 'pa11y --reporter json https://exemplo.com > relatorio.json', d: T('Saída em JSON para pipelines', 'JSON output for pipelines', 'Salida JSON para pipelines', 'JSON-Ausgabe für Pipelines', 'Sortie JSON pour les pipelines') },
+          { cmd: 'axe https://exemplo.com --tags wcag2a,wcag2aa,wcag21aa', d: T('axe-core CLI filtrando por tags WCAG', 'axe-core CLI filtered by WCAG tags', 'axe-core CLI filtrando por etiquetas WCAG', 'axe-core CLI nach WCAG-Tags gefiltert', 'axe-core CLI filtré par tags WCAG') },
+          { cmd: 'lighthouse https://exemplo.com --only-categories=accessibility --output=html --output-path=./a11y.html --chrome-flags="--headless"', d: T('Auditoria de acessibilidade em relatório HTML', 'Accessibility audit as an HTML report', 'Auditoría de accesibilidad en informe HTML', 'Barrierefreiheits-Audit als HTML-Bericht', 'Audit d’accessibilité en rapport HTML') },
+          { cmd: 'achecker https://exemplo.com', d: T('IBM Equal Access: relatório detalhado (WCAG 2.1/2.2)', 'IBM Equal Access: detailed report (WCAG 2.1/2.2)', 'IBM Equal Access: informe detallado (WCAG 2.1/2.2)', 'IBM Equal Access: detaillierter Bericht (WCAG 2.1/2.2)', 'IBM Equal Access : rapport détaillé (WCAG 2.1/2.2)') },
+        ],
+      },
+      {
+        title: T('CI e múltiplas URLs', 'CI & multiple URLs', 'CI y múltiples URLs', 'CI & mehrere URLs', 'CI et plusieurs URLs'),
+        items: [
+          { cmd: 'pa11y-ci', d: T('Falha o build acima do limite (config .pa11yci)', 'Fails the build above the threshold (.pa11yci config)', 'Falla el build por encima del umbral (config .pa11yci)', 'Lässt den Build über dem Schwellwert fehlschlagen (.pa11yci)', 'Fait échouer le build au-delà du seuil (config .pa11yci)') },
+          { cmd: "curl -s https://exemplo.com/sitemap.xml | grep -oP '(?<=<loc>)[^<]+' > urls.txt", d: T('Extrai a lista de URLs do sitemap', 'Extract the URL list from the sitemap', 'Extrae la lista de URLs del sitemap', 'URL-Liste aus der Sitemap extrahieren', 'Extraire la liste des URL du sitemap') },
+          { cmd: 'npm install -D @axe-core/playwright @playwright/test', d: T('Integra o axe nos testes Playwright (E2E)', 'Integrate axe into Playwright tests (E2E)', 'Integra axe en las pruebas Playwright (E2E)', 'axe in Playwright-Tests integrieren (E2E)', 'Intégrer axe aux tests Playwright (E2E)') },
+        ],
+      },
+    ],
+  },
 };
 
 const FALLBACK: Lang[] = ['en-US', 'pt-BR'];

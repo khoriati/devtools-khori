@@ -34,6 +34,31 @@ function run(cmd, args) {
   });
 }
 
+// --- Origin masking ----------------------------------------------------------
+// Hide the real origin server address (and internal hops) from ping/traceroute
+// output so the non-Cloudflare origin is not exposed. The host/pod IPs are
+// injected at runtime via the Kubernetes Downward API (never committed).
+const MASK = '[oculto]';
+const EXACT_IPS = [process.env.HOST_IP, process.env.POD_IP].filter(Boolean);
+const PRIVATE_RE = [
+  /\b(?:10|127)\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/g,
+  /\b169\.254\.\d{1,3}\.\d{1,3}\b/g,
+  /\b192\.168\.\d{1,3}\.\d{1,3}\b/g,
+  /\b172\.(?:1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}\b/g,
+  /\b100\.(?:6[4-9]|[7-9]\d|1[01]\d|12[0-7])\.\d{1,3}\.\d{1,3}\b/g,
+];
+
+export function redactOrigin(text) {
+  if (!text) return text;
+  let out = text;
+  for (const ip of EXACT_IPS) {
+    out = out.split(ip).join(MASK); // dotted form, e.g. 154.53.48.84
+    out = out.split(ip.replace(/\./g, '-')).join(MASK); // reverse-DNS form, e.g. 154-53-48-84
+  }
+  for (const re of PRIVATE_RE) out = out.replace(re, MASK);
+  return out;
+}
+
 export async function whois(host) {
   if (!isValidHost(host)) return { ok: false, error: 'invalid_host' };
   return run('whois', [host]);
@@ -42,13 +67,15 @@ export async function whois(host) {
 export async function ping(host) {
   if (!isValidHost(host)) return { ok: false, error: 'invalid_host' };
   // -c 4 packets, -w 10s deadline. Works with iputils-ping (Linux).
-  return run('ping', ['-c', '4', '-w', '10', '-n', host]);
+  const r = await run('ping', ['-c', '4', '-w', '10', '-n', host]);
+  return { ...r, output: redactOrigin(r.output) };
 }
 
 export async function traceroute(host) {
   if (!isValidHost(host)) return { ok: false, error: 'invalid_host' };
   // -m 20 max hops, -w 2 wait, -n numeric (no rDNS slowdown).
-  return run('traceroute', ['-m', '20', '-w', '2', '-q', '2', '-n', host]);
+  const r = await run('traceroute', ['-m', '20', '-w', '2', '-q', '2', '-n', host]);
+  return { ...r, output: redactOrigin(r.output) };
 }
 
 export async function digLookup(host, type) {

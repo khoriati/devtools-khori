@@ -1,22 +1,25 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { Box, Breadcrumbs, Link as MuiLink, Typography } from '@mui/material';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getTool } from '../tools/registry';
+import { useSettings } from '../context/SettingsContext';
 
 export default function ToolView() {
   const { id } = useParams();
   const { t } = useTranslation();
-  const headingRef = useRef<HTMLHeadingElement>(null);
+  const { announce } = useSettings();
   const tool = getTool(id);
 
   useEffect(() => {
     if (tool) {
       document.title = `${t(`tools.${tool.id}.name`)} — ${t('app.title')}`;
-      // Move focus to the heading on navigation so screen-reader users land in context.
-      headingRef.current?.focus();
+      // Keep keyboard focus on the activated control (e.g. the sidebar link) so
+      // Tab/Shift-Tab continue from where the user was, and announce the new page
+      // to screen readers via the polite live region instead of stealing focus.
+      announce(t(`tools.${tool.id}.name`));
     }
-  }, [tool, t]);
+  }, [tool, t, announce]);
 
   if (!tool) return <Navigate to="/" replace />;
 
@@ -29,7 +32,7 @@ export default function ToolView() {
         <Typography color="text.primary">{t(`tools.${tool.id}.name`)}</Typography>
       </Breadcrumbs>
 
-      <Typography component="h1" variant="h1" tabIndex={-1} ref={headingRef} sx={{ outline: 'none' }}>
+      <Typography component="h1" variant="h1">
         {t(`tools.${tool.id}.name`)}
       </Typography>
       <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 760, mb: 3 }}>

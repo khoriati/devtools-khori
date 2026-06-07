@@ -21,12 +21,24 @@ spec:
         runAsNonRoot: true
         runAsUser: 10001
         seccompProfile: { type: RuntimeDefault }
+        # Allow unprivileged ICMP datagram sockets so `ping` works as non-root
+        # without raw-socket capabilities (this is a "safe" sysctl in kubelet).
+        sysctls:
+          - name: net.ipv4.ping_group_range
+            value: "0 2147483647"
       containers:
         - name: web
           image: __IMAGE__
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+          env:
+            # Injected at runtime (not committed): used to mask the real origin
+            # address in ping/traceroute output.
+            - name: HOST_IP
+              valueFrom: { fieldRef: { fieldPath: status.hostIP } }
+            - name: POD_IP
+              valueFrom: { fieldRef: { fieldPath: status.podIP } }
           resources:
             requests: { cpu: 50m, memory: 96Mi }
             limits: { cpu: 500m, memory: 256Mi }

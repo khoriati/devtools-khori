@@ -6,7 +6,7 @@ const TOOL_IDS = [
   'base-converter', 'ip-calculator', 'chmod', 'jwt', 'base64', 'url', 'hash', 'uuid',
   'timestamp', 'json', 'contrast', 'whois', 'ping', 'traceroute', 'dns', 'http',
   'linux', 'docker', 'kubernetes', 'ffmpeg', 'magick', 'pkg', 'powershell', 'azure-cli', 'aws-cli',
-  'cpf', 'cnpj',
+  'cpf', 'cnpj', 'a11y-cli',
 ];
 
 const LANGUAGES: [name: string, code: string][] = [
@@ -65,6 +65,16 @@ test.describe('Keyboard & structure', () => {
     await page.keyboard.press('Tab');
     const focused = page.locator(':focus');
     await expect(focused).toHaveAttribute('href', '#main-content');
+  });
+
+  test('activating a sidebar link keeps focus on that link (stable menu position)', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'networkidle' });
+    const link = page.getByRole('link', { name: /Docker/ }).first();
+    await link.focus();
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/\/tool\/docker/);
+    const href = await page.evaluate(() => document.activeElement?.getAttribute('href'));
+    expect(href).toContain('/tool/docker');
   });
 
   test('exactly one h1 and a main landmark per page', async ({ page }) => {

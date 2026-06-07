@@ -138,6 +138,10 @@
       "foreground": "Couleur du texte", "background": "Couleur de fond", "ratio": "Rapport de contraste",
       "normalText": "Texte normal", "largeText": "Grand texte", "pass": "Réussi", "fail": "Échoué"
     },
+    "a11y-cli": {
+      "name": "Validateurs WCAG (CLI)",
+      "desc": "Outils open source en ligne de commande pour valider l'accessibilité d'URL : Pa11y, axe-core, Lighthouse et IBM Equal Access — avec exemples et installation."
+    },
     "whois": {
       "name": "WHOIS",
       "desc": "Consultez les informations d'enregistrement d'un domaine ou d'une IP."

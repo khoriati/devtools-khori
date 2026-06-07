@@ -57,14 +57,19 @@ expensive. This portal shows that you can deliver a modern, beautiful UX that is
 | **Documents (Brazil)** | **CPF** generator + validator, **CNPJ** generator + validator (check digit) |
 | **Network** | WHOIS, Ping, Traceroute, DNS lookup, HTTP inspector (curl-style) |
 | **Quick reference** | **Linux** commands (incl. network & routing), **Docker**, **Kubernetes** (namespaces, `kubectl top`), **ffmpeg**, **magick** (ImageMagick), **Package managers** (brew/apt/winget, with links), **PowerShell** (basic/intermediate/advanced), **Azure CLI**, **AWS CLI** — all with an installation section |
-| **Accessibility** | WCAG contrast checker |
+| **Accessibility** | WCAG contrast checker, **WCAG validators via CLI** (Pa11y, axe-core, Lighthouse, IBM Equal Access) |
 
 - The **data tools run 100% in the browser** (nothing is sent to the server).
 - The **network tools** run on the backend securely (no shell, argument
   allow-list, strict host validation, timeouts, rate-limiting and SSRF guard).
 - The **whois/ping/traceroute** screens show how to run the command **locally**
   (Windows/macOS/Linux), including how to install the tool when it isn't shipped
-  with the OS.
+  with the OS. The **ping/traceroute output masks the real origin server address**
+  (and internal hops) so the origin isn't exposed.
+- The **Accessibility** group includes a block of **open-source command-line WCAG
+  validators** (Pa11y, axe-core CLI, Lighthouse, IBM Equal Access) — aimed at
+  **developers, architects and UX designers** — with ready-to-use examples and
+  per-OS installation instructions.
 - **Global search** that filters by both the title and the **body content**
   (e.g. searching `rollout` finds the Kubernetes commands; `crf`, ffmpeg).
 

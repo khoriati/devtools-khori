@@ -60,7 +60,7 @@ es caro. Este portal demuestra que se puede entregar una UX moderna y atractiva,
 | **Documentos (Brasil)** | Generador + validador de **CPF**, Generador + validador de **CNPJ** (dígito verificador) |
 | **Red** | WHOIS, Ping, Traceroute, Consulta DNS, Inspector HTTP (estilo curl) |
 | **Referencia rápida** | Comandos **Linux** (incl. red y enrutamiento), **Docker**, **Kubernetes** (namespaces, `kubectl top`), **ffmpeg**, **magick** (ImageMagick), **Gestores de paquetes** (brew/apt/winget, con enlaces), **PowerShell** (básico/intermedio/avanzado), **Azure CLI**, **AWS CLI** — todos con sección de instalación |
-| **Accesibilidad** | Verificador de contraste WCAG |
+| **Accesibilidad** | Verificador de contraste WCAG, **Validadores WCAG por CLI** (Pa11y, axe-core, Lighthouse, IBM Equal Access) |
 
 - Las herramientas de **datos se ejecutan 100% en el navegador** (no se envía
   nada al servidor).
@@ -69,7 +69,13 @@ es caro. Este portal demuestra que se puede entregar una UX moderna y atractiva,
   rate-limiting y protección contra SSRF).
 - Las pantallas de **whois/ping/traceroute** muestran cómo ejecutar el comando
   **localmente** (Windows/macOS/Linux), incluyendo cómo instalar la herramienta
-  cuando no viene con el sistema.
+  cuando no viene con el sistema. La salida de **ping/traceroute enmascara la
+  dirección real del servidor de origen** (y los saltos internos) para no
+  exponer el origen.
+- El grupo **Accesibilidad** incluye un bloque de **validadores WCAG open source
+  por línea de comandos** (Pa11y, axe-core CLI, Lighthouse, IBM Equal Access),
+  orientado a **desarrolladores, arquitectos y diseñadores UX**, con ejemplos
+  listos para usar e instrucciones de instalación por sistema operativo.
 - **Búsqueda global** que filtra tanto por el título como por el **contenido del
   cuerpo** (p. ej., buscar `rollout` encuentra los comandos de Kubernetes; `crf`,
   ffmpeg).

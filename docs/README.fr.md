@@ -60,7 +60,7 @@ coûte cher. Ce portail démontre qu'on peut livrer une UX moderne et soignée,
 | **Documents (Brésil)** | Générateur + validateur de **CPF**, Générateur + validateur de **CNPJ** (chiffre de contrôle) |
 | **Réseau** | WHOIS, Ping, Traceroute, Requête DNS, Inspecteur HTTP (style curl) |
 | **Référence rapide** | Commandes **Linux** (incl. réseau et routage), **Docker**, **Kubernetes** (namespaces, `kubectl top`), **ffmpeg**, **magick** (ImageMagick), **Gestionnaires de paquets** (brew/apt/winget, avec liens), **PowerShell** (basique/intermédiaire/avancé), **Azure CLI**, **AWS CLI** — tous avec une section d'installation |
-| **Accessibilité** | Vérificateur de contraste WCAG |
+| **Accessibilité** | Vérificateur de contraste WCAG, **Validateurs WCAG en CLI** (Pa11y, axe-core, Lighthouse, IBM Equal Access) |
 
 - Les outils de **données s'exécutent à 100% dans le navigateur** (rien n'est
   envoyé au serveur).
@@ -69,7 +69,13 @@ coûte cher. Ce portail démontre qu'on peut livrer une UX moderne et soignée,
   rate-limiting et protection contre la SSRF).
 - Les écrans **whois/ping/traceroute** indiquent comment exécuter la commande
   **localement** (Windows/macOS/Linux), y compris comment installer l'outil quand
-  il n'est pas fourni avec le système.
+  il n'est pas fourni avec le système. La sortie de **ping/traceroute masque
+  l'adresse réelle du serveur d'origine** (et les sauts internes) afin de ne pas
+  exposer l'origine.
+- Le groupe **Accessibilité** inclut un bloc de **validateurs WCAG open source en
+  ligne de commande** (Pa11y, axe-core CLI, Lighthouse, IBM Equal Access) —
+  destiné aux **développeurs, architectes et UX designers** — avec des exemples
+  prêts à l'emploi et des instructions d'installation par système d'exploitation.
 - **Recherche globale** qui filtre à la fois sur le titre et sur le **contenu du
   corps** (p. ex. rechercher `rollout` trouve les commandes Kubernetes ; `crf`,
   ffmpeg).

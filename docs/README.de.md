@@ -59,7 +59,7 @@ Mindestkontrast von 7:1.
 | **Dokumente (Brasilien)** | **CPF**-Generator + Validator, **CNPJ**-Generator + Validator (Prüfziffer) |
 | **Netzwerk** | WHOIS, Ping, Traceroute, DNS-Abfrage, HTTP-Inspektor (curl-Stil) |
 | **Schnellreferenz** | **Linux**-Befehle (inkl. Netzwerk & Routing), **Docker**, **Kubernetes** (Namespaces, `kubectl top`), **ffmpeg**, **magick** (ImageMagick), **Paketmanager** (brew/apt/winget, mit Links), **PowerShell** (einfach/mittel/fortgeschritten), **Azure CLI**, **AWS CLI** — alle mit Installationsabschnitt |
-| **Barrierefreiheit** | WCAG-Kontrastprüfer |
+| **Barrierefreiheit** | WCAG-Kontrastprüfer, **WCAG-Validatoren per CLI** (Pa11y, axe-core, Lighthouse, IBM Equal Access) |
 
 - Die **Daten-Werkzeuge laufen zu 100% im Browser** (es wird nichts an den Server
   gesendet).
@@ -68,7 +68,13 @@ Mindestkontrast von 7:1.
   SSRF-Schutz).
 - Die **whois/ping/traceroute**-Ansichten zeigen, wie man den Befehl **lokal**
   ausführt (Windows/macOS/Linux), inkl. Installation des Werkzeugs, wenn es nicht
-  zum System gehört.
+  zum System gehört. Die **ping/traceroute-Ausgabe maskiert die echte
+  Ursprungs-Serveradresse** (und interne Hops), damit der Ursprung nicht
+  offengelegt wird.
+- Die Gruppe **Barrierefreiheit** enthält einen Block mit **Open-Source-WCAG-
+  Validatoren für die Kommandozeile** (Pa11y, axe-core CLI, Lighthouse, IBM Equal
+  Access) — gedacht für **Entwickler, Architekten und UX-Designer** — mit
+  einsatzbereiten Beispielen und Installationsanleitungen je Betriebssystem.
 - **Globale Suche**, die sowohl nach Titel als auch nach **Inhalt** filtert
   (z. B. findet die Suche `rollout` die Kubernetes-Befehle; `crf` das ffmpeg).
 

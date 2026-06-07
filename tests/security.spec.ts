@@ -68,3 +68,22 @@ test.describe('Backend input validation & SSRF guard', () => {
     expect(body.output).toContain('example.com');
   });
 });
+
+test.describe('Network tools & origin masking', () => {
+  test('ping works (unprivileged ICMP, no raw-socket error)', async ({ request }) => {
+    const res = await request.get('/api/ping?host=1.1.1.1');
+    const body = await res.json();
+    expect(body.ok).toBe(true);
+    expect(body.output).toContain('1.1.1.1');
+    expect(body.output).not.toContain('Operation not permitted');
+  });
+
+  test('traceroute masks the real origin address (no private/internal IPs)', async ({ request }) => {
+    const res = await request.get('/api/traceroute?host=1.1.1.1');
+    const body = await res.json();
+    expect(body.ok).toBe(true);
+    // RFC1918 / loopback / link-local must have been redacted to [oculto].
+    const leaked = /\b(?:10|127)\.\d+\.\d+\.\d+\b|\b192\.168\.\d+\.\d+\b|\b172\.(?:1[6-9]|2\d|3[01])\.\d+\.\d+\b|\b169\.254\.\d+\.\d+\b/;
+    expect(body.output).not.toMatch(leaked);
+  });
+});
