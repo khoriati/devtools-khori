@@ -65,8 +65,10 @@ custa caro. Este portal demonstra que dá para entregar uma UX moderna, bonita e
   proteção contra SSRF).
 - As telas de **whois/ping/traceroute** mostram como executar o comando
   **localmente** (Windows/macOS/Linux), incluindo como instalar a ferramenta
-  quando não é padrão do sistema. A saída de **ping/traceroute mascara o endereço
-  real do servidor de origem** (e os hops internos), para não expor a origem.
+  quando não é padrão do sistema. A saída de **ping/traceroute, do inspetor HTTP
+  e de qualquer resposta da API mascara o endereço real do servidor de origem**
+  (e os hops internos) — ex.: o corpo de `checkip.amazonaws.com` —, para não
+  expor a origem.
 - O grupo **Acessibilidade** inclui um bloco de **validadores WCAG open source via
   linha de comando** (Pa11y, axe-core CLI, Lighthouse, IBM Equal Access) — voltado
   a **desenvolvedores, arquitetos e UX designers** —, com exemplos prontos e

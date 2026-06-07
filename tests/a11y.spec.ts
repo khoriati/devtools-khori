@@ -67,14 +67,21 @@ test.describe('Keyboard & structure', () => {
     await expect(focused).toHaveAttribute('href', '#main-content');
   });
 
-  test('activating a sidebar link keeps focus on that link (stable menu position)', async ({ page }) => {
+  test('Enter focuses the tool heading; Shift-Tab returns to the active menu item', async ({ page }) => {
     await page.goto('/', { waitUntil: 'networkidle' });
-    const link = page.getByRole('link', { name: /Docker/ }).first();
-    await link.focus();
+    await page.getByRole('link', { name: /Docker/ }).first().focus();
     await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/\/tool\/docker/);
-    const href = await page.evaluate(() => document.activeElement?.getAttribute('href'));
-    expect(href).toContain('/tool/docker');
+    // Enter "enters" the tool: focus lands on the H1 heading.
+    await expect.poll(() => page.evaluate(() => document.activeElement?.tagName)).toBe('H1');
+    // Shift-Tab from the heading returns to the activated sidebar link.
+    await page.keyboard.press('Shift+Tab');
+    const info = await page.evaluate(() => ({
+      href: document.activeElement?.getAttribute('href'),
+      aria: document.activeElement?.getAttribute('aria-current'),
+    }));
+    expect(info.href).toContain('/tool/docker');
+    expect(info.aria).toBe('page');
   });
 
   test('exactly one h1 and a main landmark per page', async ({ page }) => {

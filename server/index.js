@@ -4,7 +4,7 @@ import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { whois, ping, traceroute, digLookup, httpInspect } from './tools.js';
+import { whois, ping, traceroute, digLookup, httpInspect, redactDeep } from './tools.js';
 import { waf } from './waf.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -48,6 +48,14 @@ const apiLimiter = rateLimit({
   message: { ok: false, error: 'rate_limited' },
 });
 app.use('/api/', apiLimiter);
+
+// Redact the real origin address from every API response (defense in depth):
+// covers ping/traceroute hops, the HTTP inspector body/headers, etc.
+app.use('/api/', (_req, res, next) => {
+  const originalJson = res.json.bind(res);
+  res.json = (body) => originalJson(redactDeep(body));
+  next();
+});
 
 const asyncHandler = (fn) => (req, res) =>
   Promise.resolve(fn(req, res)).catch((err) => {

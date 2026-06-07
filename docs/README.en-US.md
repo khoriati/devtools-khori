@@ -64,8 +64,9 @@ expensive. This portal shows that you can deliver a modern, beautiful UX that is
   allow-list, strict host validation, timeouts, rate-limiting and SSRF guard).
 - The **whois/ping/traceroute** screens show how to run the command **locally**
   (Windows/macOS/Linux), including how to install the tool when it isn't shipped
-  with the OS. The **ping/traceroute output masks the real origin server address**
-  (and internal hops) so the origin isn't exposed.
+  with the OS. The output of **ping/traceroute, the HTTP inspector and any API
+  response masks the real origin server address** (and internal hops) — e.g. the
+  body of `checkip.amazonaws.com` — so the origin isn't exposed.
 - The **Accessibility** group includes a block of **open-source command-line WCAG
   validators** (Pa11y, axe-core CLI, Lighthouse, IBM Equal Access) — aimed at
   **developers, architects and UX designers** — with ready-to-use examples and

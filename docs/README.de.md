@@ -68,8 +68,9 @@ Mindestkontrast von 7:1.
   SSRF-Schutz).
 - Die **whois/ping/traceroute**-Ansichten zeigen, wie man den Befehl **lokal**
   ausführt (Windows/macOS/Linux), inkl. Installation des Werkzeugs, wenn es nicht
-  zum System gehört. Die **ping/traceroute-Ausgabe maskiert die echte
-  Ursprungs-Serveradresse** (und interne Hops), damit der Ursprung nicht
+  zum System gehört. Die Ausgabe von **ping/traceroute, des HTTP-Inspektors und
+  jeder API-Antwort maskiert die echte Ursprungs-Serveradresse** (und interne
+  Hops) — z. B. den Body von `checkip.amazonaws.com` —, damit der Ursprung nicht
   offengelegt wird.
 - Die Gruppe **Barrierefreiheit** enthält einen Block mit **Open-Source-WCAG-
   Validatoren für die Kommandozeile** (Pa11y, axe-core CLI, Lighthouse, IBM Equal

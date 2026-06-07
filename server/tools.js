@@ -59,6 +59,20 @@ export function redactOrigin(text) {
   return out;
 }
 
+// Recursively apply redactOrigin to every string in an API response. This
+// catches the origin address anywhere it might surface — e.g. the body of
+// https://checkip.amazonaws.com in the HTTP inspector, or any header value.
+export function redactDeep(value) {
+  if (typeof value === 'string') return redactOrigin(value);
+  if (Array.isArray(value)) return value.map(redactDeep);
+  if (value && typeof value === 'object') {
+    const out = {};
+    for (const k of Object.keys(value)) out[k] = redactDeep(value[k]);
+    return out;
+  }
+  return value;
+}
+
 export async function whois(host) {
   if (!isValidHost(host)) return { ok: false, error: 'invalid_host' };
   return run('whois', [host]);

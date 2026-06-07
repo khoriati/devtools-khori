@@ -86,4 +86,13 @@ test.describe('Network tools & origin masking', () => {
     const leaked = /\b(?:10|127)\.\d+\.\d+\.\d+\b|\b192\.168\.\d+\.\d+\b|\b172\.(?:1[6-9]|2\d|3[01])\.\d+\.\d+\b|\b169\.254\.\d+\.\d+\b/;
     expect(body.output).not.toMatch(leaked);
   });
+
+  test('HTTP inspector does not leak the origin IP in the response body', async ({ request }) => {
+    // checkip.amazonaws.com echoes the caller's egress IP (the server's origin).
+    const res = await request.post('/api/http', { data: { url: 'https://checkip.amazonaws.com' } });
+    const body = await res.json();
+    if (body.ok) {
+      expect(body.body).not.toMatch(/\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/);
+    }
+  });
 });

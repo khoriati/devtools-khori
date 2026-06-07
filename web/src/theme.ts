@@ -90,6 +90,23 @@ export function buildTheme(mode: ThemeMode): Theme {
           body: { backgroundColor: p.background.default },
         },
       },
+      // Disable the ripple everywhere: it injects an absolutely-positioned
+      // overlay (.MuiTouchRipple-root) over button/list/card text that prevents
+      // automated contrast checkers (axe "bgOverlap") from verifying contrast,
+      // and it also respects users who prefer reduced motion.
+      MuiButtonBase: {
+        defaultProps: { disableRipple: true },
+      },
+      MuiCardActionArea: {
+        styleOverrides: {
+          // The focus highlight is another transparent overlay over the content;
+          // we rely on the global focus-visible outline + a hover background.
+          focusHighlight: { display: 'none' },
+          root: {
+            '@media (hover: hover)': { '&:hover': { backgroundColor: 'rgba(127,127,127,0.10)' } },
+          },
+        },
+      },
       MuiLink: {
         defaultProps: { underline: 'always' },
         styleOverrides: { root: { color: p.link, fontWeight: 600 } },
@@ -99,6 +116,11 @@ export function buildTheme(mode: ThemeMode): Theme {
           root: { minHeight: 44, paddingInline: 18 }, // 44px target size (WCAG 2.5.5 AAA)
           ...(highContrast && { outlined: { borderWidth: 2 } }),
         },
+      },
+      MuiToggleButton: {
+        // Default ToggleButton text is ~#757575 (4.6:1 on white) — fails AAA.
+        // Use the primary text color so it clears the 7:1 threshold.
+        styleOverrides: { root: { color: p.text.primary } },
       },
       MuiOutlinedInput: {
         styleOverrides: {
