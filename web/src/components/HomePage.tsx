@@ -17,8 +17,11 @@ export default function HomePage() {
     // When the user navigates here (e.g. activates "Home"), move focus into the
     // content heading so they land on "Choose a tool" and can Tab through the
     // cards. Only on real navigation (PUSH) — not on first load, where the skip
-    // link must remain the first focusable element.
-    if (navType === 'PUSH') headingRef.current?.focus();
+    // link must remain the first focusable element. Defer to the next frame so
+    // the browser doesn't restore focus elsewhere after the route commit (Safari).
+    if (navType !== 'PUSH') return;
+    const raf = requestAnimationFrame(() => headingRef.current?.focus());
+    return () => cancelAnimationFrame(raf);
   }, [t, navType]);
 
   const q = query.trim().toLowerCase();
@@ -26,7 +29,20 @@ export default function HomePage() {
 
   return (
     <Box>
-      <Typography component="h1" variant="h1" tabIndex={-1} ref={headingRef} sx={{ outline: 'none' }} gutterBottom>
+      <Typography
+        component="h1"
+        variant="h1"
+        tabIndex={-1}
+        ref={headingRef}
+        gutterBottom
+        // Explicit :focus ring (not only :focus-visible): when we move focus here
+        // programmatically on navigation, the indicator must be visible in every
+        // browser (Safari doesn't trigger :focus-visible for programmatic focus).
+        sx={(theme) => ({
+          borderRadius: '4px',
+          '&:focus': { outline: `3px solid ${theme.palette.primary.main}`, outlineOffset: '4px' },
+        })}
+      >
         {t('home.heading')}
       </Typography>
       <Typography variant="body1" sx={{ maxWidth: '70ch', mb: 3 }}>

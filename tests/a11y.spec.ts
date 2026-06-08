@@ -170,6 +170,13 @@ test.describe('Keyboard & structure', () => {
     await expect
       .poll(() => page.evaluate(() => document.activeElement?.textContent))
       .toMatch(/choose a tool|escolha/i);
+    // The focused heading must have a VISIBLE focus indicator (not outline:none).
+    const outline = await page.evaluate(() => {
+      const cs = getComputedStyle(document.activeElement as Element);
+      return { style: cs.outlineStyle, width: cs.outlineWidth };
+    });
+    expect(outline.style).not.toBe('none');
+    expect(parseFloat(outline.width)).toBeGreaterThanOrEqual(2);
   });
 
   test('the end-of-menu marker is focusable and announces the boundary', async ({ page }) => {
