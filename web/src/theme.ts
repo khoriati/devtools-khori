@@ -117,6 +117,10 @@ export function buildTheme(mode: ThemeMode): Theme {
           ...(highContrast && { outlined: { borderWidth: 2 } }),
         },
       },
+      // WCAG 2.5.5 Target Size (Enhanced): interactive targets at least 44x44px.
+      MuiIconButton: {
+        styleOverrides: { root: { minWidth: 44, minHeight: 44 } },
+      },
       MuiToggleButton: {
         // Default ToggleButton text is ~#757575 (4.6:1 on white) — fails AAA.
         // Use the primary text color so it clears the 7:1 threshold.

@@ -97,6 +97,12 @@ Mindestkontrast von 7:1.
   gebärdet. Für die übrigen Sprachen gibt es derzeit kein freies, schlüsselloses
   und self-hostbares Äquivalent, daher wird die Option nicht angezeigt.
   Integrationsleitfaden: [VLIBRAS.md](VLIBRAS.md).
+- **Richtung AAA:** ein **Glossar** der Begriffe und Abkürzungen (WCAG-Mechanismus
+  3.1.3/3.1.4), Touch-Ziele **≥ 44px** (2.5.5), **Fokus nie verdeckt** durch die
+  feste Leiste (2.4.12), angenehme Zeilenbreite (1.4.8) und Akkordeon-Navigation.
+  Der AAA-Anspruch deckt unsere **eigene UI** ab — der VLibras-Avatar (Drittanbieter)
+  und das fortgeschrittene Leseniveau technischer Inhalte (3.1.5) liegen außerhalb,
+  und volle Konformität erfordert manuelle Prüfung + assistive Technologie.
 - Berücksichtigt `prefers-reduced-motion` und `prefers-color-scheme`; unterstützt
   `forced-colors` (Windows-Modus „Hoher Kontrast").
 - Lesbare Typografie (Atkinson Hyperlegible, falls verfügbar).

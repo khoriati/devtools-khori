@@ -100,6 +100,13 @@ coûte cher. Ce portail démontre qu'on peut livrer une UX moderne et soignée,
   en Libras. Les autres langues n'ont aujourd'hui aucun équivalent libre, sans
   clé et auto-hébergeable, donc l'option n'est pas affichée. Guide
   d'intégration : [VLIBRAS.md](VLIBRAS.md).
+- **Vers AAA :** un **glossaire** des termes et abréviations (mécanisme WCAG
+  3.1.3/3.1.4), des cibles tactiles **≥ 44px** (2.5.5), un **focus jamais masqué**
+  par la barre fixe (2.4.12), une largeur de ligne confortable (1.4.8) et une
+  navigation en accordéon. Le *claim* AAA couvre notre **propre UI** — l'avatar
+  VLibras (tiers) et le niveau de lecture avancé du contenu technique (3.1.5)
+  sont hors périmètre, et la conformité totale exige un audit manuel + technologie
+  d'assistance.
 - Respecte `prefers-reduced-motion` et `prefers-color-scheme` ; prend en charge
   `forced-colors` (mode Contraste élevé de Windows).
 - Typographie lisible (Atkinson Hyperlegible lorsque disponible).

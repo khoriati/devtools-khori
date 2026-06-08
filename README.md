@@ -92,6 +92,12 @@ custa caro. Este portal demonstra que dá para entregar uma UX moderna, bonita e
   sem cadastro/API-key) exibe um avatar 3D que traduz o conteúdo para Libras. Os
   demais idiomas não possuem hoje um equivalente livre, sem cadastro e
   self-hostável, então a opção não é exibida. Guia: [docs/VLIBRAS.md](docs/VLIBRAS.md).
+- **Reforços rumo ao AAA:** **glossário** de termos e siglas (mecanismo WCAG
+  3.1.3/3.1.4), alvos de toque **≥ 44px** (2.5.5), **foco nunca obscurecido** pela
+  barra fixa (2.4.12), largura de linha confortável (1.4.8) e navegação em
+  accordion. O *claim* AAA cobre a **UI própria** — o avatar VLibras (terceiros) e
+  o conteúdo técnico de leitura avançada (3.1.5) ficam fora desse escopo, e a
+  conformidade plena exige auditoria manual + tecnologia assistiva.
 - Respeita `prefers-reduced-motion` e `prefers-color-scheme`; suporta
   `forced-colors` (Modo de Alto Contraste do Windows).
 - Tipografia legível (Atkinson Hyperlegible quando disponível).

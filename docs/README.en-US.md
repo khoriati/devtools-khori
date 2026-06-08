@@ -90,6 +90,12 @@ expensive. This portal shows that you can deliver a modern, beautiful UX that is
   (gov.br, no signup/API key) shows a 3D avatar that signs the content in Libras.
   The other languages have no free, keyless, self-hostable equivalent today, so
   the option is not shown. Integration guide: [VLIBRAS.md](VLIBRAS.md).
+- **Toward AAA:** a **glossary** of terms and abbreviations (WCAG 3.1.3/3.1.4
+  mechanism), **≥ 44px** touch targets (2.5.5), **focus never obscured** by the
+  fixed bar (2.4.12), comfortable line width (1.4.8) and accordion navigation.
+  The AAA claim covers our **own UI** — the third-party VLibras avatar and the
+  advanced reading level of technical content (3.1.5) are out of that scope, and
+  full conformance requires manual auditing + assistive technology.
 - Respects `prefers-reduced-motion` and `prefers-color-scheme`; supports
   `forced-colors` (Windows High Contrast Mode).
 - Readable typography (Atkinson Hyperlegible when available).

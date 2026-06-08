@@ -29,6 +29,7 @@ import CloudIcon from '@mui/icons-material/Cloud';
 import CloudQueueIcon from '@mui/icons-material/CloudQueue';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 import BaseConverter from './BaseConverter';
 import IpCalculator from './IpCalculator';
@@ -44,6 +45,7 @@ import NetworkTool from './NetworkTool';
 import HttpInspector from './HttpInspector';
 import CheatSheet from './CheatSheet';
 import CmdCompare from './CmdCompare';
+import Glossary from './Glossary';
 import BrDocTool from './BrDocTool';
 import { cheatSearchText } from './cheatsheets';
 
@@ -100,6 +102,7 @@ export const TOOLS: ToolDef[] = [
   { id: 'powershell', group: 'reference', icon: CodeIcon, keywords: 'powershell pwsh windows script cmdlet get-childitem invoke', cheatId: 'powershell', render: () => <CheatSheet id="powershell" /> },
   { id: 'azure-cli', group: 'reference', icon: CloudIcon, keywords: 'azure az cli cloud aks webapp microsoft', cheatId: 'azure-cli', render: () => <CheatSheet id="azure-cli" /> },
   { id: 'aws-cli', group: 'reference', icon: CloudQueueIcon, keywords: 'aws cli cloud s3 ec2 eks cloudformation amazon', cheatId: 'aws-cli', render: () => <CheatSheet id="aws-cli" /> },
+  { id: 'glossary', group: 'reference', icon: MenuBookIcon, keywords: 'glossário glossary termos definições siglas abbreviations jargão hex cidr jwt wcag', render: () => <Glossary /> },
 ];
 
 export const TOOL_GROUPS: ToolGroup[] = ['converters', 'brazil', 'network', 'reference', 'accessibility'];

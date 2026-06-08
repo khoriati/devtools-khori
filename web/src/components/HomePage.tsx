@@ -29,7 +29,7 @@ export default function HomePage() {
       <Typography component="h1" variant="h1" tabIndex={-1} ref={headingRef} sx={{ outline: 'none' }} gutterBottom>
         {t('home.heading')}
       </Typography>
-      <Typography variant="body1" sx={{ maxWidth: 720, mb: 3 }}>
+      <Typography variant="body1" sx={{ maxWidth: '70ch', mb: 3 }}>
         {t('home.intro')}
       </Typography>
 

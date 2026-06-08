@@ -38,7 +38,7 @@ export default function ToolView() {
       <Typography component="h1" variant="h1" tabIndex={-1} ref={headingRef} sx={{ outline: 'none' }}>
         {t(`tools.${tool.id}.name`)}
       </Typography>
-      <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 760, mb: 3 }}>
+      <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '72ch', mb: 3 }}>
         {t(`tools.${tool.id}.desc`)}
       </Typography>
 

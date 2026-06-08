@@ -282,6 +282,10 @@
     "cmd-compare": {
       "name": "Linux/mac ↔ PowerShell",
       "desc": "Äquivalente Befehle zwischen Linux/macOS und PowerShell, mit Beispielen: Dateien, System, Manipulation, Pipes und tee."
+    },
+    "glossary": {
+      "name": "Glossar",
+      "desc": "Definitionen der Fachbegriffe und Abkürzungen der App — der von WCAG geforderte Definitions-/Erweiterungsmechanismus (3.1.3 und 3.1.4)."
     }
   },
   "cmdcompare": {

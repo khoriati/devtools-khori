@@ -6,7 +6,7 @@ const TOOL_IDS = [
   'base-converter', 'ip-calculator', 'chmod', 'jwt', 'base64', 'url', 'hash', 'uuid',
   'timestamp', 'json', 'contrast', 'whois', 'ping', 'traceroute', 'dns', 'http',
   'linux', 'docker', 'kubernetes', 'ffmpeg', 'magick', 'cmd-compare', 'pkg', 'powershell', 'azure-cli', 'aws-cli',
-  'cpf', 'cnpj', 'a11y-cli',
+  'cpf', 'cnpj', 'a11y-cli', 'glossary',
 ];
 
 const LANGUAGES: [name: string, code: string][] = [

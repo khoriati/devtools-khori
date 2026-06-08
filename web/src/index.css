@@ -2,6 +2,9 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* WCAG 2.4.12 (AAA): keep focused elements clear of the fixed AppBar (~64px)
+     when they are scrolled into view, so focus is never obscured by it. */
+  scroll-padding-top: 80px;
 }
 
 body {
