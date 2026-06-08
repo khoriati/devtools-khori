@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Box, Breadcrumbs, Link as MuiLink, Typography } from '@mui/material';
-import { Link, useParams, Navigate } from 'react-router-dom';
+import { Link, useParams, Navigate, useNavigationType } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getTool } from '../tools/registry';
 import { useSettings } from '../context/SettingsContext';
@@ -9,18 +9,20 @@ export default function ToolView() {
   const { id } = useParams();
   const { t } = useTranslation();
   const { announce } = useSettings();
+  const navType = useNavigationType();
   const headingRef = useRef<HTMLHeadingElement>(null);
   const tool = getTool(id);
 
   useEffect(() => {
     if (tool) {
       document.title = `${t(`tools.${tool.id}.name`)} — ${t('app.title')}`;
-      // Move focus to the heading so activating a tool with Enter "enters" it,
-      // and announce the new page to screen readers.
-      headingRef.current?.focus();
+      // On real navigation (PUSH), move focus to the heading so activating a tool
+      // with Enter "enters" it; announce the new page to screen readers. Skip on
+      // first load (POP) so the skip link stays the first focusable element.
+      if (navType === 'PUSH') headingRef.current?.focus();
       announce(t(`tools.${tool.id}.name`));
     }
-  }, [tool, t, announce]);
+  }, [tool, t, announce, navType]);
 
   if (!tool) return <Navigate to="/" replace />;
 

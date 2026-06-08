@@ -20,7 +20,8 @@
     "search": "Rechercher des outils",
     "searchResults": "{{count}} outil trouvé",
     "searchResults_other": "{{count}} outils trouvés",
-    "noResults": "Aucun outil trouvé pour « {{query}} »"
+    "noResults": "Aucun outil trouvé pour « {{query}} »",
+    "endOfMenu": "Fin du menu de navigation. Appuyez sur Tab pour aller au contenu."
   },
   "cheats": {
     "filter": "Filtrer les commandes",

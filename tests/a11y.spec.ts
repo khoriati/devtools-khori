@@ -72,7 +72,10 @@ test.describe('Keyboard & structure', () => {
     await page.goto('/', { waitUntil: 'networkidle' });
     // Groups are collapsible (accordion): expand the one containing Docker first.
     await page.getByRole('button', { name: /quick reference|referência/i }).click();
-    await page.getByRole('link', { name: /Docker/ }).first().focus();
+    const nav = page.getByRole('navigation', { name: /tools navigation|navegação de ferramentas/i });
+    const dockerLink = nav.getByRole('link', { name: /Docker/ });
+    await dockerLink.waitFor();
+    await dockerLink.focus();
     await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/\/tool\/docker/);
     // Enter "enters" the tool: focus lands on the H1 heading.
@@ -94,7 +97,10 @@ test.describe('Keyboard & structure', () => {
     await page.goto('/', { waitUntil: 'networkidle' });
     // Expand the (collapsible) group containing the chmod calculator first.
     await page.getByRole('button', { name: /converters|conversores|konverter|convertisseurs/i }).click();
-    await page.getByRole('link', { name: /chmod/i }).first().focus();
+    const nav = page.getByRole('navigation', { name: /tools navigation|navegação de ferramentas/i });
+    const chmodLink = nav.getByRole('link', { name: /chmod/i });
+    await chmodLink.waitFor();
+    await chmodLink.focus();
     await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/\/tool\/chmod/);
     await expect.poll(() => page.evaluate(() => document.activeElement?.tagName)).toBe('H1');
@@ -152,6 +158,26 @@ test.describe('Keyboard & structure', () => {
     await page.getByRole('menu').waitFor();
     await page.getByRole('menuitem').filter({ hasText: 'English' }).first().click();
     await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
+  });
+
+  test('activating the Home menu item moves focus to the page heading', async ({ page }) => {
+    await page.goto('/tool/jwt', { waitUntil: 'networkidle' });
+    const nav = page.getByRole('navigation', { name: /tools navigation|navegação de ferramentas/i });
+    await nav.getByRole('link', { name: /^home$/i }).focus();
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/dev\.tools\.khori\.com\.br\/$/);
+    await expect.poll(() => page.evaluate(() => document.activeElement?.tagName)).toBe('H1');
+    await expect
+      .poll(() => page.evaluate(() => document.activeElement?.textContent))
+      .toMatch(/choose a tool|escolha/i);
+  });
+
+  test('the end-of-menu marker is focusable and announces the boundary', async ({ page }) => {
+    await page.goto('/tool/jwt', { waitUntil: 'networkidle' });
+    const marker = page.getByText(/end of navigation menu|fim do menu/i);
+    await expect(marker).toHaveCount(1);
+    await marker.focus();
+    await expect(marker).toBeFocused();
   });
 
   test('activating the skip link moves focus to main', async ({ page }) => {

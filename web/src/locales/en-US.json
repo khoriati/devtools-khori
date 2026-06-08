@@ -20,7 +20,8 @@
     "search": "Search tools",
     "searchResults": "{{count}} tool found",
     "searchResults_other": "{{count}} tools found",
-    "noResults": "No tools found for \"{{query}}\""
+    "noResults": "No tools found for \"{{query}}\"",
+    "endOfMenu": "End of navigation menu. Press Tab to go to the content."
   },
   "cheats": {
     "filter": "Filter commands",

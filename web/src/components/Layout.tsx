@@ -147,6 +147,7 @@ export default function Layout() {
             component={Link}
             to="/"
             selected={location.pathname === '/'}
+            aria-current={location.pathname === '/' ? 'page' : undefined}
             onClick={() => setMobileOpen(false)}
           >
             <ListItemIcon>
@@ -200,6 +201,26 @@ export default function Layout() {
           </Box>
         );
       })}
+
+      {/* End-of-menu boundary cue: a focusable, screen-reader-announced marker
+          (visible on focus, like a skip link). Tabbing past the last menu item
+          lands here ("End of navigation menu"); the next Tab enters the content. */}
+      <Box
+        tabIndex={0}
+        sx={{
+          m: 0,
+          color: 'text.secondary',
+          fontSize: '0.8rem',
+          textAlign: 'center',
+          height: '1px',
+          overflow: 'hidden',
+          clip: 'rect(0 0 0 0)',
+          whiteSpace: 'nowrap',
+          '&:focus-visible': { height: 'auto', clip: 'auto', p: 1, whiteSpace: 'normal' },
+        }}
+      >
+        {t('nav.endOfMenu')}
+      </Box>
     </nav>
   );
 

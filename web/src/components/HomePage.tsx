@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Alert, Box, Card, CardActionArea, CardContent, Grid, Stack, Typography } from '@mui/material';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
-import { Link } from 'react-router-dom';
+import { Link, useNavigationType } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TOOLS, toolSearchText } from '../tools/registry';
 import { useSettings } from '../context/SettingsContext';
@@ -9,17 +9,24 @@ import { useSettings } from '../context/SettingsContext';
 export default function HomePage() {
   const { t, i18n } = useTranslation();
   const { query } = useSettings();
+  const navType = useNavigationType();
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     document.title = `${t('app.title')} — ${t('app.tagline')}`;
-  }, [t]);
+    // When the user navigates here (e.g. activates "Home"), move focus into the
+    // content heading so they land on "Choose a tool" and can Tab through the
+    // cards. Only on real navigation (PUSH) — not on first load, where the skip
+    // link must remain the first focusable element.
+    if (navType === 'PUSH') headingRef.current?.focus();
+  }, [t, navType]);
 
   const q = query.trim().toLowerCase();
   const tools = TOOLS.filter((tool) => !q || toolSearchText(tool, i18n.language, t).includes(q));
 
   return (
     <Box>
-      <Typography component="h1" variant="h1" gutterBottom>
+      <Typography component="h1" variant="h1" tabIndex={-1} ref={headingRef} sx={{ outline: 'none' }} gutterBottom>
         {t('home.heading')}
       </Typography>
       <Typography variant="body1" sx={{ maxWidth: 720, mb: 3 }}>
