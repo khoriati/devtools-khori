@@ -72,8 +72,13 @@ export function buildTheme(mode: ThemeMode): Theme {
       MuiCssBaseline: {
         styleOverrides: {
           ':root': { colorScheme: p.mode },
-          // Strong, always-visible keyboard focus indicator (WCAG 2.4.7 / 2.4.13).
-          'a:focus-visible, button:focus-visible, [tabindex]:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, .MuiButtonBase-root:focus-visible':
+          // Strong, always-visible focus indicator (WCAG 2.4.7 / 2.4.13).
+          // We key off :focus (not just :focus-visible) on purpose: screen
+          // readers and programmatic focus moves don't always trip the browser's
+          // :focus-visible heuristic, which left the focused element announced
+          // but with NO visible ring. :focus fires for every focus modality, so
+          // the indicator is guaranteed in every browser and with assistive tech.
+          'a:focus, button:focus, [tabindex]:focus, input:focus, textarea:focus, select:focus, .MuiButtonBase-root:focus':
             {
               outline: `3px solid ${p.focus}`,
               outlineOffset: '2px',

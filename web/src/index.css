@@ -18,7 +18,7 @@ body {
 
 /* Honour forced-colors / Windows High Contrast mode. */
 @media (forced-colors: active) {
-  :focus-visible {
+  :focus {
     outline: 3px solid CanvasText;
   }
 }

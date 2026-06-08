@@ -99,6 +99,19 @@ export default function Layout() {
   // While searching, force-open groups that have matches so results are visible.
   const isGroupOpen = (group: string) => (q ? true : Boolean(expanded[group]));
 
+  // Move keyboard focus into the page content heading after a nav item is
+  // activated. Crucially this also covers activating an item for the route we
+  // are ALREADY on (e.g. pressing Enter on "Início" while on Home): no remount
+  // happens, so a route/effect-based focus move never fires. Two animation
+  // frames let any new route commit and paint before we focus the <h1>.
+  const focusContentHeading = () => {
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        document.querySelector<HTMLElement>('#main-content h1')?.focus();
+      }),
+    );
+  };
+
   // When the user tabs backwards out of the top of the content (from the tool
   // heading or the first tab stop, i.e. the breadcrumb), return focus to the
   // activated sidebar item instead of walking to the last menu item.
@@ -148,7 +161,10 @@ export default function Layout() {
             to="/"
             selected={location.pathname === '/'}
             aria-current={location.pathname === '/' ? 'page' : undefined}
-            onClick={() => setMobileOpen(false)}
+            onClick={() => {
+              setMobileOpen(false);
+              focusContentHeading();
+            }}
           >
             <ListItemIcon>
               <HomeIcon />
@@ -184,7 +200,10 @@ export default function Layout() {
                         component={Link}
                         to={to}
                         selected={location.pathname === to}
-                        onClick={() => setMobileOpen(false)}
+                        onClick={() => {
+                          setMobileOpen(false);
+                          focusContentHeading();
+                        }}
                         aria-current={location.pathname === to ? 'page' : undefined}
                         sx={{ pl: 4 }}
                       >
@@ -216,7 +235,10 @@ export default function Layout() {
           overflow: 'hidden',
           clip: 'rect(0 0 0 0)',
           whiteSpace: 'nowrap',
-          '&:focus-visible': { height: 'auto', clip: 'auto', p: 1, whiteSpace: 'normal' },
+          // Reveal on :focus (not :focus-visible): a screen-reader/keyboard focus
+          // move must always un-clip and show this cue, regardless of the
+          // browser's :focus-visible heuristic.
+          '&:focus': { height: 'auto', clip: 'auto', p: 1, whiteSpace: 'normal' },
         }}
       >
         {t('nav.endOfMenu')}

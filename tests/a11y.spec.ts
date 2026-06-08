@@ -179,12 +179,32 @@ test.describe('Keyboard & structure', () => {
     expect(parseFloat(outline.width)).toBeGreaterThanOrEqual(2);
   });
 
-  test('the end-of-menu marker is focusable and announces the boundary', async ({ page }) => {
+  test('activating Home while already on Home still moves focus to the heading', async ({ page }) => {
+    // Same-route activation: pressing Enter on "Início" while already on "/" does
+    // not change the route, so an effect/navType-based focus move never fires.
+    // The nav onClick must still pull focus into the page heading.
+    await page.goto('/', { waitUntil: 'networkidle' });
+    await page.getByRole('navigation', { name: /tools navigation|navegação de ferramentas/i })
+      .getByRole('link', { name: /^home$/i })
+      .focus();
+    await page.keyboard.press('Enter');
+    await expect.poll(() => page.evaluate(() => document.activeElement?.tagName)).toBe('H1');
+  });
+
+  test('the end-of-menu marker is focusable, announces the boundary and is visibly focused', async ({ page }) => {
     await page.goto('/tool/jwt', { waitUntil: 'networkidle' });
     const marker = page.getByText(/end of navigation menu|fim do menu/i);
     await expect(marker).toHaveCount(1);
     await marker.focus();
     await expect(marker).toBeFocused();
+    // Focusing it must reveal it (un-clip) and show a visible focus ring.
+    const info = await marker.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return { outlineStyle: cs.outlineStyle, outlineWidth: cs.outlineWidth, clip: cs.clip };
+    });
+    expect(info.outlineStyle).not.toBe('none');
+    expect(parseFloat(info.outlineWidth)).toBeGreaterThanOrEqual(2);
+    expect(info.clip).toBe('auto');
   });
 
   test('activating the skip link moves focus to main', async ({ page }) => {
