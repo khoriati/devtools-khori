@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   AppBar,
   Box,
+  Collapse,
   Drawer,
   IconButton,
   Link as MuiLink,
@@ -10,7 +11,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ListSubheader,
   InputAdornment,
   TextField,
   Toolbar,
@@ -22,6 +22,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import SearchIcon from '@mui/icons-material/Search';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Logo from './Logo';
@@ -59,6 +61,43 @@ export default function Layout() {
     const tool = TOOLS.find((x) => x.id === toolId)!;
     return !q || toolSearchText(tool, i18n.language, t).includes(q);
   };
+
+  // Collapsible (accordion) groups — so users don't tab through every item.
+  // The group of the current tool is expanded; others start collapsed (their
+  // items are removed from the DOM, so they leave the tab order entirely).
+  const activeToolId = location.pathname.startsWith('/tool/')
+    ? location.pathname.slice('/tool/'.length)
+    : null;
+  const activeGroup = activeToolId ? TOOLS.find((x) => x.id === activeToolId)?.group : undefined;
+
+  const [expanded, setExpanded] = useState<Record<string, boolean>>(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('devtools-nav-open') || 'null');
+      if (saved && typeof saved === 'object') return saved;
+    } catch {
+      /* ignore */
+    }
+    return activeGroup ? { [activeGroup]: true } : {};
+  });
+
+  // Keep the active tool's group open when navigating to it.
+  useEffect(() => {
+    if (activeGroup) setExpanded((e) => (e[activeGroup] ? e : { ...e, [activeGroup]: true }));
+  }, [activeGroup]);
+
+  const toggleGroup = (group: string) =>
+    setExpanded((e) => {
+      const next = { ...e, [group]: !e[group] };
+      try {
+        localStorage.setItem('devtools-nav-open', JSON.stringify(next));
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
+
+  // While searching, force-open groups that have matches so results are visible.
+  const isGroupOpen = (group: string) => (q ? true : Boolean(expanded[group]));
 
   // When the user tabs backwards out of the top of the content (from the tool
   // heading or the first tab stop, i.e. the breadcrumb), return focus to the
@@ -120,37 +159,45 @@ export default function Layout() {
       {TOOL_GROUPS.map((group) => {
         const groupTools = TOOLS.filter((tool) => tool.group === group && matches(tool.id));
         if (groupTools.length === 0) return null;
+        const open = isGroupOpen(group);
+        const headerId = `group-header-${group}`;
+        const panelId = `group-panel-${group}`;
         return (
-        <List
-          key={group}
-          subheader={
-            <ListSubheader disableSticky id={`group-${group}`}>
-              {t(`nav.groups.${group}`)}
-            </ListSubheader>
-          }
-          aria-labelledby={`group-${group}`}
-        >
-          {groupTools.map((tool) => {
-            const Icon = tool.icon;
-            const to = `/tool/${tool.id}`;
-            return (
-              <ListItem key={tool.id} disablePadding>
-                <ListItemButton
-                  component={Link}
-                  to={to}
-                  selected={location.pathname === to}
-                  onClick={() => setMobileOpen(false)}
-                  aria-current={location.pathname === to ? 'page' : undefined}
-                >
-                  <ListItemIcon>
-                    <Icon />
-                  </ListItemIcon>
-                  <ListItemText primary={t(`tools.${tool.id}.name`)} />
-                </ListItemButton>
-              </ListItem>
-            );
-          })}
-        </List>
+          <Box key={group}>
+            {/* Disclosure button: aria-expanded + aria-controls describe the
+                collapsible panel; the chevron is decorative (state is in ARIA). */}
+            <ListItemButton id={headerId} onClick={() => toggleGroup(group)} aria-expanded={open} aria-controls={panelId}>
+              <ListItemText primary={t(`nav.groups.${group}`)} primaryTypographyProps={{ fontWeight: 700 }} />
+              {open ? <ExpandLessIcon aria-hidden="true" /> : <ExpandMoreIcon aria-hidden="true" />}
+            </ListItemButton>
+            {/* unmountOnExit removes collapsed items from the DOM, so they are
+                not in the tab order — fewer stops to reach the target. */}
+            <Collapse in={open} unmountOnExit>
+              <List disablePadding id={panelId} aria-labelledby={headerId}>
+                {groupTools.map((tool) => {
+                  const Icon = tool.icon;
+                  const to = `/tool/${tool.id}`;
+                  return (
+                    <ListItem key={tool.id} disablePadding>
+                      <ListItemButton
+                        component={Link}
+                        to={to}
+                        selected={location.pathname === to}
+                        onClick={() => setMobileOpen(false)}
+                        aria-current={location.pathname === to ? 'page' : undefined}
+                        sx={{ pl: 4 }}
+                      >
+                        <ListItemIcon>
+                          <Icon />
+                        </ListItemIcon>
+                        <ListItemText primary={t(`tools.${tool.id}.name`)} />
+                      </ListItemButton>
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </Collapse>
+          </Box>
         );
       })}
     </nav>

@@ -70,6 +70,8 @@ test.describe('Keyboard & structure', () => {
 
   test('Enter focuses the tool heading; Shift-Tab returns to the active menu item', async ({ page }) => {
     await page.goto('/', { waitUntil: 'networkidle' });
+    // Groups are collapsible (accordion): expand the one containing Docker first.
+    await page.getByRole('button', { name: /quick reference|referência/i }).click();
     await page.getByRole('link', { name: /Docker/ }).first().focus();
     await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/\/tool\/docker/);
@@ -90,6 +92,8 @@ test.describe('Keyboard & structure', () => {
     // Shift-Tab back; after the "Home" breadcrumb, focus must land on the active
     // sidebar item (aria-current), not on the last menu item.
     await page.goto('/', { waitUntil: 'networkidle' });
+    // Expand the (collapsible) group containing the chmod calculator first.
+    await page.getByRole('button', { name: /converters|conversores|konverter|convertisseurs/i }).click();
     await page.getByRole('link', { name: /chmod/i }).first().focus();
     await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/\/tool\/chmod/);
@@ -158,7 +162,10 @@ test.describe('Keyboard & structure', () => {
     expect(id).toBe('main-content');
   });
 
-  test('Tab order reaches the search field and a tool link', async ({ page }) => {
+  test('Tab order reaches the search field and the collapsible group headers', async ({ page }) => {
+    // With the accordion nav, groups are collapsed by default, so the tab order
+    // contains the search field and the group disclosure buttons (few stops),
+    // not every tool — which is the whole point of the change.
     await page.goto('/', { waitUntil: 'networkidle' });
     const seen: string[] = [];
     for (let i = 0; i < 25; i++) {
@@ -167,12 +174,31 @@ test.describe('Keyboard & structure', () => {
         await page.evaluate(() => {
           const el = document.activeElement as HTMLElement | null;
           if (!el) return '';
-          return `${el.tagName.toLowerCase()}|${el.getAttribute('type') ?? ''}|${el.getAttribute('href') ?? ''}`;
+          return `${el.tagName.toLowerCase()}|${el.getAttribute('type') ?? ''}|${el.getAttribute('aria-controls') ?? ''}`;
         }),
       );
     }
     expect(seen.some((s) => s.includes('search'))).toBeTruthy();
-    expect(seen.some((s) => s.includes('/tool/'))).toBeTruthy();
+    // A group disclosure button (aria-controls -> group panel) is reachable.
+    expect(seen.some((s) => s.includes('group-panel'))).toBeTruthy();
+  });
+});
+
+test.describe('Collapsible (accordion) navigation', () => {
+  test('groups are collapsed by default on home and expand on demand', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'networkidle' });
+    // No tool links rendered while groups are collapsed (fewer tab stops).
+    expect(await page.locator('nav a[href^="/tool/"]').count()).toBe(0);
+    const header = page.getByRole('button', { name: /converters|conversores|konverter|convertisseurs/i });
+    await expect(header).toHaveAttribute('aria-expanded', 'false');
+    await header.click();
+    await expect(header).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.getByRole('link', { name: /chmod/i }).first()).toBeVisible();
+  });
+
+  test('the group of the current tool is expanded automatically', async ({ page }) => {
+    await page.goto('/tool/docker', { waitUntil: 'networkidle' });
+    await expect(page.locator('nav a[aria-current="page"]')).toBeVisible();
   });
 });
 
