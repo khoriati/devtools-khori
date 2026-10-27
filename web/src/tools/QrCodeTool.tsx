@@ -3,6 +3,7 @@ import {
   Alert,
   Box,
   Button,
+  Checkbox,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -31,6 +32,8 @@ const LEVELS: QRCodeErrorCorrectionLevel[] = ['L', 'M', 'Q', 'H'];
 const SIZES = [128, 256, 512, 1024];
 // QR version 40 holds at most 2953 bytes (level L); keep a sane cap for the UI.
 const MAX_BYTES = 2900;
+// Light grey used for the transparency checkerboard behind the preview.
+const CHECKER = '#d9d9d9';
 
 type Contact = {
   firstName: string;
@@ -140,6 +143,7 @@ export default function QrCodeTool() {
   const [contact, setContact] = useState<Contact>(EMPTY_CONTACT);
   const [level, setLevel] = useState<QRCodeErrorCorrectionLevel>('M');
   const [size, setSize] = useState(256);
+  const [transparent, setTransparent] = useState(false);
   const [svg, setSvg] = useState('');
   const [error, setError] = useState('');
 
@@ -169,7 +173,13 @@ export default function QrCodeTool() {
       return;
     }
     let active = true;
-    const opts = { errorCorrectionLevel: level, margin: 2, width: size };
+    // Alpha 00 on the light colour yields a transparent PNG and an SVG without background rect.
+    const opts = {
+      errorCorrectionLevel: level,
+      margin: 2,
+      width: size,
+      color: { dark: '#000000ff', light: transparent ? '#ffffff00' : '#ffffffff' },
+    };
     Promise.all([QRCode.toCanvas(canvas, payload, opts), QRCode.toString(payload, { ...opts, type: 'svg' })])
       .then(([, svgText]) => {
         if (!active) return;
@@ -184,10 +194,10 @@ export default function QrCodeTool() {
     return () => {
       active = false;
     };
-  }, [payload, level, size, tooLong, t]);
+  }, [payload, level, size, transparent, tooLong, t]);
 
   const ready = Boolean(payload) && !tooLong && !error;
-  const fileBase = `qrcode-${mode}`;
+  const fileBase = `qrcode-${mode}${transparent ? '-transparent' : ''}`;
 
   const downloadPng = () => {
     canvasRef.current?.toBlob((blob) => {
@@ -307,6 +317,14 @@ export default function QrCodeTool() {
           </TextField>
         </Stack>
 
+        <FormControlLabel
+          control={<Checkbox checked={transparent} onChange={(e) => setTransparent(e.target.checked)} />}
+          label={t('tools.qrcode.transparent')}
+        />
+        <Typography variant="body2" color="text.secondary" sx={{ mt: '-8px !important', maxWidth: '72ch' }}>
+          {t('tools.qrcode.transparentHelp')}
+        </Typography>
+
         {tooLong && <Alert severity="error">{t('tools.qrcode.tooLong', { max: MAX_BYTES, count: byteLength })}</Alert>}
         {error && <Alert severity="error">{error}</Alert>}
       </Stack>
@@ -323,8 +341,12 @@ export default function QrCodeTool() {
             flexDirection: 'column',
             alignItems: 'center',
             // The QR code must stay black-on-white in every theme (incl. high
-            // contrast and forced-colors) so cameras can read it.
+            // contrast and forced-colors) so cameras can read it. With a
+            // transparent background, a checkerboard makes the transparency visible.
             bgcolor: '#fff',
+            backgroundImage: transparent ? `linear-gradient(45deg, ${CHECKER} 25%, transparent 25%), linear-gradient(-45deg, ${CHECKER} 25%, transparent 25%), linear-gradient(45deg, transparent 75%, ${CHECKER} 75%), linear-gradient(-45deg, transparent 75%, ${CHECKER} 75%)` : 'none',
+            backgroundSize: '20px 20px',
+            backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0',
             forcedColorAdjust: 'none',
           }}
         >

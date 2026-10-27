@@ -121,6 +121,8 @@
         "H": "H — Máximo (~30%)"
       },
       "size": "Tamanho da imagem",
+      "transparent": "Fundo transparente",
+      "transparentHelp": "Gera o PNG e o SVG sem fundo branco (útil para sobrepor em artes e materiais). Garanta um fundo claro onde o código for usado, para a câmera conseguir ler.",
       "preview": "Pré-visualização do QR Code",
       "canvasLabel": "QR Code gerado a partir de {{mode}}",
       "emptyHint": "Preencha os campos acima para gerar o QR Code.",

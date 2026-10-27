@@ -121,6 +121,8 @@
         "H": "H — Maximal (~30 %)"
       },
       "size": "Bildgröße",
+      "transparent": "Transparenter Hintergrund",
+      "transparentHelp": "Erzeugt PNG und SVG ohne weißen Hintergrund (praktisch zum Überlagern auf Grafiken). Verwenden Sie den Code auf hellem Hintergrund, damit Kameras ihn lesen können.",
       "preview": "QR-Code-Vorschau",
       "canvasLabel": "QR-Code erzeugt aus {{mode}}",
       "emptyHint": "Füllen Sie die Felder oben aus, um den QR-Code zu erzeugen.",

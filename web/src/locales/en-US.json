@@ -121,6 +121,8 @@
         "H": "H — High (~30%)"
       },
       "size": "Image size",
+      "transparent": "Transparent background",
+      "transparentHelp": "Produces the PNG and SVG without the white background (handy for overlaying on artwork). Make sure the code ends up on a light background so cameras can read it.",
       "preview": "QR code preview",
       "canvasLabel": "QR code generated from {{mode}}",
       "emptyHint": "Fill in the fields above to generate the QR code.",
