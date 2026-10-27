@@ -87,6 +87,53 @@
     "a11yText": "Navegación completa por teclado, compatible con lectores de pantalla, contraste mínimo de 7:1 y tres temas. Use el enlace de salto para ir directo al contenido."
   },
   "tools": {
+    "qrcode": {
+      "name": "Generador de código QR",
+      "desc": "Genera códigos QR a partir de una URL, una tarjeta de contacto (vCard) o texto libre y descárgalos en PNG o SVG. Todo se procesa en tu navegador.",
+      "mode": "Tipo de contenido",
+      "modes": {
+        "url": "URL",
+        "contact": "Tarjeta de contacto",
+        "text": "Texto libre"
+      },
+      "urlHelp": "Si omites el protocolo, se añadirá https:// automáticamente.",
+      "invalidUrl": "URL no válida. Introduce una dirección como https://ejemplo.com",
+      "contactHeading": "Datos del contacto (vCard)",
+      "contact": {
+        "firstName": "Nombre",
+        "lastName": "Apellidos",
+        "org": "Empresa / organización",
+        "title": "Cargo",
+        "phone": "Teléfono",
+        "mobile": "Móvil",
+        "email": "Correo electrónico",
+        "website": "Sitio web",
+        "address": "Dirección",
+        "note": "Nota"
+      },
+      "text": "Texto",
+      "level": "Nivel de corrección de errores",
+      "levelHelp": "Los niveles más altos toleran más daños en la imagen, pero generan un código más denso.",
+      "levels": {
+        "L": "L — Bajo (~7%)",
+        "M": "M — Medio (~15%)",
+        "Q": "Q — Alto (~25%)",
+        "H": "H — Máximo (~30%)"
+      },
+      "size": "Tamaño de la imagen",
+      "transparent": "Fondo transparente",
+      "transparentHelp": "Genera el PNG y el SVG sin fondo blanco (útil para superponer en diseños). Asegúrate de usar el código sobre un fondo claro para que la cámara pueda leerlo.",
+      "preview": "Vista previa del código QR",
+      "canvasLabel": "Código QR generado a partir de {{mode}}",
+      "emptyHint": "Rellena los campos anteriores para generar el código QR.",
+      "downloadPng": "Descargar PNG",
+      "downloadSvg": "Descargar SVG",
+      "downloaded": "Descarga iniciada: {{file}}",
+      "payload": "Contenido codificado",
+      "tooLong": "Contenido demasiado largo: {{count}} bytes (máximo {{max}}). Reduce el texto.",
+      "encodeError": "No se pudo generar el código QR para este contenido.",
+      "privacy": "El código QR se genera íntegramente en el navegador: no se envía ningún dato al servidor."
+    },
     "base-converter": {
       "name": "Calculadora de programador",
       "desc": "Convierta entre hexadecimal, decimal, octal y binario y vea operaciones de bits.",

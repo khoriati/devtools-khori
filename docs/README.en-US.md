@@ -53,7 +53,7 @@ expensive. This portal shows that you can deliver a modern, beautiful UX that is
 
 | Category | Tools |
 | --- | --- |
-| **Converters & data** | Programmer calculator (hex/dec/oct/bin + bits), IP subnet calculator (CIDR ↔ netmask), chmod calculator (octal ↔ rwx), JWT decoder, Base64, URL encoder, Hash generator (SHA-1/256/384/512), UUID generator, Timestamp converter, JSON formatter |
+| **Converters & data** | **QR Code generator** (URL, vCard contact card or free text; PNG/SVG), Programmer calculator (hex/dec/oct/bin + bits), IP subnet calculator (CIDR ↔ netmask), chmod calculator (octal ↔ rwx), JWT decoder, Base64, URL encoder, Hash generator (SHA-1/256/384/512), UUID generator, Timestamp converter, JSON formatter |
 | **Documents (Brazil)** | **CPF** generator + validator, **CNPJ** generator + validator (check digit) |
 | **Network** | WHOIS, Ping, Traceroute, DNS lookup, HTTP inspector (curl-style) |
 | **Quick reference** | **Linux** commands (incl. network & routing), **Docker**, **Kubernetes** (namespaces, `kubectl top`), **ffmpeg**, **magick** (ImageMagick), **Package managers** (brew/apt/winget, with links), **PowerShell** (basic/intermediate/advanced), **Azure CLI**, **AWS CLI** — all with an installation section |

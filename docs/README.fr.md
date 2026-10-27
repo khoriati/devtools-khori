@@ -56,7 +56,7 @@ coûte cher. Ce portail démontre qu'on peut livrer une UX moderne et soignée,
 
 | Catégorie | Outils |
 | --- | --- |
-| **Convertisseurs et données** | Calculatrice de programmeur (hex/déc/oct/bin + bits), Calculatrice de sous-réseau IP (CIDR ↔ masque), Calculatrice chmod (octal ↔ rwx), Décodeur JWT, Base64, Encodeur d'URL, Générateur de hachage (SHA-1/256/384/512), Générateur d'UUID, Convertisseur de timestamp, Formateur JSON |
+| **Convertisseurs et données** | **Générateur de QR code** (URL, carte de contact vCard ou texte libre ; PNG/SVG), Calculatrice de programmeur (hex/déc/oct/bin + bits), Calculatrice de sous-réseau IP (CIDR ↔ masque), Calculatrice chmod (octal ↔ rwx), Décodeur JWT, Base64, Encodeur d'URL, Générateur de hachage (SHA-1/256/384/512), Générateur d'UUID, Convertisseur de timestamp, Formateur JSON |
 | **Documents (Brésil)** | Générateur + validateur de **CPF**, Générateur + validateur de **CNPJ** (chiffre de contrôle) |
 | **Réseau** | WHOIS, Ping, Traceroute, Requête DNS, Inspecteur HTTP (style curl) |
 | **Référence rapide** | Commandes **Linux** (incl. réseau et routage), **Docker**, **Kubernetes** (namespaces, `kubectl top`), **ffmpeg**, **magick** (ImageMagick), **Gestionnaires de paquets** (brew/apt/winget, avec liens), **PowerShell** (basique/intermédiaire/avancé), **Azure CLI**, **AWS CLI** — tous avec une section d'installation |

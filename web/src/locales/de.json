@@ -87,6 +87,53 @@
     "a11yText": "Vollständige Tastaturnavigation, Screenreader-freundlich, Mindestkontrast von 7:1 und drei Designs. Nutzen Sie den Sprunglink, um direkt zum Inhalt zu gelangen."
   },
   "tools": {
+    "qrcode": {
+      "name": "QR-Code-Generator",
+      "desc": "Erzeugen Sie QR-Codes aus einer URL, einer Kontaktkarte (vCard) oder freiem Text und laden Sie sie als PNG oder SVG herunter. Alles läuft in Ihrem Browser.",
+      "mode": "Inhaltstyp",
+      "modes": {
+        "url": "URL",
+        "contact": "Kontaktkarte",
+        "text": "Freier Text"
+      },
+      "urlHelp": "Fehlt das Protokoll, wird https:// automatisch ergänzt.",
+      "invalidUrl": "Ungültige URL. Geben Sie eine Adresse wie https://beispiel.de ein",
+      "contactHeading": "Kontaktdaten (vCard)",
+      "contact": {
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "org": "Firma / Organisation",
+        "title": "Position",
+        "phone": "Telefon",
+        "mobile": "Mobil",
+        "email": "E-Mail",
+        "website": "Website",
+        "address": "Adresse",
+        "note": "Notiz"
+      },
+      "text": "Text",
+      "level": "Fehlerkorrekturstufe",
+      "levelHelp": "Höhere Stufen tolerieren mehr Bildschäden, erzeugen aber einen dichteren Code.",
+      "levels": {
+        "L": "L — Niedrig (~7 %)",
+        "M": "M — Mittel (~15 %)",
+        "Q": "Q — Hoch (~25 %)",
+        "H": "H — Maximal (~30 %)"
+      },
+      "size": "Bildgröße",
+      "transparent": "Transparenter Hintergrund",
+      "transparentHelp": "Erzeugt PNG und SVG ohne weißen Hintergrund (praktisch zum Überlagern auf Grafiken). Verwenden Sie den Code auf hellem Hintergrund, damit Kameras ihn lesen können.",
+      "preview": "QR-Code-Vorschau",
+      "canvasLabel": "QR-Code erzeugt aus {{mode}}",
+      "emptyHint": "Füllen Sie die Felder oben aus, um den QR-Code zu erzeugen.",
+      "downloadPng": "PNG herunterladen",
+      "downloadSvg": "SVG herunterladen",
+      "downloaded": "Download gestartet: {{file}}",
+      "payload": "Kodierter Inhalt",
+      "tooLong": "Inhalt zu lang: {{count}} Bytes (maximal {{max}}). Kürzen Sie den Text.",
+      "encodeError": "Für diesen Inhalt konnte kein QR-Code erzeugt werden.",
+      "privacy": "Der QR-Code wird vollständig im Browser erzeugt: Es werden keine Daten an den Server gesendet."
+    },
     "base-converter": {
       "name": "Programmierrechner",
       "desc": "Zwischen Hexadezimal, Dezimal, Oktal und Binär umrechnen und Bit-Operationen ansehen.",

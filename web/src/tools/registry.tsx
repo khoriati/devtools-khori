@@ -30,6 +30,7 @@ import CloudQueueIcon from '@mui/icons-material/CloudQueue';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import QrCode2Icon from '@mui/icons-material/QrCode2';
 
 import BaseConverter from './BaseConverter';
 import IpCalculator from './IpCalculator';
@@ -47,6 +48,7 @@ import CheatSheet from './CheatSheet';
 import CmdCompare from './CmdCompare';
 import Glossary from './Glossary';
 import BrDocTool from './BrDocTool';
+import QrCodeTool from './QrCodeTool';
 import { cheatSearchText } from './cheatsheets';
 
 export type ToolGroup = 'converters' | 'brazil' | 'network' | 'reference' | 'accessibility';
@@ -63,6 +65,7 @@ export type ToolDef = {
 };
 
 export const TOOLS: ToolDef[] = [
+  { id: 'qrcode', group: 'converters', icon: QrCode2Icon, keywords: 'qr code qrcode vcard contact contato cartao url link png svg barcode', render: () => <QrCodeTool /> },
   { id: 'base-converter', group: 'converters', icon: CalculateIcon, keywords: '0x hex bin oct dec bitwise base radix', render: () => <BaseConverter /> },
   { id: 'ip-calculator', group: 'converters', icon: LanIcon, keywords: 'cidr subnet netmask broadcast wildcard ipv4 mask', render: () => <IpCalculator /> },
   { id: 'chmod', group: 'converters', icon: LockIcon, keywords: '777 755 644 rwx octal permissions setuid setgid sticky umask', render: () => <ChmodCalculator /> },

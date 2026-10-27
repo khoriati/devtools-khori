@@ -55,7 +55,7 @@ Mindestkontrast von 7:1.
 
 | Kategorie | Werkzeuge |
 | --- | --- |
-| **Konverter & Daten** | Programmierrechner (hex/dez/okt/bin + Bits), IP-Subnetzrechner (CIDR ↔ Netzmaske), chmod-Rechner (oktal ↔ rwx), JWT-Decoder, Base64, URL-Kodierer, Hash-Generator (SHA-1/256/384/512), UUID-Generator, Timestamp-Konverter, JSON-Formatter |
+| **Konverter & Daten** | **QR-Code-Generator** (URL, vCard-Kontaktkarte oder freier Text; PNG/SVG), Programmierrechner (hex/dez/okt/bin + Bits), IP-Subnetzrechner (CIDR ↔ Netzmaske), chmod-Rechner (oktal ↔ rwx), JWT-Decoder, Base64, URL-Kodierer, Hash-Generator (SHA-1/256/384/512), UUID-Generator, Timestamp-Konverter, JSON-Formatter |
 | **Dokumente (Brasilien)** | **CPF**-Generator + Validator, **CNPJ**-Generator + Validator (Prüfziffer) |
 | **Netzwerk** | WHOIS, Ping, Traceroute, DNS-Abfrage, HTTP-Inspektor (curl-Stil) |
 | **Schnellreferenz** | **Linux**-Befehle (inkl. Netzwerk & Routing), **Docker**, **Kubernetes** (Namespaces, `kubectl top`), **ffmpeg**, **magick** (ImageMagick), **Paketmanager** (brew/apt/winget, mit Links), **PowerShell** (einfach/mittel/fortgeschritten), **Azure CLI**, **AWS CLI** — alle mit Installationsabschnitt |
