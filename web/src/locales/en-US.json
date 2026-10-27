@@ -87,6 +87,51 @@
     "a11yText": "Full keyboard navigation, screen-reader friendly, a minimum 7:1 contrast ratio and three themes. Use the skip link to jump straight to the content."
   },
   "tools": {
+    "qrcode": {
+      "name": "QR Code generator",
+      "desc": "Generate QR codes from a URL, a contact card (vCard) or free text and download them as PNG or SVG. Everything runs in your browser.",
+      "mode": "Content type",
+      "modes": {
+        "url": "URL",
+        "contact": "Contact card",
+        "text": "Free text"
+      },
+      "urlHelp": "If you omit the protocol, https:// is added automatically.",
+      "invalidUrl": "Invalid URL. Enter an address such as https://example.com",
+      "contactHeading": "Contact details (vCard)",
+      "contact": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "org": "Company / organization",
+        "title": "Job title",
+        "phone": "Phone",
+        "mobile": "Mobile",
+        "email": "Email",
+        "website": "Website",
+        "address": "Address",
+        "note": "Note"
+      },
+      "text": "Text",
+      "level": "Error correction level",
+      "levelHelp": "Higher levels tolerate more image damage but produce a denser code.",
+      "levels": {
+        "L": "L — Low (~7%)",
+        "M": "M — Medium (~15%)",
+        "Q": "Q — Quartile (~25%)",
+        "H": "H — High (~30%)"
+      },
+      "size": "Image size",
+      "preview": "QR code preview",
+      "canvasLabel": "QR code generated from {{mode}}",
+      "emptyHint": "Fill in the fields above to generate the QR code.",
+      "downloadPng": "Download PNG",
+      "downloadSvg": "Download SVG",
+      "downloaded": "Download started: {{file}}",
+      "payload": "Encoded content",
+      "tooLong": "Content too long: {{count}} bytes (maximum {{max}}). Shorten the text.",
+      "encodeError": "Could not generate a QR code for this content.",
+      "privacy": "The QR code is generated entirely in the browser: no data is sent to the server."
+    },
     "base-converter": {
       "name": "Programmer calculator",
       "desc": "Convert between hexadecimal, decimal, octal and binary and view bit operations.",

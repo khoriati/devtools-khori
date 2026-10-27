@@ -87,6 +87,51 @@
     "a11yText": "Navigation complète au clavier, compatible lecteurs d'écran, contraste minimal de 7:1 et trois thèmes. Utilisez le lien d'évitement pour aller directement au contenu."
   },
   "tools": {
+    "qrcode": {
+      "name": "Générateur de QR code",
+      "desc": "Générez des QR codes à partir d'une URL, d'une carte de contact (vCard) ou d'un texte libre et téléchargez-les en PNG ou SVG. Tout est traité dans votre navigateur.",
+      "mode": "Type de contenu",
+      "modes": {
+        "url": "URL",
+        "contact": "Carte de contact",
+        "text": "Texte libre"
+      },
+      "urlHelp": "Si le protocole est omis, https:// est ajouté automatiquement.",
+      "invalidUrl": "URL invalide. Saisissez une adresse comme https://exemple.fr",
+      "contactHeading": "Coordonnées du contact (vCard)",
+      "contact": {
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "org": "Entreprise / organisation",
+        "title": "Fonction",
+        "phone": "Téléphone",
+        "mobile": "Mobile",
+        "email": "E-mail",
+        "website": "Site web",
+        "address": "Adresse",
+        "note": "Note"
+      },
+      "text": "Texte",
+      "level": "Niveau de correction d'erreurs",
+      "levelHelp": "Les niveaux élevés tolèrent davantage de dégradations de l'image mais produisent un code plus dense.",
+      "levels": {
+        "L": "L — Faible (~7 %)",
+        "M": "M — Moyen (~15 %)",
+        "Q": "Q — Élevé (~25 %)",
+        "H": "H — Maximal (~30 %)"
+      },
+      "size": "Taille de l'image",
+      "preview": "Aperçu du QR code",
+      "canvasLabel": "QR code généré à partir de {{mode}}",
+      "emptyHint": "Remplissez les champs ci-dessus pour générer le QR code.",
+      "downloadPng": "Télécharger en PNG",
+      "downloadSvg": "Télécharger en SVG",
+      "downloaded": "Téléchargement lancé : {{file}}",
+      "payload": "Contenu encodé",
+      "tooLong": "Contenu trop long : {{count}} octets (maximum {{max}}). Raccourcissez le texte.",
+      "encodeError": "Impossible de générer un QR code pour ce contenu.",
+      "privacy": "Le QR code est généré entièrement dans le navigateur : aucune donnée n'est envoyée au serveur."
+    },
     "base-converter": {
       "name": "Calculatrice de programmeur",
       "desc": "Convertissez entre hexadécimal, décimal, octal et binaire et visualisez les opérations sur les bits.",

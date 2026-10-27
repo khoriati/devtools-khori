@@ -56,7 +56,7 @@ es caro. Este portal demuestra que se puede entregar una UX moderna y atractiva,
 
 | Categoría | Herramientas |
 | --- | --- |
-| **Conversores y datos** | Calculadora de programador (hex/dec/oct/bin + bits), Calculadora de subred IP (CIDR ↔ máscara), Calculadora de chmod (octal ↔ rwx), Decodificador JWT, Base64, Codificador de URL, Generador de hash (SHA-1/256/384/512), Generador de UUID, Conversor de timestamp, Formateador JSON |
+| **Conversores y datos** | **Generador de código QR** (URL, tarjeta de contacto vCard o texto libre; PNG/SVG), Calculadora de programador (hex/dec/oct/bin + bits), Calculadora de subred IP (CIDR ↔ máscara), Calculadora de chmod (octal ↔ rwx), Decodificador JWT, Base64, Codificador de URL, Generador de hash (SHA-1/256/384/512), Generador de UUID, Conversor de timestamp, Formateador JSON |
 | **Documentos (Brasil)** | Generador + validador de **CPF**, Generador + validador de **CNPJ** (dígito verificador) |
 | **Red** | WHOIS, Ping, Traceroute, Consulta DNS, Inspector HTTP (estilo curl) |
 | **Referencia rápida** | Comandos **Linux** (incl. red y enrutamiento), **Docker**, **Kubernetes** (namespaces, `kubectl top`), **ffmpeg**, **magick** (ImageMagick), **Gestores de paquetes** (brew/apt/winget, con enlaces), **PowerShell** (básico/intermedio/avanzado), **Azure CLI**, **AWS CLI** — todos con sección de instalación |
